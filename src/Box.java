@@ -1,14 +1,16 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 
 public class Box {
 
     public int xPos;
     public int yPos;
-    public BufferedImage image;
+    public Image image;
 
-    public Box(int x, int y, BufferedImage img){
+    public Box(int x, int y, Image img){
 
         xPos = x;
         yPos = y;
@@ -17,11 +19,12 @@ public class Box {
     }
 
 
-    public Box(int x, int y){
+    public Box(int x, int y) throws IOException {
 
         xPos = x;
         yPos = y;
-        image = ImageIO.read("crate.png");
+        image = ImageIO.read(new File("textures/create.png"));
+
 
 
     }
