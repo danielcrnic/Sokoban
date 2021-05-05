@@ -52,12 +52,12 @@ public class FrameworkTester extends GameFramework {
 
     @Override
     public int getGUIWidth() {
-        return 20;
+        return 500;
     }
 
     @Override
     public int getGUIHeight() {
-        return 20 ;
+        return 500;
     }
 
     @Override

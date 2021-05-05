@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Mindre trasig image">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Beacon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CustomObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Wall.java" afterDir="false" />
+    <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HelloWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HelloWorld.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/textures/blankmarked.png" beforeDir="false" afterPath="$PROJECT_DIR$/textures/blankmarked.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/textures/crate.png" beforeDir="false" afterPath="$PROJECT_DIR$/textures/crate.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/textures/player.png" beforeDir="false" afterPath="$PROJECT_DIR$/textures/player.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/textures/playerflipped.png" beforeDir="false" afterPath="$PROJECT_DIR$/textures/playerflipped.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/FrameworkTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/FrameworkTester.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrameworkTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrameworkTester.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +33,14 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.FrameworkTester">
+    <configuration name="FrameworkTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="FrameworkTester" />
+      <module name="DT4014-Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HelloWorld" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="HelloWorld" />
       <module name="DT4014-Project" />
@@ -50,6 +50,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FrameworkTester" />
         <item itemvalue="Application.HelloWorld" />
       </list>
     </recent_temporary>
@@ -104,6 +105,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Lite Trasig bufferedImage" />
