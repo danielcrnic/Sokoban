@@ -62,8 +62,6 @@ public abstract class GameFramework implements InputObserver {
         mainComponent = null;
         menuBar = null;
 
-        // frame.add(mainComponent, CENTER);
-        // frame.add(menuBar, PAGE_START); // FIXME: The toolbar should be later placed
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
@@ -81,13 +79,13 @@ public abstract class GameFramework implements InputObserver {
     }
 
     /**
-     * Adds a jMenuBar to the top of the window. If a menuBar already exists, it will replace the current with the new
+     * Adds a JMenuBar to the top of the window. If a menuBar already exists, it will replace the current with the new
      * one.
      * <p>
      * For more information about jMenuBar and how it works, please refer to this page:
      * https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html
      *
-     * @param menuBar The jMenuBar to be added into the JFrame at the top
+     * @param menuBar The JMenuBar to be added into the JFrame at the top
      */
     public void setMenuBar(JMenuBar menuBar) {
         if (this.menuBar != null) {
@@ -97,6 +95,24 @@ public abstract class GameFramework implements InputObserver {
         frame.add(menuBar, PAGE_START);
 
         // Refreshes the window (JFrame) to display the new menuBar
+        frame.repaint();
+        frame.revalidate();
+    }
+
+    /**
+     * Adds a JComponent to the middle of the window. If a JComponent already exists in the window (JFrame), it will be
+     * replaced with the new one.
+     *
+     * @param component The JComponent to be added into the JFrame in the middle
+     */
+    public void setComponent(JComponent component) {
+        if (mainComponent != null) {
+            frame.remove(mainComponent);    // Remove the old center component
+        }
+        mainComponent = component;
+        frame.add(mainComponent, CENTER);
+
+        // Refreshes the window (JFrame) to display the new component
         frame.repaint();
         frame.revalidate();
     }
