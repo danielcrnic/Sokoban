@@ -19,7 +19,7 @@ public abstract class GameFramework implements InputObserver {
 
     // Objects that will hold information
     private ArrayList<BufferedImage> textures;
-    private JFrame frame;
+    private final JFrame frame;
 
     private JComponent mainComponent;
     private JMenuBar menuBar;
