@@ -1,11 +1,23 @@
 import framework.GameFramework;
 
+import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
 
 public class FrameworkTester extends GameFramework {
 
     private ArrayList<File> texturesFiles;
+
+    public FrameworkTester() {
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.add(new JMenu("Hello 1"));
+        menuBar.add(new JMenu("Hello 2"));
+        menuBar.add(new JMenu("Hello 3"));
+        menuBar.add(new JMenu("Hello 4"));
+        menuBar.add(new JMenu("Hello 5"));
+
+        setMenuBar(menuBar);
+    }
 
     @Override
     public int getGUIWidth() {

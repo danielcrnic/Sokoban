@@ -12,10 +12,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static java.awt.BorderLayout.PAGE_START;
+import static java.awt.BorderLayout.CENTER;
+
 public abstract class GameFramework implements InputObserver {
 
     // Objects that will hold information
     private ArrayList<BufferedImage> textures;
+    private JFrame frame;
+
+    private JComponent mainComponent;
+    private JMenuBar menuBar;
 
     // Methods for the GUI
     public abstract int getGUIWidth();
@@ -46,12 +53,17 @@ public abstract class GameFramework implements InputObserver {
             e.printStackTrace();
             System.exit(0);     // Stop the program, no point continuing without any textures
         }
+        frame = new JFrame();
 
-        JFrame frame = new JFrame();
+        frame.setLayout(new BorderLayout());
         frame.setSize(new Dimension(getGUIWidth(), getGUIHeight()));
         frame.setTitle(getGameName());
 
-        // Some random shit...
+        mainComponent = null;
+        menuBar = null;
+
+        // frame.add(mainComponent, CENTER);
+        // frame.add(menuBar, PAGE_START); // FIXME: The toolbar should be later placed
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
@@ -66,6 +78,27 @@ public abstract class GameFramework implements InputObserver {
      */
     public ArrayList<BufferedImage> getTextures() {
         return textures;
+    }
+
+    /**
+     * Adds a jMenuBar to the top of the window. If a menuBar already exists, it will replace the current with the new
+     * one.
+     * <p>
+     * For more information about jMenuBar and how it works, please refer to this page:
+     * https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html
+     *
+     * @param menuBar The jMenuBar to be added into the JFrame at the top
+     */
+    public void setMenuBar(JMenuBar menuBar) {
+        if (this.menuBar != null) {
+            frame.remove(this.menuBar);      // Remove the old menuBar
+        }
+        this.menuBar = menuBar;     // Set the new menuBar
+        frame.add(menuBar, PAGE_START);
+
+        // Refreshes the window (JFrame) to display the new menuBar
+        frame.repaint();
+        frame.revalidate();
     }
 
     /**
@@ -95,6 +128,8 @@ public abstract class GameFramework implements InputObserver {
 
     /**
      * Loads the textures and stores them in a arraylist
+     *
+     * @throws IOException If one of the files could not be loaded (either not being existing or placed in wrong path)
      */
     private void loadTextures() throws IOException {
         textures = new ArrayList<>();   // Initializes the ArrayList
