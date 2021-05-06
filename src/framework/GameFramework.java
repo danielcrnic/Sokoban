@@ -34,6 +34,7 @@ public abstract class GameFramework implements InputObserver {
     public abstract void goRight();
     public abstract void goUp();
     public abstract void goDown();
+    public abstract void pressedEnter();
 
     // TODO: This will have to be implemented later in the development
     // These methods will be called when the player wants to undo/redo a move
@@ -138,6 +139,9 @@ public abstract class GameFramework implements InputObserver {
                 break;
             case InputSubject.RIGHT:
                 goRight();
+                break;
+            case InputSubject.ENTER:
+                pressedEnter();
                 break;
         }
     }

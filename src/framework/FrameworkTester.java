@@ -86,6 +86,11 @@ public class FrameworkTester extends GameFramework {
     }
 
     @Override
+    public void pressedEnter() {
+
+    }
+
+    @Override
     public ArrayList<File> getFilePaths() {
         texturesFiles = new ArrayList<>();
         texturesFiles.add(new File("textures/blank.png"));
