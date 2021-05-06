@@ -33,7 +33,7 @@
   </component>
   <component name="RunManager" selected="Application.FrameworkTester">
     <configuration name="FrameworkTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="FrameworkTester" />
+      <option name="MAIN_CLASS_NAME" value="framework.FrameworkTester" />
       <module name="DT4014-Project" />
       <method v="2">
         <option name="Make" enabled="true" />
