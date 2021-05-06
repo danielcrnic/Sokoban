@@ -58,6 +58,7 @@ public abstract class GameFramework implements InputObserver {
 
         frame.setLayout(new BorderLayout());
         frame.setSize(new Dimension(getGUIWidth(), getGUIHeight()));
+        frame.setMinimumSize(new Dimension(getGUIWidth(), getGUIHeight()));
         frame.setTitle(getGameName());
 
         mainComponent = null;
