@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="">
+    <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Div custom objekt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/Beacon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/Beacon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/Box.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/Box.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/CustomObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/CustomObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/FrameworkTester$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/FrameworkTester$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/FrameworkTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/FrameworkTester.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/HelloWorld.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/HelloWorld.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/Wall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/Wall.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/InputObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/InputObserver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/InputSubject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/InputSubject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/listeners/KeyboardListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/listeners/KeyboardListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FrameworkTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrameworkTester.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

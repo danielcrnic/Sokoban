@@ -27,7 +27,7 @@ public class FrameworkTester extends GameFramework {
         menuBar.add(new JMenu("Hello 5"));
 
         JMenuBar menuBar2 = new JMenuBar();
-        menuBar2.add(new JMenu("Bruh momento"));
+        menuBar2.add(new JMenu("Bruh momento")); // Inte Okej Daniel.. ;)
 
         setMenuBar(menuBar);
         setComponent(label);
