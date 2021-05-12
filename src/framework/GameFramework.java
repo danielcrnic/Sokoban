@@ -64,7 +64,6 @@ public abstract class GameFramework implements InputObserver {
         mainComponent = null;
         menuBar = null;
 
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 

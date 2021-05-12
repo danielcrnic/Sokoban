@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Infogad kommentar">
+    <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Div custom objekt">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/InputSubject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/InputSubject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/listeners/KeyboardListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/listeners/KeyboardListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StartSokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StartSokoban.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/framework/GameFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/GameFramework.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/framework/inputs/InputSubject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/inputs/InputSubject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/framework/inputs/listeners/KeyboardListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/inputs/listeners/KeyboardListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Sokoban.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,9 +34,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Exercises/Exercise 2/DT4014-Assignment-2" />
   </component>
-  <component name="RunManager" selected="Application.FrameworkTester">
+  <component name="RunManager" selected="Application.StartSokoban">
     <configuration name="FrameworkTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="framework.FrameworkTester" />
       <module name="DT4014-Project" />
@@ -47,8 +51,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StartSokoban" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="StartSokoban" />
+      <module name="DT4014-Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StartSokoban" />
         <item itemvalue="Application.FrameworkTester" />
         <item itemvalue="Application.HelloWorld" />
       </list>

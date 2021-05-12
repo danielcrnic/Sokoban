@@ -1,3 +1,5 @@
+import sokoban.Sokoban;
+
 public class StartSokoban {
 
     public static void main(String[] args) {
