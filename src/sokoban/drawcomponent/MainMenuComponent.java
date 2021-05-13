@@ -7,7 +7,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.Locale;
 
 public class MainMenuComponent extends JComponent {
 
@@ -24,10 +24,10 @@ public class MainMenuComponent extends JComponent {
 
     public MainMenuComponent(String title, String[] options, String versionNumber, String copyRightNotice, int position, BufferedImage backgroundImage,
                              BufferedImage selectionImage) {
-        this.title = title;
+        this.title = title.toUpperCase(Locale.ROOT);
         this.options = options;
-        this.versionNumber = versionNumber;
-        this.copyRightNotice = copyRightNotice;
+        this.versionNumber = versionNumber.toUpperCase(Locale.ROOT);
+        this.copyRightNotice = copyRightNotice.toUpperCase(Locale.ROOT);
 
         this.backgroundImage = backgroundImage;
         this.selectionImage = selectionImage;
@@ -136,7 +136,7 @@ public class MainMenuComponent extends JComponent {
 
             rWidth = (int) Math.round(rectangle2D.getWidth());
             rHeight = (int) Math.round(rectangle2D.getHeight());
-            g.drawString(options[i], (getWidth() / 2) - (rWidth / 2), optionsStartHeight);
+            g.drawString(options[i].toUpperCase(Locale.ROOT), (getWidth() / 2) - (rWidth / 2), optionsStartHeight);
 
             if (i == position) {
                 // Draw the character
