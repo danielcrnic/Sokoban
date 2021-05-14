@@ -9,6 +9,10 @@ import java.util.ArrayList;
 
 public class Sokoban extends GameFramework {
 
+    public static final String GAME_NAME = "Sokoban";
+    public static final String VERSION = "V0.1";
+    public static final String COPYRIGHT = "(C) 2021, Daniel Crnic and Alfred Mattsson";
+
     private int menuPosition;
     private MainMenuComponent mainMenuComponent;
 
@@ -48,7 +52,7 @@ public class Sokoban extends GameFramework {
 
     @Override
     public String getGameName() {
-        return "Sokoban";
+        return GAME_NAME;
     }
 
     @Override
