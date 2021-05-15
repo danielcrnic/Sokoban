@@ -38,9 +38,7 @@ public abstract class GameFramework implements InputObserver {
     // These methods will be called when the player wants to undo/redo a move
     // public abstract void undoMove();
     // public abstract void redoMove();
-
-    public abstract ArrayList<File> getFilePaths();
-
+    
     /**
      * Constructor for the framework
      */
