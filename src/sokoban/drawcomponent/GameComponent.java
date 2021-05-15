@@ -1,6 +1,6 @@
 package sokoban.drawcomponent;
 
-import sokoban.CusObj;
+import sokoban.objects.CusObj;
 
 import javax.swing.*;
 import java.awt.*;
