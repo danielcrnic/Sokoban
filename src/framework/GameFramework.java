@@ -79,6 +79,23 @@ public abstract class GameFramework implements InputObserver {
     }
 
     /**
+     * Loads an external font into a Font variable. This makes it possible for the end developer to make add fonts
+     * easily. Furthermore, the end developer can use Font methods like .deriveFont() to change the style (bold, italic
+     * e.t.c.) and the font size.
+     *
+     * @param file The filepath of where the font is located.
+     * @return An Font variable with the font, if the font could not be loaded. It will instead return null.
+     * */
+    public Font loadFont(File file) {
+        try {
+            return Font.createFont(Font.TRUETYPE_FONT, file);
+        } catch (IOException | FontFormatException e) {
+            System.err.println("Had an problem loading the font!");
+            return null;
+        }
+    }
+
+    /**
      * Adds a JMenuBar to the top of the window. If a menuBar already exists, it will replace the current with the new
      * one.
      * <p>
