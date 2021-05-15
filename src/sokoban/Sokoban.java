@@ -51,7 +51,7 @@ public class Sokoban extends GameFramework {
         // map1[4] = new CusObj[]{wall, wall, wall, wall, wall};
 
         // GameComponent gameComponent = new GameComponent(map1);
-        // setComponent(gameComponent);
+        // setComponent(gameComponent);2
 
     }
 

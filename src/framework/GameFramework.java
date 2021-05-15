@@ -8,8 +8,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 import static java.awt.BorderLayout.PAGE_START;
@@ -91,6 +90,41 @@ public abstract class GameFramework implements InputObserver {
             return Font.createFont(Font.TRUETYPE_FONT, file);
         } catch (IOException | FontFormatException e) {
             System.err.println("Had an problem loading the font!");
+            return null;
+        }
+    }
+
+
+    /**
+     * Loads an object from a file stored locally. It also checks that the object loaded matches with the same type as
+     * the one the user wants.
+     *
+     * @param file The filepath to be loaded
+     * @param type An object of the same type the file should be loaded from.
+     * @return Returns an Object of the same type as the type variable. If the type is not the same or the file could
+     *         not be loaded, it will return null.
+     */
+    public Object loadObject(File file, Object type) {
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            Object read = objectInputStream.readObject();
+
+            // Allow only if the object has the same instance as the 'type' object, or else return null.
+            if (type.getClass().isInstance(read)) {
+                return read;
+            }
+            else {
+                System.err.println("Wrong type.");
+                return null;    // Wrong type
+            }
+
+        } catch (FileNotFoundException e) {
+            System.err.println("Could not find the file: '" + file.getAbsolutePath() + "'");
+            return null;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
             return null;
         }
     }
