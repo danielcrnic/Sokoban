@@ -23,7 +23,7 @@ public class Sokoban extends GameFramework {
         //         "V0.1", "(C) 2021, Daniel Crnic and Alfred Mattsson",menuPosition, getTextures().get(0), getTextures().get(4));
         // setComponent(mainMenuComponent);
 
-        CusObj wall = new Floor(getTextures().get(6));
+        // CusObj wall = new Floor(getTextures().get(6));
 
         // CusObj player = new CusObj(getTextures().get(4), false);
         // CusObj floor = new CusObj(getTextures().get(0), false);

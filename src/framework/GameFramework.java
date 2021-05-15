@@ -18,7 +18,6 @@ import static java.awt.BorderLayout.CENTER;
 public abstract class GameFramework implements InputObserver {
 
     // Objects that will hold information
-    private ArrayList<BufferedImage> textures;
     private final JFrame frame;
 
     private JComponent mainComponent;
@@ -47,13 +46,6 @@ public abstract class GameFramework implements InputObserver {
      * Constructor for the framework
      */
     public GameFramework() {
-        try {
-            loadTextures();     // Tries to load the textures into the ArrayList
-        } catch (IOException e) {
-            System.err.println("Had an problem loading some/all of the textures!");
-            e.printStackTrace();
-            System.exit(0);     // Stop the program, no point continuing without any textures
-        }
         frame = new JFrame();
 
         frame.setLayout(new BorderLayout());
@@ -71,12 +63,19 @@ public abstract class GameFramework implements InputObserver {
     }
 
     /**
-     * Returns the textures in BufferedImage objects.
+     * Loads an image texture into a BufferedImage variable which is then returned to the developer
      *
-     * @return An ArrayList with BufferedImage objects
+     * @return An BufferedImage with the image, if null is returned it means that it could not either find the file
+     *         or there was a problem with loading that image.
      */
-    public ArrayList<BufferedImage> getTextures() {
-        return textures;
+    public BufferedImage loadTexture(File file) {
+        try {
+            return ImageIO.read(file);
+        }
+        catch (IOException e) {
+            System.err.println("Had an problem loading the texture!");
+            return null;
+        }
     }
 
     /**
@@ -143,20 +142,6 @@ public abstract class GameFramework implements InputObserver {
             case InputSubject.ENTER:
                 pressedEnter();
                 break;
-        }
-    }
-
-    /**
-     * Loads the textures and stores them in a arraylist
-     *
-     * @throws IOException If one of the files could not be loaded (either not being existing or placed in wrong path)
-     */
-    private void loadTextures() throws IOException {
-        textures = new ArrayList<>();   // Initializes the ArrayList
-        ArrayList<File> files = getFilePaths();
-
-        for (File f : files) {
-            textures.add(ImageIO.read(f));
         }
     }
 
