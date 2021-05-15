@@ -5,6 +5,7 @@ import sokoban.drawcomponent.GameComponent;
 import sokoban.drawcomponent.MainMenuComponent;
 import sokoban.objects.*;
 
+import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -17,11 +18,22 @@ public class Sokoban extends GameFramework {
     private int menuPosition;
     private MainMenuComponent mainMenuComponent;
 
+    private Font pixelFont;
+
     public Sokoban() {
+        // Load fonts and texture to the corresponding stuff
+        // TODO: Add the loading of texture
+
+        pixelFont = loadFont(new File("textures/fonts/Pixeled.ttf"));
+        if (pixelFont == null) {
+            // Could not find/load the fond
+            pixelFont = new Font("Cantarell", Font.PLAIN, 12);
+        }
+
         menuPosition = 0;
-        // mainMenuComponent = new MainMenuComponent("SOKOBAN", new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
-        //         "V0.1", "(C) 2021, Daniel Crnic and Alfred Mattsson",menuPosition, getTextures().get(0), getTextures().get(4));
-        // setComponent(mainMenuComponent);
+        mainMenuComponent = new MainMenuComponent(GAME_NAME, new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
+                VERSION, COPYRIGHT, menuPosition, loadTexture(new File("textures/blank.png")), loadTexture(new File("textures/player.png")), pixelFont);
+        setComponent(mainMenuComponent);
 
         // CusObj wall = new Floor(getTextures().get(6));
 

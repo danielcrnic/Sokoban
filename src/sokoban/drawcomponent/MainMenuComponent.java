@@ -21,9 +21,10 @@ public class MainMenuComponent extends JComponent {
 
     private BufferedImage backgroundImage;
     private BufferedImage selectionImage;
+    private final Font font;
 
     public MainMenuComponent(String title, String[] options, String versionNumber, String copyRightNotice, int position, BufferedImage backgroundImage,
-                             BufferedImage selectionImage) {
+                             BufferedImage selectionImage, Font font) {
         this.title = title.toUpperCase(Locale.ROOT);
         this.options = options;
         this.versionNumber = versionNumber.toUpperCase(Locale.ROOT);
@@ -31,6 +32,7 @@ public class MainMenuComponent extends JComponent {
 
         this.backgroundImage = backgroundImage;
         this.selectionImage = selectionImage;
+        this.font = font;
 
         if (position < 0 || position >= options.length) {
             this.position = 0;
@@ -91,23 +93,10 @@ public class MainMenuComponent extends JComponent {
     private void paintContent(Graphics2D g) {
         FontRenderContext fontRenderContext = new FontRenderContext(null, true, true);
 
-        // FIXME: We cannot load the font here, that is the work of the framework!
-        Font titleFont;
-        Font optionsFont;
-        Font optionsSelectedFont;
-        Font smallFont;
-        try {
-            titleFont = Font.createFont(Font.TRUETYPE_FONT, new File("textures/fonts/Pixeled.ttf")).deriveFont(70f);
-            optionsFont = titleFont.deriveFont(20f);
-            optionsSelectedFont = titleFont.deriveFont(20f).deriveFont(Font.BOLD);
-            smallFont = titleFont.deriveFont(10f);
-        } catch (IOException | FontFormatException e) {
-            titleFont = new Font("Comic Sans MS", Font.BOLD, 70);
-            optionsFont = new Font("Comic Sans MS", Font.PLAIN, 30);
-            optionsSelectedFont = new Font("Comic Sans MS", Font.BOLD, 30);
-            smallFont = new Font("Comic Sans MS", Font.PLAIN, 10);
-            e.printStackTrace();
-        }
+        Font titleFont = font.deriveFont(70f);
+        Font optionsFont = font.deriveFont(20f);
+        Font optionsSelectedFont = font.deriveFont(20f).deriveFont(Font.BOLD);
+        Font smallFont = font.deriveFont(10f);
 
         // Prints out the title
         g.setFont(titleFont);
