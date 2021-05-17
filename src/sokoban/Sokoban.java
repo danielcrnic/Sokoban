@@ -24,7 +24,7 @@ public class Sokoban extends GameFramework {
         // Load fonts and texture to the corresponding stuff
         // TODO: Add the loading of texture
 
-        pixelFont = loadFont(new File("textures/fonts/Pixeled.ttf"));
+        pixelFont = loadFont(new File("resources/fonts/Pixeled.ttf"));
         if (pixelFont == null) {
             // Could not find/load the fond
             pixelFont = new Font("Cantarell", Font.PLAIN, 12);
@@ -32,7 +32,7 @@ public class Sokoban extends GameFramework {
 
         menuPosition = 0;
         mainMenuComponent = new MainMenuComponent(GAME_NAME, new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
-                VERSION, COPYRIGHT, menuPosition, loadTexture(new File("textures/blank.png")), loadTexture(new File("textures/player.png")), pixelFont);
+                VERSION, COPYRIGHT, menuPosition, loadTexture(new File("resources/textures/blank.png")), loadTexture(new File("resources/textures/player.png")), pixelFont);
         setComponent(mainMenuComponent);
 
         // CusObj wall = new Floor(getTextures().get(6));

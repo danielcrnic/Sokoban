@@ -15,8 +15,6 @@ public class GameComponent extends JComponent {
     public GameComponent(CusObj[][] map) {
         this.map = map;
 
-        width = map[0].length * map[0][0].getTexture().getWidth();
-        height = map.length * map[0][0].getTexture().getHeight();
     }
 
     @Override
@@ -26,13 +24,13 @@ public class GameComponent extends JComponent {
         int x = 0;
         int y = 0;
 
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[0].length; j++) {
-                g2.drawImage(map[i][j].getTexture(),null, x, y);
-                x += map[i][j].getTexture().getWidth();
-            }
-            x = 0;
-            y += map[i][0].getTexture().getHeight();
-        }
+        // for (int i = 0; i < map.length; i++) {
+        //     for (int j = 0; j < map[0].length; j++) {
+        //         g2.drawImage(map[i][j].getTexture(),null, x, y);
+        //         x += map[i][j].getTexture().getWidth();
+        //     }
+        //     x = 0;
+        //     y += map[i][0].getTexture().getHeight();
+        // }
     }
 }
