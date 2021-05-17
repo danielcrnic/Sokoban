@@ -3,9 +3,7 @@ package framework;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 
 public class AudioPlayer {
 
@@ -15,6 +13,7 @@ public class AudioPlayer {
 
     public AudioPlayer(File file) {
         this.file = file;
+        thread = new MusicThread();
     }
 
     public void play() {
@@ -38,6 +37,10 @@ public class AudioPlayer {
         if (thread.isAlive()) {
             thread.interrupt();
         }
+    }
+
+    public File getFile() {
+        return file;
     }
 
     public class MusicThread extends java.lang.Thread {
@@ -70,7 +73,12 @@ public class AudioPlayer {
      */
     public static boolean supportPlayingAudio() {
         try {
-            Player player = new Player(null);
+            Player player = new Player(new InputStream() {
+                @Override
+                public int read() throws IOException {
+                    return 0;
+                }
+            });
         } catch (JavaLayerException e) {
             e.printStackTrace();
             return false;

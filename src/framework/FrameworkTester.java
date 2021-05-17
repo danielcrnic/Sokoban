@@ -12,6 +12,8 @@ public class FrameworkTester extends GameFramework {
     private ArrayList<File> texturesFiles;
     private int count = 1;
 
+    private int song2;
+
     public FrameworkTester() {
         JPanel label = new JPanel();
         label.setBackground(Color.RED);
@@ -32,22 +34,33 @@ public class FrameworkTester extends GameFramework {
         setMenuBar(menuBar);
         setComponent(label);
 
-        Timer timer = new Timer(1000, new ActionListener() {    // LÄGG INTE DELAY NÅGOT LÄGRE!!!
+        // Timer timer = new Timer(1000, new ActionListener() {    // LÄGG INTE DELAY NÅGOT LÄGRE!!!
+        //     @Override
+        //     public void actionPerformed(ActionEvent e) {
+        //         if (count == 1) {
+        //             setMenuBar(menuBar2);
+        //             setComponent(label2);
+        //             count = 2;
+        //         }
+        //         else {
+        //             setMenuBar(menuBar);
+        //             setComponent(label);
+        //             count = 1;
+        //         }
+        //     }
+        // });
+        // timer.start();
+
+        int song1 = loadSound(new File("audio/song1.mp3"));
+        song2 = loadSound(new File("audio/song3.mp3"));
+        playSound(song1);
+
+        new Timer(10000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (count == 1) {
-                    setMenuBar(menuBar2);
-                    setComponent(label2);
-                    count = 2;
-                }
-                else {
-                    setMenuBar(menuBar);
-                    setComponent(label);
-                    count = 1;
-                }
+                stopSound(song1);
             }
-        });
-        timer.start();
+        }).start();
     }
 
     @Override
@@ -68,11 +81,13 @@ public class FrameworkTester extends GameFramework {
     @Override
     public void goLeft() {
         System.out.println("Left");
+        playSound(song2);
     }
 
     @Override
     public void goRight() {
         System.out.println("Right");
+        stopSound(song2);
     }
 
     @Override

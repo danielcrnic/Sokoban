@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Div custom objekt">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javazoom_jlayer_1_0_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DT4014-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DT4014-Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/AudioPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/AudioPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/FrameworkTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/FrameworkTester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/GameFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/GameFramework.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,12 +36,20 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Exercises/Exercise 2/DT4014-Assignment-2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/audio" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.StartSokoban">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/audio" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.FrameworkTester">
     <configuration name="FrameworkTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="framework.FrameworkTester" />
       <module name="DT4014-Project" />
@@ -64,8 +73,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StartSokoban" />
         <item itemvalue="Application.FrameworkTester" />
+        <item itemvalue="Application.StartSokoban" />
         <item itemvalue="Application.HelloWorld" />
       </list>
     </recent_temporary>

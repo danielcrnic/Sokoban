@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 
+import static framework.AudioPlayer.supportPlayingAudio;
 import static java.awt.BorderLayout.PAGE_START;
 import static java.awt.BorderLayout.CENTER;
 
@@ -21,6 +22,9 @@ public abstract class GameFramework implements InputObserver {
 
     private JComponent mainComponent;
     private JMenuBar menuBar;
+
+    private boolean capablePlayingAudio;
+    private ArrayList<AudioPlayer> audioPlayers;
 
     // Methods for the GUI
     public abstract int getGUIWidth();
@@ -43,6 +47,10 @@ public abstract class GameFramework implements InputObserver {
      * Constructor for the framework
      */
     public GameFramework() {
+        // Test the audio capability
+        capablePlayingAudio = supportPlayingAudio();
+        audioPlayers = new ArrayList<>();
+
         frame = new JFrame();
 
         frame.setLayout(new BorderLayout());
@@ -57,6 +65,7 @@ public abstract class GameFramework implements InputObserver {
         frame.setVisible(true);
 
         initializeInput();
+
     }
 
     /**
@@ -124,6 +133,58 @@ public abstract class GameFramework implements InputObserver {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    /**
+     * @param file
+     * @return
+     */
+    public int loadSound(File file) {
+        audioPlayers.add(new AudioPlayer(file));
+        return audioPlayers.size() - 1;
+    }
+
+    /**
+     * @param index
+     * @return
+     */
+    public boolean removeSound(int index) {
+        try {
+            AudioPlayer audioPlayer = audioPlayers.remove(index);
+            audioPlayer.stop();
+            return true;
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
+    }
+
+    /**
+     * @return
+     */
+    public ArrayList<File> getAudioList() {
+        ArrayList<File> fileArrayList = new ArrayList<>();
+
+        for (AudioPlayer a : audioPlayers) {
+            fileArrayList.add(a.getFile());
+        }
+
+        return fileArrayList;
+    }
+
+    public void playSound(int index) {
+        try {
+            audioPlayers.get(index).play();
+        } catch (IndexOutOfBoundsException ignored) {
+
+        }
+    }
+
+    public void stopSound(int index) {
+        try {
+            audioPlayers.get(index).stop();
+        } catch (IndexOutOfBoundsException ignored) {
+
         }
     }
 
