@@ -1,12 +1,14 @@
 package sokoban.objects;
 
-import java.awt.image.BufferedImage;
+import java.awt.*;
+import java.io.File;
 
 public interface CusObj {
 
-    public BufferedImage getTexture();
+    public File getFile();
+    public Color modifyColor();
 
     public boolean isMovable();
-    public boolean isStepable();
+    public boolean isSteppable();
 
 }

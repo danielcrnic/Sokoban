@@ -1,18 +1,22 @@
 package sokoban.objects;
 
-import java.awt.image.BufferedImage;
+import java.awt.*;
+import java.io.File;
 
 public class Floor implements CusObj {
 
-    private BufferedImage bufferedImage;
+    public Floor() {
 
-    public Floor(BufferedImage bufferedImage) {
-        this.bufferedImage = bufferedImage;
     }
 
     @Override
-    public BufferedImage getTexture() {
-        return bufferedImage;
+    public File getFile() {
+        return new File("textures/blank.png");
+    }
+
+    @Override
+    public Color modifyColor() {
+        return null;
     }
 
     @Override
@@ -21,7 +25,7 @@ public class Floor implements CusObj {
     }
 
     @Override
-    public boolean isStepable() {
+    public boolean isSteppable() {
         return true;
     }
 }

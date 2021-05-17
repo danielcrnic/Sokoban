@@ -1,18 +1,23 @@
 package sokoban.objects;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class NonMovable implements CusObj {
 
-    private final BufferedImage bufferedImage;  // FIXME: If we have animations, should this still be final?
+    public NonMovable() {
 
-    public NonMovable(BufferedImage bufferedImage) {
-        this.bufferedImage = bufferedImage;
     }
 
     @Override
-    public BufferedImage getTexture() {
-        return bufferedImage;
+    public File getFile() {
+        return null;
+    }
+
+    @Override
+    public Color modifyColor() {
+        return null;
     }
 
     @Override
@@ -21,7 +26,7 @@ public class NonMovable implements CusObj {
     }
 
     @Override
-    public boolean isStepable() {
+    public boolean isSteppable() {
         return false;
     }
 }
