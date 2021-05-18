@@ -32,7 +32,7 @@ public class Level {
     public boolean goUp() {
         //        int newY = player.getY() - 1;
 
-        return push(player, 0, -1);
+        return push(player, 0, -1, false);
 
         // // Check if touching wall
         // if (!layout[newY][player.getX()].isSteppable()) {
@@ -59,7 +59,7 @@ public class Level {
     }
 
     public boolean goDown() {
-        return push(player, 0, 1);
+        return push(player, 0, 1, false);
 
         // int newY = player.getY() + 1;
 //
@@ -75,7 +75,7 @@ public class Level {
     }
 
     public boolean goLeft() {
-        return push(player, -1, 0);
+        return push(player, -1, 0, false);
         // int newX = player.getX() - 1;
 //
         // // Check if touching wall
@@ -90,7 +90,7 @@ public class Level {
     }
 
     public boolean goRight() {
-        return push(player,1,0);
+        return push(player,1,0, false);
 
         // int newX = player.getX() + 1;
 //
@@ -105,7 +105,7 @@ public class Level {
         // return true;
     }
 
-    private boolean push(CusObj obj, int x, int y) {
+    private boolean push(CusObj obj, int x, int y, boolean second) {
         if ((x != 0 && y != 0)) {
             // Cannot push at a angle!
             return false;
@@ -126,10 +126,22 @@ public class Level {
         for (CusObj o : objects) {
             if (o.samePosition(obj.getX() + x, obj.getY() + y)) {
                 foundMatching = true;
-                if (push(o, x, y)) {
-                    obj.setX(obj.getX() + x);
-                    obj.setY(obj.getY() + y);
-                    return true;
+                if (second) {
+                    if (o.isSteppable()) {
+                        obj.setX(obj.getX() + x);
+                        obj.setY(obj.getY() + y);
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                else {
+                    if (push(o, x, y,true)) {
+                        obj.setX(obj.getX() + x);
+                        obj.setY(obj.getY() + y);
+                        return true;
+                    }
                 }
             }
         }
