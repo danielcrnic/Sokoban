@@ -8,21 +8,23 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
+import static framework.AudioPlayer.supportPlayingAudio;
 import static java.awt.BorderLayout.PAGE_START;
 import static java.awt.BorderLayout.CENTER;
 
 public abstract class GameFramework implements InputObserver {
 
     // Objects that will hold information
-    private ArrayList<BufferedImage> textures;
     private final JFrame frame;
 
     private JComponent mainComponent;
     private JMenuBar menuBar;
+
+    private boolean capablePlayingAudio;
+    private ArrayList<AudioPlayer> audioPlayers;
 
     // Methods for the GUI
     public abstract int getGUIWidth();
@@ -34,48 +36,156 @@ public abstract class GameFramework implements InputObserver {
     public abstract void goRight();
     public abstract void goUp();
     public abstract void goDown();
+    public abstract void pressedEnter();
 
     // TODO: This will have to be implemented later in the development
     // These methods will be called when the player wants to undo/redo a move
     // public abstract void undoMove();
     // public abstract void redoMove();
-
-    public abstract ArrayList<File> getFilePaths();
-
+    
     /**
      * Constructor for the framework
      */
     public GameFramework() {
-        try {
-            loadTextures();     // Tries to load the textures into the ArrayList
-        } catch (IOException e) {
-            System.err.println("Had an problem loading some/all of the textures!");
-            e.printStackTrace();
-            System.exit(0);     // Stop the program, no point continuing without any textures
-        }
+        // Test the audio capability
+        capablePlayingAudio = supportPlayingAudio();
+        audioPlayers = new ArrayList<>();
+
         frame = new JFrame();
 
         frame.setLayout(new BorderLayout());
         frame.setSize(new Dimension(getGUIWidth(), getGUIHeight()));
+        frame.setMinimumSize(new Dimension(getGUIWidth(), getGUIHeight()));
         frame.setTitle(getGameName());
 
         mainComponent = null;
         menuBar = null;
 
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
         initializeInput();
+
     }
 
     /**
-     * Returns the textures in BufferedImage objects.
+     * Loads an image texture into a BufferedImage variable which is then returned to the developer
      *
-     * @return An ArrayList with BufferedImage objects
+     * @return An BufferedImage with the image, if null is returned it means that it could not either find the file
+     *         or there was a problem with loading that image.
      */
-    public ArrayList<BufferedImage> getTextures() {
-        return textures;
+    public BufferedImage loadTexture(File file) {
+        try {
+            return ImageIO.read(file);
+        }
+        catch (IOException e) {
+            System.err.println("Had an problem loading the texture!");
+            return null;
+        }
+    }
+
+    /**
+     * Loads an external font into a Font variable. This makes it possible for the end developer to make add fonts
+     * easily. Furthermore, the end developer can use Font methods like .deriveFont() to change the style (bold, italic
+     * e.t.c.) and the font size.
+     *
+     * @param file The filepath of where the font is located.
+     * @return An Font variable with the font, if the font could not be loaded. It will instead return null.
+     * */
+    public Font loadFont(File file) {
+        try {
+            return Font.createFont(Font.TRUETYPE_FONT, file);
+        } catch (IOException | FontFormatException e) {
+            System.err.println("Had an problem loading the font!");
+            return null;
+        }
+    }
+
+
+    /**
+     * Loads an object from a file stored locally. It also checks that the object loaded matches with the same type as
+     * the one the user wants.
+     *
+     * @param file The filepath to be loaded
+     * @param type An object of the same type the file should be loaded from.
+     * @return Returns an Object of the same type as the type variable. If the type is not the same or the file could
+     *         not be loaded, it will return null.
+     */
+    public Object loadObject(File file, Object type) {
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            Object read = objectInputStream.readObject();
+
+            // Allow only if the object has the same instance as the 'type' object, or else return null.
+            if (type.getClass().isInstance(read)) {
+                return read;
+            }
+            else {
+                System.err.println("Wrong type.");
+                return null;    // Wrong type
+            }
+
+        } catch (FileNotFoundException e) {
+            System.err.println("Could not find the file: '" + file.getAbsolutePath() + "'");
+            return null;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * @param file
+     * @return
+     */
+    public int loadSound(File file) {
+        audioPlayers.add(new AudioPlayer(file));
+        return audioPlayers.size() - 1;
+    }
+
+    /**
+     * @param index
+     * @return
+     */
+    public boolean removeSound(int index) {
+        try {
+            AudioPlayer audioPlayer = audioPlayers.remove(index);
+            audioPlayer.stop();
+            return true;
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
+    }
+
+    /**
+     * @return
+     */
+    public ArrayList<File> getAudioList() {
+        ArrayList<File> fileArrayList = new ArrayList<>();
+
+        for (AudioPlayer a : audioPlayers) {
+            fileArrayList.add(a.getFile());
+        }
+
+        return fileArrayList;
+    }
+
+    public void playSound(int index) {
+        try {
+            audioPlayers.get(index).play();
+        } catch (IndexOutOfBoundsException ignored) {
+
+        }
+    }
+
+    public void stopSound(int index) {
+        try {
+            audioPlayers.get(index).stop();
+        } catch (IndexOutOfBoundsException ignored) {
+
+        }
     }
 
     /**
@@ -139,20 +249,9 @@ public abstract class GameFramework implements InputObserver {
             case InputSubject.RIGHT:
                 goRight();
                 break;
-        }
-    }
-
-    /**
-     * Loads the textures and stores them in a arraylist
-     *
-     * @throws IOException If one of the files could not be loaded (either not being existing or placed in wrong path)
-     */
-    private void loadTextures() throws IOException {
-        textures = new ArrayList<>();   // Initializes the ArrayList
-        ArrayList<File> files = getFilePaths();
-
-        for (File f : files) {
-            textures.add(ImageIO.read(f));
+            case InputSubject.ENTER:
+                pressedEnter();
+                break;
         }
     }
 
