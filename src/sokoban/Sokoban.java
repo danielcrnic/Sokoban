@@ -39,6 +39,30 @@ public class Sokoban extends GameFramework {
 
         loadTextures();
 
+        CusObj[][] layout = new CusObj[5][5];
+        layout[0] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[1] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[2] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[3] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[4] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL)};
+
+        CusObj[] objs = new CusObj[4];
+        objs[0] = new MovableObject(1,2, TEXTURE_CIRCLE);
+        objs[1] = new SteppableObject(1,3, TEXTURE_CIRCLE_HOLE);
+        objs[2] = new MovableObject(3,2, TEXTURE_SQUARE);
+        objs[3] = new SteppableObject(3,3, TEXTURE_SQUARE_HOLE);
+
+        CusObj player = new MovableObject(2,2, TEXTURE_PLAYER);
+
+        Level level1 = new Level(layout, player, objs);
+
+        try {
+            GameComponent gameComponent = new GameComponent(level1, textures);
+            setComponent(gameComponent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         // menuPosition = 0;
         // mainMenuComponent = new MainMenuComponent(GAME_NAME, new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
         //         VERSION, COPYRIGHT, menuPosition, textures[TEXTURE_FLOOR], textures[TEXTURE_PLAYER], pixelFont);

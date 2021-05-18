@@ -2,9 +2,11 @@ package sokoban;
 
 import sokoban.objects.CusObj;
 
+import java.util.ArrayList;
+
 public class Level {
 
-    private CusObj[][] layout;
+    private final CusObj[][] layout;
 
     private CusObj player;
     private CusObj[] objects;
