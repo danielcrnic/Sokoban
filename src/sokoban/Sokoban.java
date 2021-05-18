@@ -6,8 +6,11 @@ import sokoban.drawcomponent.MainMenuComponent;
 import sokoban.objects.*;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+
+import static sokoban.drawcomponent.GameComponent.*;
 
 public class Sokoban extends GameFramework {
 
@@ -15,25 +18,31 @@ public class Sokoban extends GameFramework {
     public static final String VERSION = "V0.1";
     public static final String COPYRIGHT = "(C) 2021, Daniel Crnic and Alfred Mattsson";
 
+    public static final String PATH_TO_TEXTURES = "resources/textures/";
+    public static final String PATH_TO_FONTS = "resources/fonts/";
+    public static final String PATH_TO_SOUND_EFFECTS = "resources/sounds/";
+    public static final String PATH_TO_MUSIC = "resources/music/";
+
     private int menuPosition;
     private MainMenuComponent mainMenuComponent;
 
     private Font pixelFont;
+    private BufferedImage[] textures;
 
     public Sokoban() {
         // Load fonts and texture to the corresponding stuff
         // TODO: Add the loading of texture
 
-        pixelFont = loadFont(new File("resources/fonts/Pixeled.ttf"));
+        pixelFont = loadFont(new File(PATH_TO_FONTS + "Pixeled.ttf"));
         if (pixelFont == null) {
             // Could not find/load the fond
             pixelFont = new Font("Cantarell", Font.PLAIN, 12);
         }
 
-        menuPosition = 0;
-        mainMenuComponent = new MainMenuComponent(GAME_NAME, new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
-                VERSION, COPYRIGHT, menuPosition, loadTexture(new File("resources/textures/blank.png")), loadTexture(new File("resources/textures/player.png")), pixelFont);
-        setComponent(mainMenuComponent);
+        // menuPosition = 0;
+        // mainMenuComponent = new MainMenuComponent(GAME_NAME, new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
+        //         VERSION, COPYRIGHT, menuPosition, loadTexture(new File("resources/textures/blank.png")), loadTexture(new File("resources/textures/player.png")), pixelFont);
+        // setComponent(mainMenuComponent);
 
         // CusObj wall = new Floor(getTextures().get(6));
 
@@ -93,6 +102,26 @@ public class Sokoban extends GameFramework {
     @Override
     public void pressedEnter() {
 
+    }
+
+    private void loadTextures() {
+        textures = new BufferedImage[13];
+        textures[TEXTURE_PLAYER] = loadTexture(new File(PATH_TO_TEXTURES + "player.png"));
+        textures[TEXTURE_WALL] = loadTexture(new File(PATH_TO_TEXTURES + "wall.png"));
+        textures[TEXTURE_FLOOR] = loadTexture(new File(PATH_TO_TEXTURES + "blank.png"));
+        textures[TEXTURE_WATER] = loadTexture(new File(PATH_TO_TEXTURES + "Waterway.png"));
+
+        textures[TEXTURE_STAR] = loadTexture(new File(PATH_TO_TEXTURES + ".png"));
+        textures[TEXTURE_STAR_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "wall.png"));
+        textures[TEXTURE_STAR_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "player.png"));
+
+        textures[TEXTURE_SQUARE] = loadTexture(new File(PATH_TO_TEXTURES + "wall.png"));
+        textures[TEXTURE_SQUARE_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "player.png"));
+        textures[TEXTURE_SQUARE_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "wall.png"));
+
+        textures[TEXTURE_CIRCLE] = loadTexture(new File(PATH_TO_TEXTURES + "player.png"));
+        textures[TEXTURE_CIRCLE_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "wall.png"));
+        textures[TEXTURE_CIRCLE_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "player.png"));
     }
 
 }
