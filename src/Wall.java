@@ -9,6 +9,6 @@ public class Wall extends CustomObject{
 
     public Wall(int x, int y, Image img, Color clr) {
 
-        super(x, y, img, false, false, clr);
+        super(x, y, img, false, true, clr);
     }
 }

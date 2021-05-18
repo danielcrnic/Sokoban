@@ -82,11 +82,15 @@ public class Sokoban extends GameFramework {
 
     @Override
     public void goUp() {
+        if(menuPosition <= 0)
+            menuPosition = 1;
         mainMenuComponent.markSelection(--menuPosition);
     }
 
     @Override
     public void goDown() {
+        if(menuPosition >= 4)
+            menuPosition = 3;
         mainMenuComponent.markSelection(++menuPosition);
     }
 
