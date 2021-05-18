@@ -2,7 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Div custom objekt">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/StartSokoban.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/StartSokoban.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/AudioPlayer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/AudioPlayer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/AudioPlayer$MusicThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/AudioPlayer$MusicThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/AudioPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/AudioPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/FrameworkTester$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/FrameworkTester$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/FrameworkTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/FrameworkTester.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/InputObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/InputObserver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/InputSubject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/InputSubject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/listeners/KeyboardListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/listeners/KeyboardListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/GameComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/GameComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/MainMenuComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/MainMenuComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/CusObj.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/CusObj.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/Floor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/Floor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/NonMovable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/NonMovable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/Wall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/Wall.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +35,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1s3p0b49JY6LcckDiCZvTqkDKNf" />
   <component name="ProjectViewState">
