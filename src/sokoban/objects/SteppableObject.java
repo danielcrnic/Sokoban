@@ -2,8 +2,6 @@ package sokoban.objects;
 
 import java.awt.*;
 
-import static sokoban.drawcomponent.GameComponent.TEXTURE_WALL;
-
 public class SteppableObject extends CusObj{
 
     public SteppableObject(int x, int y, int texture, Color color) {

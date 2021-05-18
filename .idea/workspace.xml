@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Div custom objekt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/Beacon.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/Box.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/CustomObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/Wall.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/nonInteractiveObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/nonInteractiveObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/SteppableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/SteppableObject.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
