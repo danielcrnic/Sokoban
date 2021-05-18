@@ -1,18 +1,16 @@
 package sokoban.objects;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 
-public class NonMovable implements CusObj {
+public class nonInteractiveObject implements CusObj {
 
-    public NonMovable() {
+    public nonInteractiveObject() {
 
     }
 
     @Override
-    public File getFile() {
-        return null;
+    public int getTextureNumber() {
+        return 0;
     }
 
     @Override
