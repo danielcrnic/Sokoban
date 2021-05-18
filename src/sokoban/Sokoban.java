@@ -30,18 +30,18 @@ public class Sokoban extends GameFramework {
     private BufferedImage[] textures;
 
     public Sokoban() {
-        // Load fonts and texture to the corresponding stuff
-        // TODO: Add the loading of texture
-
+        // Load fonts and texture, sounds, and music to the corresponding stuff
         pixelFont = loadFont(new File(PATH_TO_FONTS + "Pixeled.ttf"));
         if (pixelFont == null) {
             // Could not find/load the fond
             pixelFont = new Font("Cantarell", Font.PLAIN, 12);
         }
 
+        loadTextures();
+
         // menuPosition = 0;
         // mainMenuComponent = new MainMenuComponent(GAME_NAME, new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
-        //         VERSION, COPYRIGHT, menuPosition, loadTexture(new File("resources/textures/blank.png")), loadTexture(new File("resources/textures/player.png")), pixelFont);
+        //         VERSION, COPYRIGHT, menuPosition, textures[TEXTURE_FLOOR], textures[TEXTURE_PLAYER], pixelFont);
         // setComponent(mainMenuComponent);
 
         // CusObj wall = new Floor(getTextures().get(6));
@@ -109,19 +109,19 @@ public class Sokoban extends GameFramework {
         textures[TEXTURE_PLAYER] = loadTexture(new File(PATH_TO_TEXTURES + "player.png"));
         textures[TEXTURE_WALL] = loadTexture(new File(PATH_TO_TEXTURES + "wall.png"));
         textures[TEXTURE_FLOOR] = loadTexture(new File(PATH_TO_TEXTURES + "blank.png"));
-        textures[TEXTURE_WATER] = loadTexture(new File(PATH_TO_TEXTURES + "Waterway.png"));
+        textures[TEXTURE_WATER] = loadTexture(new File(PATH_TO_TEXTURES + "waterway.png"));
 
-        textures[TEXTURE_STAR] = loadTexture(new File(PATH_TO_TEXTURES + ".png"));
-        textures[TEXTURE_STAR_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "wall.png"));
-        textures[TEXTURE_STAR_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "player.png"));
+        textures[TEXTURE_STAR] = loadTexture(new File(PATH_TO_TEXTURES + "star.png"));
+        textures[TEXTURE_STAR_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "starHole.png"));
+        textures[TEXTURE_STAR_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "star.png"));
 
-        textures[TEXTURE_SQUARE] = loadTexture(new File(PATH_TO_TEXTURES + "wall.png"));
-        textures[TEXTURE_SQUARE_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "player.png"));
-        textures[TEXTURE_SQUARE_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "wall.png"));
+        textures[TEXTURE_SQUARE] = loadTexture(new File(PATH_TO_TEXTURES + "square.png"));
+        textures[TEXTURE_SQUARE_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "squareHole.png"));
+        textures[TEXTURE_SQUARE_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "squareMarked.png"));
 
-        textures[TEXTURE_CIRCLE] = loadTexture(new File(PATH_TO_TEXTURES + "player.png"));
-        textures[TEXTURE_CIRCLE_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "wall.png"));
-        textures[TEXTURE_CIRCLE_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "player.png"));
+        textures[TEXTURE_CIRCLE] = loadTexture(new File(PATH_TO_TEXTURES + "circle.png"));
+        textures[TEXTURE_CIRCLE_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "circleHole.png"));
+        textures[TEXTURE_CIRCLE_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "circleMarked.png"));
     }
 
 }

@@ -5,11 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/GameComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/GameComponent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Sokoban.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/drawcomponent/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/drawcomponent/GameComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/Floor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/NonMovable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/Wall.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
