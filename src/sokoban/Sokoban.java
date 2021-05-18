@@ -23,8 +23,16 @@ public class Sokoban extends GameFramework {
     public static final String PATH_TO_SOUND_EFFECTS = "resources/sounds/";
     public static final String PATH_TO_MUSIC = "resources/music/";
 
+    public static final int MODE_MAIN_MENU = 0;
+    public static final int MODE_GAME = 1;
+
+
+    private int currentMode;
     private int menuPosition;
+
     private MainMenuComponent mainMenuComponent;
+    private GameComponent gameComponent;
+    private Level level;
 
     private Font pixelFont;
     private BufferedImage[] textures;
@@ -39,25 +47,65 @@ public class Sokoban extends GameFramework {
 
         loadTextures();
 
-        CusObj[][] layout = new CusObj[5][5];
-        layout[0] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL)};
-        layout[1] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WALL)};
-        layout[2] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WALL)};
-        layout[3] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WALL)};
-        layout[4] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL)};
+        currentMode = MODE_GAME;
 
-        CusObj[] objs = new CusObj[4];
-        objs[0] = new MovableObject(1,2, TEXTURE_CIRCLE);
-        objs[1] = new SteppableObject(1,3, TEXTURE_CIRCLE_HOLE);
-        objs[2] = new MovableObject(3,2, TEXTURE_SQUARE);
-        objs[3] = new SteppableObject(3,3, TEXTURE_SQUARE_HOLE);
+        // CusObj[][] layout = new CusObj[7][5];
+        // layout[0] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL)};
+        // layout[1] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WALL)};
+        // layout[2] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WALL)};
+        // layout[3] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WALL)};
+        // layout[4] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WALL)};
+        // layout[5] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WALL)};
+        // layout[6] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL)};
+        // CusObj[] objs = new CusObj[4];
+        // objs[1] = new MovableObject(1,2, TEXTURE_CIRCLE);
+        // objs[0] = new SteppableObject(1,3, TEXTURE_CIRCLE_HOLE);
+        // objs[3] = new MovableObject(3,2, TEXTURE_SQUARE);
+        // objs[2] = new SteppableObject(3,3, TEXTURE_SQUARE_HOLE);
+        // CusObj player = new MovableObject(2,2, TEXTURE_PLAYER);
 
-        CusObj player = new MovableObject(2,2, TEXTURE_PLAYER);
+        CusObj[][] layout = new CusObj[10][10];
+        layout[0] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL),new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[1] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[2] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[3] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WATER), new StaticObject(0, 0, TEXTURE_WATER),new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[4] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[5] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WATER), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[6] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WATER), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[7] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[8] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[9] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL),new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL)};
 
-        Level level1 = new Level(layout, player, objs);
+        CusObj[] objs = new CusObj[18];
+        objs[0] = new MovableObject(1,4, TEXTURE_SQUARE);
+        objs[1] = new MovableObject(2,4, TEXTURE_SQUARE);
+        objs[2] = new MovableObject(5,7, TEXTURE_SQUARE);
+        objs[3] = new MovableObject(5,8, TEXTURE_SQUARE);
+
+        objs[4] = new MovableObject(3,2, TEXTURE_STAR);
+        objs[5] = new MovableObject(4,2, TEXTURE_STAR);
+        objs[6] = new MovableObject(6,3, TEXTURE_STAR);
+        objs[7] = new MovableObject(7,5, TEXTURE_STAR);
+        objs[8] = new MovableObject(7,6, TEXTURE_STAR);
+
+
+        objs[9] = new SteppableObject(1,7, TEXTURE_SQUARE_HOLE);
+        objs[10] = new SteppableObject(2,7, TEXTURE_SQUARE_HOLE);
+        objs[11] = new SteppableObject(1,8, TEXTURE_SQUARE_HOLE);
+        objs[12] = new SteppableObject(2,8, TEXTURE_SQUARE_HOLE);
+
+        objs[13] = new SteppableObject(1,6, TEXTURE_STAR_HOLE);
+        objs[14] = new SteppableObject(2,6, TEXTURE_STAR_HOLE);
+        objs[15] = new SteppableObject(3,6, TEXTURE_STAR_HOLE);
+        objs[16] = new SteppableObject(3,7, TEXTURE_STAR_HOLE);
+        objs[17] = new SteppableObject(3,8, TEXTURE_STAR_HOLE);
+
+        CusObj player = new MovableObject(4,4, TEXTURE_PLAYER);
+
+        level = new Level(layout, player, objs);
 
         try {
-            GameComponent gameComponent = new GameComponent(level1, textures);
+            gameComponent = new GameComponent(level, textures);
             setComponent(gameComponent);
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,24 +115,6 @@ public class Sokoban extends GameFramework {
         // mainMenuComponent = new MainMenuComponent(GAME_NAME, new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
         //         VERSION, COPYRIGHT, menuPosition, textures[TEXTURE_FLOOR], textures[TEXTURE_PLAYER], pixelFont);
         // setComponent(mainMenuComponent);
-
-        // CusObj wall = new Floor(getTextures().get(6));
-
-        // CusObj player = new CusObj(getTextures().get(4), false);
-        // CusObj floor = new CusObj(getTextures().get(0), false);
-        // CusObj box = new CusObj(getTextures().get(2), true);
-        // CusObj wall = new CusObj(getTextures().get(6), false);
-
-        // CusObj map1[][] = new CusObj[5][5];
-
-        // map1[0] = new CusObj[]{wall, wall, wall, wall, wall};
-        // map1[1] = new CusObj[]{wall, floor, floor, floor, wall};
-        // map1[2] = new CusObj[]{wall, floor, box, player, wall};
-        // map1[3] = new CusObj[]{wall, floor, floor, floor, wall};
-        // map1[4] = new CusObj[]{wall, wall, wall, wall, wall};
-
-        // GameComponent gameComponent = new GameComponent(map1);
-        // setComponent(gameComponent);2
 
     }
 
@@ -105,26 +135,49 @@ public class Sokoban extends GameFramework {
 
     @Override
     public void goLeft() {
+        switch (currentMode) {
+            case MODE_GAME:
+                if (level.goLeft()) {
+                    gameComponent.update();
+                }
+                else {
 
+                }
+                break;
+            default:
+                // Play error sound
+                break;
+        }
     }
 
     @Override
     public void goRight() {
-
+        // FIXME: Add check if a game is in progress
+        if (level.goRight()) {
+            gameComponent.update();
+        }
     }
 
     @Override
     public void goUp() {
-        if(menuPosition <= 0)
-            menuPosition = 1;
-        mainMenuComponent.markSelection(--menuPosition);
+        // FIXME: Add check if a game is in progress
+        if (level.goUp()) {
+            gameComponent.update();
+        }
+        else {
+            // Play error sound
+        }
+        // mainMenuComponent.markSelection(--menuPosition);
     }
 
     @Override
     public void goDown() {
-        if(menuPosition >= 4)
-            menuPosition = 3;
-        mainMenuComponent.markSelection(++menuPosition);
+        // FIXME: Add check if a game is in progress
+        if (level.goDown()) {
+            gameComponent.update();
+        }
+
+        // mainMenuComponent.markSelection(++menuPosition);
     }
 
     @Override
