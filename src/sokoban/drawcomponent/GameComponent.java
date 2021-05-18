@@ -1,5 +1,6 @@
 package sokoban.drawcomponent;
 
+import sokoban.Level;
 import sokoban.objects.CusObj;
 
 import javax.swing.*;
@@ -28,36 +29,72 @@ public class GameComponent extends JComponent {
     // Change this when adding a new texture!
     private final static int NUMBER_OF_TEXTURES = 13;
 
-    // private CusObj[][] map;
-    // private int width;
-    // private int height;
-
     private BufferedImage[] textures;
+    private Level level;
 
-    public GameComponent(BufferedImage[] textures) throws Exception{
+    public GameComponent(Level level, BufferedImage[] textures) throws Exception{
         if (textures.length != NUMBER_OF_TEXTURES) {
             throw new Exception("The number of textures does not line up!");
         }
         else {
             this.textures = textures;
+            this.level = level;
         }
+    }
+
+    /**
+     * Call the method when the layout has been modified and has to be repainted
+     */
+    public void update() {
+        repaint();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
+        CusObj[][] layout = level.getLayout();
+        CusObj[] objects = level.getObjects();
+        CusObj player = level.getPlayer();
 
+        // Get the width and height to be able to draw the level in center
+        int windowWidth = getWidth();
+        int windowHeight = getHeight();
 
-        // int x = 0;
-        // int y = 0;
-        // for (int i = 0; i < map.length; i++) {
-        //     for (int j = 0; j < map[0].length; j++) {
-        //         g2.drawImage(map[i][j].getTexture(),null, x, y);
-        //         x += map[i][j].getTexture().getWidth();
-        //     }
-        //     x = 0;
-        //     y += map[i][0].getTexture().getHeight();
-        // }
+        int width = layout[0].length * textures[0].getWidth();
+        int height = layout.length * textures[0].getHeight();
+
+        int x = (windowWidth / 2) - (width / 2);
+        int y = (windowHeight / 2) - (height / 2);
+
+        // Draw first the layout
+        for (int i = 0; i < layout.length; i++) {
+            for (int j = 0; j < layout[i].length; j++) {
+                if (layout[i][j] != null) {
+                    int textureID = layout[i][j].getTextureNumber();
+                    g2.drawImage(textures[textureID], null, x, y);
+                    // FIXME: Add also that the Color variable is added in this moment
+                }
+                x += textures[0].getWidth();
+            }
+            x = (windowWidth / 2) - (width / 2);
+            y += textures[0].getHeight();
+        }
+
+        // Draw the movable objects
+        for (CusObj o : objects) {
+            if (o != null) {
+                x = (windowWidth / 2) - (width / 2) + (o.getX() * textures[0].getWidth());
+                y = (windowHeight / 2) - (height / 2) + (o.getY() * textures[0].getHeight());
+
+                g2.drawImage(textures[o.getTextureNumber()], null, x, y);
+            }
+        }
+
+        // Lastly, draw the player
+        x = (windowWidth / 2) - (width / 2) + (player.getX() * textures[0].getWidth());
+        y = (windowHeight / 2) - (height / 2) + (player.getY() * textures[0].getHeight());
+
+        g2.drawImage(textures[player.getTextureNumber()], null, x, y);
     }
 }
