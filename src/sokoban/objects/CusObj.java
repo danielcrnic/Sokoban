@@ -54,6 +54,14 @@ public abstract class CusObj {
         return texture;
     }
 
+    public boolean samePosition(CusObj o) {
+        return o.getY() == getY() && o.getX() == getX();
+    }
+
+    public boolean samePosition(int x, int y) {
+        return x == getX() && y == getY();
+    }
+
     public abstract boolean isMovable();
     public abstract boolean isSteppable();
 }
