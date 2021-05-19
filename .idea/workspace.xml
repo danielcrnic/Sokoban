@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Div custom objekt">
-      <change afterPath="$PROJECT_DIR$/src/sokoban/objects/HoleObject.java" afterDir="false" />
+    <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Level Updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Level.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/GameComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/GameComponent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/CusObj.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/CusObj.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/MovableObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/FloorObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/FloorObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/PlayerObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/PlayerObject.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/StaticObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/StaticObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/SteppableObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/CircleBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/CircleBox.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/SquareBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/SquareBox.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/StarBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/StarBox.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/CircleHole.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/CircleHole.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/SquareHole.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/SquareHole.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/StarHole.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/StarHole.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Sokoban.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/drawcomponent/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/drawcomponent/GameComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/MovableObject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/StaticObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/StaticObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/SteppableObject.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,14 +34,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
-  </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
   </component>
   <component name="ProjectId" id="1s3p0b49JY6LcckDiCZvTqkDKNf" />
   <component name="ProjectViewState">
@@ -157,16 +148,5 @@
     <MESSAGE value="Lite Trasig bufferedImage" />
     <MESSAGE value="Mindre trasig image" />
     <option name="LAST_COMMIT_MESSAGE" value="Mindre trasig image" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sokoban/objects/CusObj.java</url>
-          <line>139</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
