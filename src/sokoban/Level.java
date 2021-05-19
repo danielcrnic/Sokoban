@@ -30,79 +30,19 @@ public class Level {
     }
 
     public boolean goUp() {
-        //        int newY = player.getY() - 1;
-
         return push(player, 0, -1, false);
-
-        // // Check if touching wall
-        // if (!layout[newY][player.getX()].isSteppable()) {
-        //     return false;
-        // }
-
-        // // FIXME: Add to check if touching an object
-        // for (CusObj o : objects) {
-        //     if (o.samePosition(player.getX(), newY)) {
-        //         if (!o.isSteppable()) {
-        //             return false;
-        //         }
-        //         else if (o.isMovable()) {
-        //             // Try to move
-        //         }
-        //         else {
-        //             return false;
-        //         }
-        //     }
-        // }
-
-        // player.setY(newY);
-        // return true;
     }
 
     public boolean goDown() {
         return push(player, 0, 1, false);
-
-        // int newY = player.getY() + 1;
-//
-        // // Check if touching wall
-        // if (!layout[newY][player.getX()].isSteppable()) {
-        //     return false;
-        // }
-//
-        // // FIXME: Add to check if touching an object
-//
-        // player.setY(newY);
-        // return true;
     }
 
     public boolean goLeft() {
         return push(player, -1, 0, false);
-        // int newX = player.getX() - 1;
-//
-        // // Check if touching wall
-        // if (!layout[player.getY()][newX].isSteppable()) {
-        //     return false;
-        // }
-//
-        // // FIXME: Add to check if touching an object
-//
-        // player.setX(newX);
-        // return true;
     }
 
     public boolean goRight() {
         return push(player,1,0, false);
-
-        // int newX = player.getX() + 1;
-//
-        // // Check if touching wall
-        // if (!layout[player.getY()][newX].isSteppable()) {
-        //     return false;
-        // }
-//
-        // // FIXME: Add to check if touching an object
-//
-        // player.setX(newX);
-        // return true;
     }
 
     private boolean push(CusObj obj, int x, int y, boolean second) {
@@ -122,10 +62,13 @@ public class Level {
             return false;
         }
 
+        if (second && alreadySomething(obj.getX() + x, obj.getY() + y)) {
+            return false;
+        }
+
         boolean foundMatching = false;
         for (CusObj o : objects) {
             if (o.samePosition(obj.getX() + x, obj.getY() + y)) {
-                foundMatching = true;
                 if (second) {
                     if (o.isSteppable()) {
                         obj.setX(obj.getX() + x);
@@ -137,10 +80,13 @@ public class Level {
                     }
                 }
                 else {
-                    if (push(o, x, y,true)) {
-                        obj.setX(obj.getX() + x);
-                        obj.setY(obj.getY() + y);
-                        return true;
+                    if (!o.isSteppable()) {
+                        foundMatching = true;
+                        if (push(o, x, y,true)) {
+                            obj.setX(obj.getX() + x);
+                            obj.setY(obj.getY() + y);
+                            return true;
+                        }
                     }
                 }
             }
@@ -153,5 +99,16 @@ public class Level {
         obj.setX(obj.getX() + x);
         obj.setY(obj.getY() + y);
         return true;
+    }
+
+    private boolean alreadySomething(int x, int y) {
+        for (CusObj o : objects) {
+            if (o.samePosition(x, y)) {
+                if (o.isMovable()) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

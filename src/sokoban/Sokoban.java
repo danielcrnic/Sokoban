@@ -77,28 +77,28 @@ public class Sokoban extends GameFramework {
         layout[9] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL),new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL)};
 
         CusObj[] objs = new CusObj[18];
-        objs[0] = new MovableObject(1,4, TEXTURE_SQUARE);
-        objs[1] = new MovableObject(2,4, TEXTURE_SQUARE);
-        objs[2] = new MovableObject(5,7, TEXTURE_SQUARE);
-        objs[3] = new MovableObject(5,8, TEXTURE_SQUARE);
+        objs[17] = new MovableObject(1,4, TEXTURE_SQUARE);
+        objs[16] = new MovableObject(2,4, TEXTURE_SQUARE);
+        objs[15] = new MovableObject(5,7, TEXTURE_SQUARE);
+        objs[14] = new MovableObject(5,8, TEXTURE_SQUARE);
 
-        objs[4] = new MovableObject(3,2, TEXTURE_STAR);
-        objs[5] = new MovableObject(4,2, TEXTURE_STAR);
-        objs[6] = new MovableObject(6,3, TEXTURE_STAR);
-        objs[7] = new MovableObject(7,5, TEXTURE_STAR);
-        objs[8] = new MovableObject(7,6, TEXTURE_STAR);
+        objs[13] = new MovableObject(3,2, TEXTURE_STAR);
+        objs[12] = new MovableObject(4,2, TEXTURE_STAR);
+        objs[11] = new MovableObject(6,3, TEXTURE_STAR);
+        objs[10] = new MovableObject(7,5, TEXTURE_STAR);
+        objs[9] = new MovableObject(7,6, TEXTURE_STAR);
 
 
-        objs[9] = new SteppableObject(1,7, TEXTURE_SQUARE_HOLE);
-        objs[10] = new SteppableObject(2,7, TEXTURE_SQUARE_HOLE);
-        objs[11] = new SteppableObject(1,8, TEXTURE_SQUARE_HOLE);
-        objs[12] = new SteppableObject(2,8, TEXTURE_SQUARE_HOLE);
+        objs[8] = new SteppableObject(1,7, TEXTURE_SQUARE_HOLE);
+        objs[7] = new SteppableObject(2,7, TEXTURE_SQUARE_HOLE);
+        objs[6] = new SteppableObject(1,8, TEXTURE_SQUARE_HOLE);
+        objs[5] = new SteppableObject(2,8, TEXTURE_SQUARE_HOLE);
 
-        objs[13] = new SteppableObject(1,6, TEXTURE_STAR_HOLE);
-        objs[14] = new SteppableObject(2,6, TEXTURE_STAR_HOLE);
-        objs[15] = new SteppableObject(3,6, TEXTURE_STAR_HOLE);
-        objs[16] = new SteppableObject(3,7, TEXTURE_STAR_HOLE);
-        objs[17] = new SteppableObject(3,8, TEXTURE_STAR_HOLE);
+        objs[4] = new SteppableObject(1,6, TEXTURE_STAR_HOLE);
+        objs[3] = new SteppableObject(2,6, TEXTURE_STAR_HOLE);
+        objs[2] = new SteppableObject(3,6, TEXTURE_STAR_HOLE);
+        objs[1] = new SteppableObject(3,7, TEXTURE_STAR_HOLE);
+        objs[0] = new SteppableObject(3,8, TEXTURE_STAR_HOLE);
 
         CusObj player = new MovableObject(4,4, TEXTURE_PLAYER);
 
