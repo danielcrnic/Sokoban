@@ -2,7 +2,9 @@ package sokoban;
 
 import sokoban.objects.CusObj;
 
-public class Level {
+import java.io.Serializable;
+
+public class Level implements Serializable {
 
     private final CusObj[][] layout;
 
