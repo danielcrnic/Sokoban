@@ -54,7 +54,8 @@ public class GameComponent extends JComponent {
         Graphics2D g2 = (Graphics2D) g;
 
         CusObj[][] layout = level.getLayout();
-        CusObj[] objects = level.getObjects();
+        CusObj[] holes = level.getHoles();
+        CusObj[] boxes = level.getBoxes();
         CusObj player = level.getPlayer();
 
         // Get the width and height to be able to draw the level in center
@@ -81,8 +82,17 @@ public class GameComponent extends JComponent {
             y += textures[0].getHeight();
         }
 
-        // Draw the movable objects
-        for (CusObj o : objects) {
+        // Draw the holes objects
+        for (CusObj o : holes) {
+            if (o != null) {
+                x = (windowWidth / 2) - (width / 2) + (o.getX() * textures[0].getWidth());
+                y = (windowHeight / 2) - (height / 2) + (o.getY() * textures[0].getHeight());
+
+                g2.drawImage(textures[o.getTextureNumber()], null, x, y);
+            }
+        }
+
+        for (CusObj o : boxes) {
             if (o != null) {
                 x = (windowWidth / 2) - (width / 2) + (o.getX() * textures[0].getWidth());
                 y = (windowHeight / 2) - (height / 2) + (o.getY() * textures[0].getHeight());

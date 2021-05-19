@@ -2,17 +2,15 @@ package sokoban.objects;
 
 import java.awt.*;
 
-public class StaticObject extends CusObj{
+import static sokoban.objects.CusObj.TYPE_CUSTOM;
 
-    public StaticObject(int x, int y, int texture, int triggerTexture, Color color) {
+public class FloorObject extends CusObj {
+
+    public FloorObject(int x, int y, int texture, int triggerTexture, Color color) {
         super(x, y, texture, triggerTexture, color);
     }
 
-    public StaticObject(int x, int y, int texture, int triggerTexture) {
-        super(x, y, texture, triggerTexture);
-    }
-
-    public StaticObject(int x, int y, int texture) {
+    public FloorObject(int x, int y, int texture) {
         super(x, y, texture);
     }
 
@@ -23,7 +21,7 @@ public class StaticObject extends CusObj{
 
     @Override
     public boolean isSteppable() {
-        return false;
+        return true;
     }
 
     @Override
@@ -35,4 +33,5 @@ public class StaticObject extends CusObj{
     public String objectName() {
         return null;
     }
+
 }

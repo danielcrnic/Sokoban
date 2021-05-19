@@ -2,28 +2,28 @@ package sokoban.objects;
 
 import java.awt.*;
 
-public class StaticObject extends CusObj{
+public class PlayerObject extends CusObj{
 
-    public StaticObject(int x, int y, int texture, int triggerTexture, Color color) {
+    public PlayerObject(int x, int y, int texture, int triggerTexture, Color color) {
         super(x, y, texture, triggerTexture, color);
     }
 
-    public StaticObject(int x, int y, int texture, int triggerTexture) {
+    public PlayerObject(int x, int y, int texture, int triggerTexture) {
         super(x, y, texture, triggerTexture);
     }
 
-    public StaticObject(int x, int y, int texture) {
+    public PlayerObject(int x, int y, int texture) {
         super(x, y, texture);
     }
 
     @Override
     public boolean isMovable() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isSteppable() {
-        return false;
+        return true;
     }
 
     @Override

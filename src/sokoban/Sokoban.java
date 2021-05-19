@@ -4,11 +4,14 @@ import framework.GameFramework;
 import sokoban.drawcomponent.GameComponent;
 import sokoban.drawcomponent.MainMenuComponent;
 import sokoban.objects.*;
+import sokoban.objects.boxes.SquareBox;
+import sokoban.objects.boxes.StarBox;
+import sokoban.objects.holes.SquareHole;
+import sokoban.objects.holes.StarHole;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
 
 import static sokoban.drawcomponent.GameComponent.*;
 
@@ -66,43 +69,42 @@ public class Sokoban extends GameFramework {
 
         CusObj[][] layout = new CusObj[10][10];
         layout[0] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL),new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL)};
-        layout[1] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
-        layout[2] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
-        layout[3] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WATER), new StaticObject(0, 0, TEXTURE_WATER),new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
-        layout[4] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
-        layout[5] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WATER), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
-        layout[6] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new SteppableObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WATER), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
-        layout[7] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
-        layout[8] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR), new SteppableObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[1] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR),new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[2] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR),new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[3] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WATER), new StaticObject(0, 0, TEXTURE_WATER),new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[4] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR),new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[5] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR),new FloorObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WATER), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[6] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR),new FloorObject(0, 0, TEXTURE_FLOOR), new StaticObject(0, 0, TEXTURE_WATER), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[7] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR),new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
+        layout[8] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR),new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR), new FloorObject(0, 0, TEXTURE_FLOOR),new StaticObject(0, 0, TEXTURE_WALL)};
         layout[9] = new CusObj[]{new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL),new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL), new StaticObject(0, 0, TEXTURE_WALL)};
 
-        CusObj[] objs = new CusObj[18];
-        objs[0] = new MovableObject(1,4, TEXTURE_SQUARE);
-        objs[1] = new MovableObject(2,4, TEXTURE_SQUARE);
-        objs[2] = new MovableObject(5,7, TEXTURE_SQUARE);
-        objs[3] = new MovableObject(5,8, TEXTURE_SQUARE);
+        CusObj[] boxes = new CusObj[9];
 
-        objs[4] = new MovableObject(3,2, TEXTURE_STAR);
-        objs[5] = new MovableObject(5,2, TEXTURE_STAR);
-        objs[6] = new MovableObject(6,3, TEXTURE_STAR);
-        objs[7] = new MovableObject(7,4, TEXTURE_STAR);
-        objs[8] = new MovableObject(7,6, TEXTURE_STAR);
+        boxes[0] = new SquareBox(1,4);
+        boxes[1] = new SquareBox(2,4);
+        boxes[2] = new SquareBox(5,7);
+        boxes[3] = new SquareBox(5,8);
+        boxes[4] = new StarBox(3,2);
+        boxes[5] = new StarBox(5,2);
+        boxes[6] = new StarBox(6,3);
+        boxes[7] = new StarBox(7,4);
+        boxes[8] = new StarBox(7,6);
 
+        CusObj[] holes = new CusObj[9];
+        holes[0] = new SquareHole(1,7);
+        holes[1] = new SquareHole(2,7);
+        holes[2] = new SquareHole(1,8);
+        holes[3] = new SquareHole(2,8);
+        holes[4] = new StarHole(1,6);
+        holes[5] = new StarHole(2,6);
+        holes[6] = new StarHole(3,6);
+        holes[7] = new StarHole(3,7);
+        holes[8] = new StarHole(3,8);
 
-        objs[9] = new SteppableObject(1,7, TEXTURE_SQUARE_HOLE);
-        objs[10] = new SteppableObject(2,7, TEXTURE_SQUARE_HOLE);
-        objs[11] = new SteppableObject(1,8, TEXTURE_SQUARE_HOLE);
-        objs[12] = new SteppableObject(2,8, TEXTURE_SQUARE_HOLE);
+        CusObj player = new PlayerObject(4,4, TEXTURE_PLAYER);
 
-        objs[13] = new SteppableObject(1,6, TEXTURE_STAR_HOLE);
-        objs[14] = new SteppableObject(2,6, TEXTURE_STAR_HOLE);
-        objs[15] = new SteppableObject(3,6, TEXTURE_STAR_HOLE);
-        objs[16] = new SteppableObject(3,7, TEXTURE_STAR_HOLE);
-        objs[17] = new SteppableObject(3,8, TEXTURE_STAR_HOLE);
-
-        CusObj player = new MovableObject(4,4, TEXTURE_PLAYER);
-
-        level = new Level(layout, player, objs);
+        level = new Level(layout, player, holes, boxes);
 
         try {
             gameComponent = new GameComponent(level, textures);
@@ -194,7 +196,7 @@ public class Sokoban extends GameFramework {
 
         textures[TEXTURE_STAR] = loadTexture(new File(PATH_TO_TEXTURES + "star.png"));
         textures[TEXTURE_STAR_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "starHole.png"));
-        textures[TEXTURE_STAR_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "star.png"));
+        textures[TEXTURE_STAR_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "starMarked.png"));
 
         textures[TEXTURE_SQUARE] = loadTexture(new File(PATH_TO_TEXTURES + "square.png"));
         textures[TEXTURE_SQUARE_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "squareHole.png"));
