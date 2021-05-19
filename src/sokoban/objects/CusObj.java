@@ -1,8 +1,9 @@
 package sokoban.objects;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public abstract class CusObj {
+public abstract class CusObj implements Serializable {
 
     public static final int TYPE_BOX = -1;
     public static final int TYPE_CUSTOM = 0;
