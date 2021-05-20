@@ -9,7 +9,10 @@ import sokoban.objects.boxes.StarBox;
 import sokoban.objects.holes.SquareHole;
 import sokoban.objects.holes.StarHole;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -40,6 +43,8 @@ public class Sokoban extends GameFramework {
     private Font pixelFont;
     private BufferedImage[] textures;
 
+    private int gameTime;
+
     public Sokoban() {
         // Load fonts and texture, sounds, and music to the corresponding stuff
         pixelFont = loadFont(new File(PATH_TO_FONTS + "Pixeled.ttf"));
@@ -63,11 +68,20 @@ public class Sokoban extends GameFramework {
         }
 
         try {
-            gameComponent = new GameComponent(level, textures);
+            gameComponent = new GameComponent(level, textures, pixelFont, Color.BLUE, Color.MAGENTA);
             setComponent(gameComponent);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        gameTime = 0;
+        new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameTime++;
+                gameComponent.updateTime(gameTime);
+            }
+        }).start();
 
         // menuPosition = 0;
         // mainMenuComponent = new MainMenuComponent(GAME_NAME, new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
@@ -78,7 +92,7 @@ public class Sokoban extends GameFramework {
 
     @Override
     public int getGUIWidth() {
-        return 700;
+        return 1000;
     }
 
     @Override
@@ -96,11 +110,11 @@ public class Sokoban extends GameFramework {
         switch (currentMode) {
             case MODE_GAME:
                 if (level.goLeft()) {
-                    gameComponent.update();
                 }
                 else {
 
                 }
+                gameComponent.update();
                 break;
             default:
                 // Play error sound
@@ -112,19 +126,21 @@ public class Sokoban extends GameFramework {
     public void goRight() {
         // FIXME: Add check if a game is in progress
         if (level.goRight()) {
-            gameComponent.update();
         }
+        gameComponent.update();
+
     }
 
     @Override
     public void goUp() {
         // FIXME: Add check if a game is in progress
         if (level.goUp()) {
-            gameComponent.update();
+            // Do something else
         }
         else {
             // Play error sound
         }
+        gameComponent.update();
         // mainMenuComponent.markSelection(--menuPosition);
     }
 
@@ -132,9 +148,8 @@ public class Sokoban extends GameFramework {
     public void goDown() {
         // FIXME: Add check if a game is in progress
         if (level.goDown()) {
-            gameComponent.update();
         }
-
+        gameComponent.update();
         // mainMenuComponent.markSelection(++menuPosition);
     }
 

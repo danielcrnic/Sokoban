@@ -13,6 +13,8 @@ public class Level implements Serializable {
     private CusObj[] holes;
     private CusObj[] boxes;
 
+    private int correctMoves, incorrectMoves;
+
     public Level(CusObj[][] layout, CusObj player, CusObj[] holes, CusObj[] boxes) throws Exception {
         this.layout = layout;
         this.player = player;
@@ -25,46 +27,138 @@ public class Level implements Serializable {
         this.boxes = boxes;
     }
 
+    /**
+     * @return
+     */
     public CusObj[][] getLayout() {
         return layout;
     }
 
+    /**
+     * @return
+     */
     public CusObj[] getHoles() {
         return holes;
     }
 
+    /**
+     * @return
+     */
     public CusObj[] getBoxes() {
         return boxes;
     }
 
+    /**
+     * @return
+     */
     public CusObj getPlayer() {
         return player;
     }
 
+    /**
+     * @return Number of holes there is on the map
+     */
     public int getNumberOfHoles() {
         return holes.length;
     }
 
-    // public int getNumberOfFilledHoles() {
-    //
-    // }
+    /**
+     * @return The number of holes filled with boxes
+     */
+    public int getNumberOfFilledHoles() {
+        int count = 0;
+        for (CusObj o : boxes) {
+            if (o.getWhichTexture() == 1) {
+                count++;
+            }
+        }
+        return count;
+    }
 
+    /**
+     * @return
+     */
+    public int getCorrectMoves() {
+        return correctMoves;
+    }
+
+    /**
+     * @return
+     */
+    public int getIncorrectMoves() {
+        return incorrectMoves;
+    }
+
+    /**
+     * @return
+     */
+    public int getTotalMoves() {
+        return (correctMoves + incorrectMoves);
+    }
+
+    /**
+     * @return
+     */
     public boolean goUp() {
-        return push(player, 0, -1, false);
+        if (push(player, 0, -1, false)) {
+            correctMoves++;
+            return true;
+        }
+        else {
+            incorrectMoves++;
+            return false;
+        }
     }
 
+    /**
+     * @return
+     */
     public boolean goDown() {
-        return push(player, 0, 1, false);
+        if (push(player, 0, 1, false)) {
+            correctMoves++;
+            return true;
+        }
+        else {
+            incorrectMoves++;
+            return false;
+        }
     }
 
+    /**
+     * @return
+     */
     public boolean goLeft() {
-        return push(player, -1, 0, false);
+        if (push(player, -1, 0, false)) {
+            correctMoves++;
+            return true;
+        }
+        else {
+            incorrectMoves++;
+            return false;
+        }
     }
 
+    /**
+     * @return
+     */
     public boolean goRight() {
-        return push(player,1,0, false);
+        if (push(player,1,0, false)) {
+            correctMoves++;
+            return true;
+        }
+        else {
+            incorrectMoves++;
+            return false;
+        }
     }
 
+    /**
+     * @param obj
+     * @param x
+     * @param y
+     * @param second
+     * @return
+     */
     private boolean push(CusObj obj, int x, int y, boolean second) {
         if ((x != 0 && y != 0)) {
             // Cannot push at a angle!
@@ -109,7 +203,7 @@ public class Level implements Serializable {
                     }
                 }
                 else {
-                    // FIXME: Detta kommer ju alltid vara false...
+                    // FIXME: Den kommer ju aldrig komma in hit ju...
                     if (!o.isSteppable()) {
                         foundMatching = true;
                         if (push(o, x, y,true)) {
@@ -171,6 +265,11 @@ public class Level implements Serializable {
         return true;
     }
 
+    /**
+     * @param x
+     * @param y
+     * @return
+     */
     private boolean alreadySomething(int x, int y) {
         for (CusObj o : boxes) {
             if (o.samePosition(x, y)) {
