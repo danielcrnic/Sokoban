@@ -121,9 +121,15 @@ public class GameComponent extends JComponent {
     }
 
     /**
-     * @param mode
+     * Selects the mode that should be used, it can be set to the following:
+     *      (MODE_GAME)        -> To only show the game
+     *      (MODE_PAUSE)       -> Pause menu
+     *      (MODE_WIN)         -> Win menu
+     *      (MODE_CENTER_TEXT) -> To show only center text
+     *
+     * @param mode The mode to be selected
      */
-    public void displayMode(int mode) {
+    public void setDisplayMode(int mode) {
         this.mode = mode;
     }
 

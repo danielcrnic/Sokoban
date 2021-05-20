@@ -86,7 +86,7 @@ public class Sokoban extends GameFramework {
             }
         }).start();
 
-        gameComponent.displayMode(MODE_CENTER_TEXT);
+        gameComponent.setDisplayMode(MODE_CENTER_TEXT);
 
         // menuPosition = 0;
         // mainMenuComponent = new MainMenuComponent(GAME_NAME, new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
