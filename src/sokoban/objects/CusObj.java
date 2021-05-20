@@ -117,6 +117,17 @@ public abstract class CusObj implements Serializable {
     }
 
     /**
+     * Returns which texture is selected, the integer can be two things:
+     *      (0) -> Default texture
+     *      (1) -> Trigger texture
+     *
+     * @return The current selected texture (not the texture ID)
+     */
+    public int getWhichTexture() {
+        return whichTexture;
+    }
+
+    /**
      * @param o
      * @return
      */

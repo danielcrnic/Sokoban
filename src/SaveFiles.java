@@ -55,7 +55,12 @@ public class SaveFiles {
         holes[8] = new StarHole(3,8);
 
         CusObj player = new PlayerObject(4,4, TEXTURE_PLAYER);
-        Level level = new Level(layout, player, holes, boxes);
+        Level level = null;
+        try {
+            level = new Level(layout, player, holes, boxes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         FileOutputStream fileOutputStream = new FileOutputStream("simple.lvl");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);

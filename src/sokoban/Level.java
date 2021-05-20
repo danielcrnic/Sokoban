@@ -13,9 +13,13 @@ public class Level implements Serializable {
     private CusObj[] holes;
     private CusObj[] boxes;
 
-    public Level(CusObj[][] layout, CusObj player, CusObj[] holes, CusObj[] boxes) {
+    public Level(CusObj[][] layout, CusObj player, CusObj[] holes, CusObj[] boxes) throws Exception {
         this.layout = layout;
         this.player = player;
+
+        if (holes.length > boxes.length) {
+            throw new Exception("There is not enough holes for the boxes!");
+        }
 
         this.holes = holes;
         this.boxes = boxes;
@@ -36,6 +40,14 @@ public class Level implements Serializable {
     public CusObj getPlayer() {
         return player;
     }
+
+    public int getNumberOfHoles() {
+        return holes.length;
+    }
+
+    // public int getNumberOfFilledHoles() {
+    //
+    // }
 
     public boolean goUp() {
         return push(player, 0, -1, false);
@@ -97,6 +109,7 @@ public class Level implements Serializable {
                     }
                 }
                 else {
+                    // FIXME: Detta kommer ju alltid vara false...
                     if (!o.isSteppable()) {
                         foundMatching = true;
                         if (push(o, x, y,true)) {
@@ -154,6 +167,7 @@ public class Level implements Serializable {
 
         obj.setX(obj.getX() + x);
         obj.setY(obj.getY() + y);
+        obj.changeToDefaultTexture();
         return true;
     }
 

@@ -72,6 +72,10 @@ public class GameComponent extends JComponent {
         drawObjects(g2, width, height, player);
     }
 
+    private void drawDashboard(Graphics2D g2) {
+
+    }
+
     /**
      * Draws the layout on the screen
      *
