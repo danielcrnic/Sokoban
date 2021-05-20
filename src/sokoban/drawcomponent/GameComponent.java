@@ -5,6 +5,10 @@ import sokoban.objects.CusObj;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public class GameComponent extends JComponent {
@@ -31,14 +35,41 @@ public class GameComponent extends JComponent {
 
     private BufferedImage[] textures;
     private Level level;
+    private Timer updateText;
+    private Font font;
 
-    public GameComponent(Level level, BufferedImage[] textures) throws Exception{
+    private Color color1;
+    private Color color2;
+
+    private int secondsPassed;
+    private int correctMoves, incorrectMoves, movesPerSecond;
+    private int bottomBarText;
+
+    public GameComponent(Level level, BufferedImage[] textures, Font font, Color color1, Color color2) throws Exception{
         if (textures.length != NUMBER_OF_TEXTURES) {
             throw new Exception("The number of textures does not line up!");
         }
         else {
             this.textures = textures;
             this.level = level;
+            this.font = font.deriveFont(20f);
+
+            secondsPassed = 0;
+            correctMoves = 0;
+            incorrectMoves = 0;
+            movesPerSecond = 0;
+            bottomBarText = 0;
+
+            this.color1 = color1;
+            this.color2 = color2;
+
+            updateText = new Timer(10000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    bottomBarText = (bottomBarText + 1) % 3;
+                }
+            });
+            updateText.start();
         }
     }
 
@@ -47,6 +78,15 @@ public class GameComponent extends JComponent {
      */
     public void update() {
         repaint();
+    }
+
+    public void updateTime(int seconds) {
+        secondsPassed = seconds;
+        repaint();
+    }
+
+    public void stopUpdate() {
+        updateText.stop();
     }
 
     @Override
@@ -61,6 +101,9 @@ public class GameComponent extends JComponent {
         int width = layout[0].length * textures[0].getWidth();
         int height = layout.length * textures[0].getHeight();
 
+        // Draw the background
+        paintColorBackground(g2, color1, color2);
+
         // Draw first the layout
         drawLayout(g2, layout);
 
@@ -70,10 +113,48 @@ public class GameComponent extends JComponent {
 
         // Lastly, draw the player
         drawObjects(g2, width, height, player);
+
+        // Draw the dashboard
+        drawDashboard(g2);
     }
 
     private void drawDashboard(Graphics2D g2) {
+        FontRenderContext fontRenderContext = new FontRenderContext(null, true, true);
 
+        // Top bar
+        Color backgroundColor = new Color(0, 0,0,0.2f);
+        g2.setColor(backgroundColor);
+        g2.fillRect(0, 0, getWidth(), 50);
+
+        // Bottom bar
+        g2.fillRect(0, getHeight() - 50, getWidth(), 50);
+
+        // Draw the top bar text
+        g2.setFont(font);
+        g2.setColor(Color.WHITE);
+        g2.drawString( "HOLES: "  + level.getNumberOfFilledHoles() + "/" + level.getNumberOfHoles(), 10, 35);
+
+        String timeText = "TIME: " + String.format("%02d", (secondsPassed / 60)) + ":" + String.format("%02d", (secondsPassed % 60));
+        Rectangle2D rectangle2D = font.getStringBounds(timeText, fontRenderContext);
+        int rWidth = (int) Math.round(rectangle2D.getWidth());
+
+        g2.drawString(timeText,getWidth() - 10 - rWidth, 35);
+
+        String bottomBar;
+        // Draw the bottom bar text
+        switch (bottomBarText) {
+            case 1:
+                bottomBar = "MOVES: " + level.getCorrectMoves() + "    INCORRECT MOVES: " + level.getIncorrectMoves() + "    TOTAL MOVES: " + level.getTotalMoves();
+                break;
+            case 2:
+                bottomBar = "MOVES PER SECOND: " + String.format("%.2f", (float) level.getTotalMoves() / (float) secondsPassed) + " MOVES/SEC";
+                break;
+            default:
+                bottomBar = "PRESS ESC TO PAUSE";
+                break;
+        }
+
+        g2.drawString(bottomBar, 10, getHeight() - 15);
     }
 
     /**
@@ -126,6 +207,20 @@ public class GameComponent extends JComponent {
                 g2.drawImage(textures[o.getTextureNumber()], null, x, y);
             }
         }
+    }
+
+    /**
+     * Paints the background that is selected in the BufferedImage 'backgroundImage' variable. This should be run
+     * when the window size gets enlarged or shrank (maybe not necessary when shrank)
+     *
+     * @param g Graphics2D
+     * @param color1 The color to be painted
+     * @param color2 The color to be painted
+     */
+    private void paintColorBackground(Graphics2D g, Color color1, Color color2) {
+        GradientPaint gradientPaint = new GradientPaint(0, 0, color1, getWidth(),getHeight(), color2);
+        g.setPaint(gradientPaint);
+        g.fillRect(0, 0, getWidth(), getHeight());
     }
 
 }
