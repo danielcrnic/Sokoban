@@ -4,12 +4,12 @@
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Div custom objekt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/GameComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/GameComponent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/CusObj.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/CusObj.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/HoleObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/framework/GameFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/GameFramework.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simple.lvl" beforeDir="false" afterPath="$PROJECT_DIR$/simple.lvl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SaveFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SaveFiles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sokoban/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Sokoban.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/drawcomponent/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/drawcomponent/GameComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -164,8 +164,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sokoban/objects/CusObj.java</url>
-          <line>140</line>
+          <line>151</line>
           <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sokoban/Level.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -58,6 +58,31 @@ public class GameComponent extends JComponent {
         CusObj[] boxes = level.getBoxes();
         CusObj player = level.getPlayer();
 
+        int width = layout[0].length * textures[0].getWidth();
+        int height = layout.length * textures[0].getHeight();
+
+        // Draw first the layout
+        drawLayout(g2, layout);
+
+        // Draw the objects
+        drawObjects(g2, width, height, holes);
+        drawObjects(g2, width, height, boxes);
+
+        // Lastly, draw the player
+        drawObjects(g2, width, height, player);
+    }
+
+    private void drawDashboard(Graphics2D g2) {
+
+    }
+
+    /**
+     * Draws the layout on the screen
+     *
+     * @param g2 Graphics2D
+     * @param layout The layout in a doubly array
+     */
+    private void drawLayout(Graphics2D g2, CusObj[][] layout) {
         // Get the width and height to be able to draw the level in center
         int windowWidth = getWidth();
         int windowHeight = getHeight();
@@ -69,10 +94,10 @@ public class GameComponent extends JComponent {
         int y = (windowHeight / 2) - (height / 2);
 
         // Draw first the layout
-        for (int i = 0; i < layout.length; i++) {
-            for (int j = 0; j < layout[i].length; j++) {
-                if (layout[i][j] != null) {
-                    int textureID = layout[i][j].getTextureNumber();
+        for (CusObj[] cusObjs : layout) {
+            for (int j = 0; j < cusObjs.length; j++) {
+                if (cusObjs[j] != null) {
+                    int textureID = cusObjs[j].getTextureNumber();
                     g2.drawImage(textures[textureID], null, x, y);
                     // FIXME: Add also that the Color variable is added in this moment
                 }
@@ -81,30 +106,26 @@ public class GameComponent extends JComponent {
             x = (windowWidth / 2) - (width / 2);
             y += textures[0].getHeight();
         }
-
-        // Draw the holes objects
-        for (CusObj o : holes) {
-            if (o != null) {
-                x = (windowWidth / 2) - (width / 2) + (o.getX() * textures[0].getWidth());
-                y = (windowHeight / 2) - (height / 2) + (o.getY() * textures[0].getHeight());
-
-                g2.drawImage(textures[o.getTextureNumber()], null, x, y);
-            }
-        }
-
-        for (CusObj o : boxes) {
-            if (o != null) {
-                x = (windowWidth / 2) - (width / 2) + (o.getX() * textures[0].getWidth());
-                y = (windowHeight / 2) - (height / 2) + (o.getY() * textures[0].getHeight());
-
-                g2.drawImage(textures[o.getTextureNumber()], null, x, y);
-            }
-        }
-
-        // Lastly, draw the player
-        x = (windowWidth / 2) - (width / 2) + (player.getX() * textures[0].getWidth());
-        y = (windowHeight / 2) - (height / 2) + (player.getY() * textures[0].getHeight());
-
-        g2.drawImage(textures[player.getTextureNumber()], null, x, y);
     }
+
+    /**
+     * Draws objects to the screen
+     *
+     * @param g2 Graphics2D
+     * @param width The width of the "map"
+     * @param height The height of the "map"
+     * @param objects Objects to be drawn
+     */
+    private void drawObjects(Graphics2D g2, int width, int height, CusObj... objects) {
+        // Draw the objects
+        for (CusObj o : objects) {
+            if (o != null) {
+                int x = (getWidth() / 2) - (width / 2) + (o.getX() * textures[0].getWidth());
+                int y = (getHeight() / 2) - (height / 2) + (o.getY() * textures[0].getHeight());
+
+                g2.drawImage(textures[o.getTextureNumber()], null, x, y);
+            }
+        }
+    }
+
 }
