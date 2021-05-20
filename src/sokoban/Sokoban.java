@@ -32,6 +32,8 @@ public class Sokoban extends GameFramework {
     public static final int MODE_MAIN_MENU = 0;
     public static final int MODE_GAME = 1;
 
+    public static final String[] PAUSE_SELECTION = new String[]{"CONTINUE", "RESTART", "BACK TO MAIN MENU"};
+    public static final String[] WIN_SELECTION = new String[]{"NEXT", "MAIN MENU"};
 
     private int currentMode;
     private int menuPosition;
@@ -57,7 +59,7 @@ public class Sokoban extends GameFramework {
 
         currentMode = MODE_GAME;
 
-        Object obj = loadObject(new File("testPlzWork.lvl"));
+        Object obj = loadObject(new File("Hello_World.lvl"));
 
         if (obj instanceof Level) {
             level = (Level) obj;
@@ -68,7 +70,7 @@ public class Sokoban extends GameFramework {
         }
 
         try {
-            gameComponent = new GameComponent(level, textures, pixelFont, Color.ORANGE, Color.RED);
+            gameComponent = new GameComponent(level, textures, pixelFont, Color.ORANGE, Color.RED, PAUSE_SELECTION, WIN_SELECTION);
             setComponent(gameComponent);
         } catch (Exception e) {
             e.printStackTrace();
@@ -79,9 +81,12 @@ public class Sokoban extends GameFramework {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gameTime++;
+                gameComponent.setCenterText(Integer.toString(gameTime));
                 gameComponent.updateTime(gameTime);
             }
         }).start();
+
+        gameComponent.displayMode(MODE_CENTER_TEXT);
 
         // menuPosition = 0;
         // mainMenuComponent = new MainMenuComponent(GAME_NAME, new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
