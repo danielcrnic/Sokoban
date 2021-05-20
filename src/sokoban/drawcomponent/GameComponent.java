@@ -134,14 +134,18 @@ public class GameComponent extends JComponent {
     }
 
     /**
-     * @param centerText
+     * Sets the text for the MODE_CENTER TEXT view
+     *
+     * @param centerText The new text to be displayed
      */
     public void setCenterText(String centerText) {
         this.centerText = centerText;
     }
 
     /**
-     * @param position
+     * Sets the position of the cursor in MODE_PAUSE and MODE_WIN
+     *
+     * @param position The position of the cursor where 0 is the first selection
      */
     public void setPosition(int position) {
         this.position = position;
