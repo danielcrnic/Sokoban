@@ -306,7 +306,10 @@ public class GameComponent extends JComponent {
     }
 
     /**
-     * @param g2
+     * Paints over the whole screen a 70% transparent gray background. This is used when drawing information that
+     * is important and so that the player is not seeing the game as much
+     *
+     * @param g2 Graphics2D
      */
     private void paintGray(Graphics2D g2) {
         g2.setColor(new Color(0, 0,0,0.7f));
@@ -315,7 +318,9 @@ public class GameComponent extends JComponent {
     }
 
     /**
-     * @param g2
+     * Paints the pause menu where the setPosition() method can be used to move the cursor up and down
+     *
+     * @param g2 Graphics2D
      */
     private void paintPauseMenu(Graphics2D g2) {
         paintGray(g2);
@@ -358,7 +363,9 @@ public class GameComponent extends JComponent {
     }
 
     /**
-     * @param g2
+     * Draws the complete menu that includes statistics about the level the player just completed
+     *
+     * @param g2 Graphics2D
      */
     private void paintCompleteMenu(Graphics2D g2) {
         paintGray(g2);
@@ -436,7 +443,10 @@ public class GameComponent extends JComponent {
     }
 
     /**
-     * @param g2
+     * Draws middle text in the center to show important information to the player (like count down for the game to
+     * start)
+     *
+     * @param g2 Graphics2D
      */
     private void paintMiddleText(Graphics2D g2) {
         paintGray(g2);
