@@ -42,10 +42,10 @@ public class GameComponent extends JComponent {
 
     private FontRenderContext fontRenderContext;
 
-    private BufferedImage[] textures;
-    private Level level;
-    private Timer updateText;
-    private Font font;
+    private final BufferedImage[] textures;
+    private final Level level;
+    private final Timer updateText;
+    private final Font font;
 
     private final Color color1;
     private final Color color2;
@@ -53,8 +53,8 @@ public class GameComponent extends JComponent {
     private int secondsPassed;
     private int bottomBarText;
 
-    private String[] optionsPause;
-    private String[] optionsWin;
+    private final String[] optionsPause;
+    private final String[] optionsWin;
     private String centerText;
 
     private int position, mode;
