@@ -57,7 +57,7 @@ public class Sokoban extends GameFramework {
 
         currentMode = MODE_GAME;
 
-        Object obj = loadObject(new File("simple.lvl"));
+        Object obj = loadObject(new File("testPlzWork.lvl"));
 
         if (obj instanceof Level) {
             level = (Level) obj;
@@ -68,7 +68,7 @@ public class Sokoban extends GameFramework {
         }
 
         try {
-            gameComponent = new GameComponent(level, textures, pixelFont, Color.BLUE, Color.MAGENTA);
+            gameComponent = new GameComponent(level, textures, pixelFont, Color.ORANGE, Color.RED);
             setComponent(gameComponent);
         } catch (Exception e) {
             e.printStackTrace();
