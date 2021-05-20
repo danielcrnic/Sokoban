@@ -51,7 +51,7 @@ public class Sokoban extends GameFramework {
         loadTextures();
 
         currentMode = MODE_GAME;
-        
+
         Object obj = loadObject(new File("simple.lvl"));
 
         if (obj instanceof Level) {
