@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Div custom objekt">
+    <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Level Updated">
+      <change afterPath="$PROJECT_DIR$/simple2.lvl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simple3.lvl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/SaveFiles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/SaveFiles.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/StartSokoban.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/StartSokoban.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/FrameworkTester$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/FrameworkTester$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/FrameworkTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/FrameworkTester.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Level.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/GameComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/GameComponent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/CusObj.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/CusObj.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple.lvl" beforeDir="false" afterPath="$PROJECT_DIR$/simple.lvl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/FloorObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/FloorObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/PlayerObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/PlayerObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/StaticObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/StaticObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/CircleBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/CircleBox.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/SquareBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/SquareBox.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/StarBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/StarBox.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/CircleHole.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/CircleHole.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/SquareHole.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/SquareHole.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/StarHole.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/StarHole.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SaveFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SaveFiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/drawcomponent/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/drawcomponent/GameComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StartSokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StartSokoban.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Sokoban.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +42,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -166,11 +180,6 @@
           <url>file://$PROJECT_DIR$/src/sokoban/objects/CusObj.java</url>
           <line>151</line>
           <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sokoban/Level.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
