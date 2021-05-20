@@ -188,7 +188,14 @@ public class GameComponent extends JComponent {
     }
 
     /**
-     * @param g2
+     * Draws the dashboard that includes:
+     *      - Number of boxes in holes
+     *      - Ongoing time
+     *      - Number of moves
+     *      - Moves in seconds
+     *      - Information about the pause menu
+     *
+     * @param g2 Graphics2D
      */
     private void drawDashboard(Graphics2D g2) {
         fontRenderContext = new FontRenderContext(null, true, true);
