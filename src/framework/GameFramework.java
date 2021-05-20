@@ -69,6 +69,14 @@ public abstract class GameFramework implements InputObserver {
     }
 
     /**
+     * @param path
+     * @return
+     */
+    public String[] getFilesInDirectory(String path) {
+        return new File(path + ".").list();
+    }
+
+    /**
      * Loads an image texture into a BufferedImage variable which is then returned to the developer
      *
      * @return An BufferedImage with the image, if null is returned it means that it could not either find the file
