@@ -34,33 +34,12 @@ public class FrameworkTester extends GameFramework {
         setMenuBar(menuBar);
         setComponent(label);
 
-        // Timer timer = new Timer(1000, new ActionListener() {    // LÄGG INTE DELAY NÅGOT LÄGRE!!!
-        //     @Override
-        //     public void actionPerformed(ActionEvent e) {
-        //         if (count == 1) {
-        //             setMenuBar(menuBar2);
-        //             setComponent(label2);
-        //             count = 2;
-        //         }
-        //         else {
-        //             setMenuBar(menuBar);
-        //             setComponent(label);
-        //             count = 1;
-        //         }
-        //     }
-        // });
-        // timer.start();
+        File file = new File("resources/.");
 
-        int song1 = loadSound(new File("audio/song1.mp3"));
-        song2 = loadSound(new File("audio/song3.mp3"));
-        playSound(song1);
+        for (String f : file.list()) {
+            System.out.println(f);
+        }
 
-        new Timer(10000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                stopSound(song1);
-            }
-        }).start();
     }
 
     @Override

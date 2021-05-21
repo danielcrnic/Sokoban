@@ -2,6 +2,7 @@ package sokoban;
 
 import framework.GameFramework;
 import sokoban.drawcomponent.GameComponent;
+import sokoban.drawcomponent.LevelSelectionComponent;
 import sokoban.drawcomponent.MainMenuComponent;
 import sokoban.objects.*;
 import sokoban.objects.boxes.SquareBox;
@@ -15,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.InvalidClassException;
 
 import static sokoban.drawcomponent.GameComponent.*;
 
@@ -28,15 +30,19 @@ public class Sokoban extends GameFramework {
     public static final String PATH_TO_FONTS = "resources/fonts/";
     public static final String PATH_TO_SOUND_EFFECTS = "resources/sounds/";
     public static final String PATH_TO_MUSIC = "resources/music/";
+    public static final String PATH_TO_LEVELS = "levels/";
 
     public static final int MODE_MAIN_MENU = 0;
     public static final int MODE_GAME = 1;
 
+    public static final String[] PAUSE_SELECTION = new String[]{"CONTINUE", "RESTART", "BACK TO MAIN MENU"};
+    public static final String[] WIN_SELECTION = new String[]{"NEXT", "MAIN MENU"};
 
     private int currentMode;
     private int menuPosition;
 
     private MainMenuComponent mainMenuComponent;
+    private LevelSelectionComponent levelSelectionComponent;
     private GameComponent gameComponent;
     private Level level;
 
@@ -57,36 +63,47 @@ public class Sokoban extends GameFramework {
 
         currentMode = MODE_GAME;
 
-        Object obj = loadObject(new File("testPlzWork.lvl"));
+         // Object obj = loadObject(new File(PATH_TO_LEVELS + "Hello_World.lvl"));
+         // // TODO: Add an test to check if the object is null or not. Do not continue if it is null since there is either
+         // //       a problem with finding the file (maybe it is not there). Or the level was create with a older version
+//
+         // if (obj instanceof Level) {
+         //     level = (Level) obj;
+         // }
+         // else {
+         //     System.out.println("Error!");
+         //     System.exit(-1);
+         // }
+//
+         // try {
+         //     gameComponent = new GameComponent(level, textures, pixelFont, Color.ORANGE, Color.RED, PAUSE_SELECTION, WIN_SELECTION);
+         //     setComponent(gameComponent);
+         // } catch (Exception e) {
+         //     e.printStackTrace();
+         // }
 
-        if (obj instanceof Level) {
-            level = (Level) obj;
-        }
-        else {
-            System.out.println("Error!");
-            System.exit(-1);
-        }
+        // gameTime = 0;
+        // new Timer(1000, new ActionListener() {
+        //     @Override
+        //     public void actionPerformed(ActionEvent e) {
+        //         gameTime++;
+        //         gameComponent.updateTime(gameTime);
+        //     }
+        // });
 
-        try {
-            gameComponent = new GameComponent(level, textures, pixelFont, Color.ORANGE, Color.RED);
-            setComponent(gameComponent);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+         String[] levels = getFilesInDirectory(PATH_TO_LEVELS);
+         String[] test = new String[100];
 
-        gameTime = 0;
-        new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gameTime++;
-                gameComponent.updateTime(gameTime);
-            }
-        }).start();
+         for (int i = 0; i < test.length; i++) {
+             test[i] = Integer.toString(i);
+         }
 
-        // menuPosition = 0;
-        // mainMenuComponent = new MainMenuComponent(GAME_NAME, new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
-        //         VERSION, COPYRIGHT, menuPosition, textures[TEXTURE_FLOOR], textures[TEXTURE_PLAYER], pixelFont);
-        // setComponent(mainMenuComponent);
+         levelSelectionComponent = new LevelSelectionComponent(test, 0, textures[TEXTURE_FLOOR], pixelFont);
+         setComponent(levelSelectionComponent);
+         // menuPosition = 0;
+         // mainMenuComponent = new MainMenuComponent(GAME_NAME, new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
+         //         VERSION, COPYRIGHT, menuPosition, textures[TEXTURE_FLOOR], textures[TEXTURE_PLAYER], pixelFont);
+         // setComponent(mainMenuComponent);
 
     }
 
@@ -134,22 +151,26 @@ public class Sokoban extends GameFramework {
     @Override
     public void goUp() {
         // FIXME: Add check if a game is in progress
-        if (level.goUp()) {
-            // Do something else
-        }
-        else {
-            // Play error sound
-        }
-        gameComponent.update();
+        // if (level.goUp()) {
+        //     // Do something else
+        // }
+        // else {
+        //     // Play error sound
+        // }
+        // gameComponent.update();
+        levelSelectionComponent.setPosition(--menuPosition);
+        levelSelectionComponent.update();
         // mainMenuComponent.markSelection(--menuPosition);
     }
 
     @Override
     public void goDown() {
         // FIXME: Add check if a game is in progress
-        if (level.goDown()) {
-        }
-        gameComponent.update();
+        // if (level.goDown()) {
+        // }
+        // gameComponent.update();
+        levelSelectionComponent.setPosition(++menuPosition);
+        levelSelectionComponent.update();
         // mainMenuComponent.markSelection(++menuPosition);
     }
 

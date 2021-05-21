@@ -69,6 +69,17 @@ public abstract class GameFramework implements InputObserver {
     }
 
     /**
+     * Gets all the files and folders in the specified path. If the parameter is left blank (""), it will return the
+     * path from where this program is located at.
+     *
+     * @param path The path of where to get the files and folders
+     * @return An String array with the values
+     */
+    public String[] getFilesInDirectory(String path) {
+        return new File(path + ".").list();
+    }
+
+    /**
      * Loads an image texture into a BufferedImage variable which is then returned to the developer
      *
      * @return An BufferedImage with the image, if null is returned it means that it could not either find the file
@@ -115,14 +126,12 @@ public abstract class GameFramework implements InputObserver {
             FileInputStream fileInputStream = new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            Object read = objectInputStream.readObject();
-            return read;
-
+            return objectInputStream.readObject();
         } catch (FileNotFoundException e) {
             System.err.println("Could not find the file: '" + file.getAbsolutePath() + "'");
             return null;
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.err.println("The map was created with a older version than this, please recreate the map.");
             return null;
         }
     }
