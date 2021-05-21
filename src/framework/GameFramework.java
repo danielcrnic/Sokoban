@@ -69,8 +69,11 @@ public abstract class GameFramework implements InputObserver {
     }
 
     /**
-     * @param path
-     * @return
+     * Gets all the files and folders in the specified path. If the parameter is left blank (""), it will return the
+     * path from where this program is located at.
+     *
+     * @param path The path of where to get the files and folders
+     * @return An String array with the values
      */
     public String[] getFilesInDirectory(String path) {
         return new File(path + ".").list();
