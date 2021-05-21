@@ -126,9 +126,7 @@ public abstract class GameFramework implements InputObserver {
             FileInputStream fileInputStream = new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            Object read = objectInputStream.readObject();
-            return read;
-
+            return objectInputStream.readObject();
         } catch (FileNotFoundException e) {
             System.err.println("Could not find the file: '" + file.getAbsolutePath() + "'");
             return null;
