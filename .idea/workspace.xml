@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Div custom objekt">
+    <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Level Updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/listeners/KeyboardListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/listeners/KeyboardListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" afterDir="false" />
+>>>>>>> 102defbbd606445a0108a9b43759534ff23ff263
       <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Sokoban.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,13 +37,6 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/sokoban/Sokoban.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/drawcomponent/GameComponent.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/StartSokoban.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/GameFramework.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputObserver.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputSubject.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/SaveFiles.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/GenerateMap.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hello_World.txt" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/Level.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1s3p0b49JY6LcckDiCZvTqkDKNf" />
@@ -64,12 +62,11 @@
       <recent name="$PROJECT_DIR$/audio" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/levels" />
       <recent name="$PROJECT_DIR$/resources" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.StartSokoban">
+  <component name="RunManager" selected="Application.GenerateMap">
     <configuration name="FrameworkTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="framework.FrameworkTester" />
       <module name="DT4014-Project" />
@@ -107,10 +104,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StartSokoban" />
         <item itemvalue="Application.GenerateMap" />
-        <item itemvalue="Application.FrameworkTester" />
         <item itemvalue="Application.SaveFiles" />
+        <item itemvalue="Application.StartSokoban" />
+        <item itemvalue="Application.FrameworkTester" />
         <item itemvalue="Application.HelloWorld" />
       </list>
     </recent_temporary>
