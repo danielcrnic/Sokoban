@@ -45,6 +45,7 @@ public class LevelSelectionComponent extends DrawComponent{
         Dimension dimensionOfAString = calculateStringDimensions(selections[0], fontMenu);
         int entriesThatCanFit = (int) (((getHeight() - 90) - 20) / (dimensionOfAString.getHeight() - 20)) - 1;
 
+        // I really don't like this implementation but I don't have time to fix it...
         if (position > entriesThatCanFit) {
             for (int i = (position - entriesThatCanFit); i < position + entriesThatCanFit; i++) {
                 String content = selections[i].toUpperCase();
