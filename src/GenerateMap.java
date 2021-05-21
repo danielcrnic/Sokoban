@@ -1,4 +1,5 @@
 import sokoban.Level;
+import sokoban.Sokoban;
 import sokoban.objects.CusObj;
 import sokoban.objects.FloorObject;
 import sokoban.objects.PlayerObject;
@@ -21,7 +22,7 @@ import static sokoban.drawcomponent.GameComponent.*;
 
 public class GenerateMap {
 
-    public static final String FILE_TXT = "Hello_World";
+    public static final String FILE_TXT = "simple7";
 
     public static void main(String[] args) {
         File file = new File(FILE_TXT + ".txt");
@@ -139,7 +140,7 @@ public class GenerateMap {
                 System.exit(-1);
             }
         }
-
+        new Sokoban();
 
     }
 
