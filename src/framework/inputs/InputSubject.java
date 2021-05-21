@@ -7,6 +7,7 @@ public class InputSubject {
     public static final int LEFT = 2;
     public static final int RIGHT = 3;
     public static final int ENTER = 4;
+    public static final int BACK = 5;
 
     private InputObserver observer;
 

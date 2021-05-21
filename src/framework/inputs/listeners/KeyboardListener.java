@@ -25,6 +25,7 @@ public class KeyboardListener implements KeyEventDispatcher {
                 case KeyEvent.VK_A, KeyEvent.VK_LEFT -> subject.notifyObserver(LEFT);
                 case KeyEvent.VK_D, KeyEvent.VK_RIGHT -> subject.notifyObserver(RIGHT);
                 case KeyEvent.VK_ENTER -> subject.notifyObserver(ENTER);
+                case KeyEvent.VK_ESCAPE -> subject.notifyObserver(BACK);
             }
         }
 

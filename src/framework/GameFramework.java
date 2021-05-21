@@ -37,6 +37,7 @@ public abstract class GameFramework implements InputObserver {
     public abstract void goUp();
     public abstract void goDown();
     public abstract void pressedEnter();
+    public abstract void pressedBack();
 
     // TODO: This will have to be implemented later in the development
     // These methods will be called when the player wants to undo/redo a move
@@ -237,21 +238,12 @@ public abstract class GameFramework implements InputObserver {
         // In feature, if the "main menu" should not use the keys by the "game mode", a feature could be added that
         // only triggers goUp(), goDown()... IF a game is being played.
         switch (button) {
-            case InputSubject.UP:
-                goUp();
-                break;
-            case InputSubject.DOWN:
-                goDown();
-                break;
-            case InputSubject.LEFT:
-                goLeft();
-                break;
-            case InputSubject.RIGHT:
-                goRight();
-                break;
-            case InputSubject.ENTER:
-                pressedEnter();
-                break;
+            case InputSubject.UP -> goUp();
+            case InputSubject.DOWN -> goDown();
+            case InputSubject.LEFT -> goLeft();
+            case InputSubject.RIGHT -> goRight();
+            case InputSubject.ENTER -> pressedEnter();
+            case InputSubject.BACK -> pressedBack();
         }
     }
 

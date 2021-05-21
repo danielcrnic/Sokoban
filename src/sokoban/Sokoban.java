@@ -4,20 +4,13 @@ import framework.GameFramework;
 import sokoban.drawcomponent.GameComponent;
 import sokoban.drawcomponent.LevelSelectionComponent;
 import sokoban.drawcomponent.MainMenuComponent;
-import sokoban.objects.*;
-import sokoban.objects.boxes.SquareBox;
-import sokoban.objects.boxes.StarBox;
-import sokoban.objects.holes.SquareHole;
-import sokoban.objects.holes.StarHole;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.InvalidClassException;
+import java.util.ArrayList;
 
+import static framework.inputs.InputSubject.*;
 import static sokoban.drawcomponent.GameComponent.*;
 
 public class Sokoban extends GameFramework {
@@ -33,7 +26,10 @@ public class Sokoban extends GameFramework {
     public static final String PATH_TO_LEVELS = "levels/";
 
     public static final int MODE_MAIN_MENU = 0;
-    public static final int MODE_GAME = 1;
+    public static final int MODE_LEVEL_SELECTION = 1;
+    public static final int MODE_GAME = 2;
+    public static final int MODE_GAME_PAUSE = 3;
+    public static final int MODE_GAME_WIN = 4;
 
     public static final String[] MAIN_MENU_SELECTION = new String[]{"START QUEST","SELECT LEVEL", "HOW TO PLAY", "ABOUT", "EXIT"};
     public static final String[] PAUSE_SELECTION = new String[]{"CONTINUE", "RESTART", "BACK TO MAIN MENU"};
@@ -50,8 +46,10 @@ public class Sokoban extends GameFramework {
     private Font pixelFont;
     private BufferedImage[] textures;
     private String[] levelDirectory;
+    private String[] levelSelectionArray;
 
     private int gameTime;
+    private int levelLoaded;
 
     public Sokoban() {
         // Load fonts and texture, sounds, and music to the corresponding stuff
@@ -62,7 +60,22 @@ public class Sokoban extends GameFramework {
         }
 
         loadTextures();
-        levelDirectory = getFilesInDirectory(PATH_TO_LEVELS);
+
+        // Filters out all non .lvl files and replaces '_' with spaces to show text better
+        String[] lvlIndex = getFilesInDirectory(PATH_TO_LEVELS);
+        ArrayList<String> lvlDirectory = new ArrayList<>();
+        ArrayList<String> selDirectory = new ArrayList<>();
+
+        for (String l : lvlIndex) {
+            if (l.endsWith(".lvl")) {
+                lvlDirectory.add(l);
+
+                String newString = l.replace('_',' ').substring(0, l.length() - 4);
+                selDirectory.add(newString);
+            }
+        }
+        levelDirectory = lvlDirectory.toArray(new String[0]);
+        levelSelectionArray = selDirectory.toArray(new String[0]);
 
         currentMode = MODE_MAIN_MENU;
 
@@ -73,41 +86,7 @@ public class Sokoban extends GameFramework {
         setComponent(mainMenuComponent);
 
 
-         // Object obj = loadObject(new File(PATH_TO_LEVELS + "Hello_World.lvl"));
-         // // TODO: Add an test to check if the object is null or not. Do not continue if it is null since there is either
-         // //       a problem with finding the file (maybe it is not there). Or the level was create with a older version
-//
-         // if (obj instanceof Level) {
-         //     level = (Level) obj;
-         // }
-         // else {
-         //     System.out.println("Error!");
-         //     System.exit(-1);
-         // }
-//
-         // try {
-         //     gameComponent = new GameComponent(level, textures, pixelFont, Color.ORANGE, Color.RED, PAUSE_SELECTION, WIN_SELECTION);
-         //     setComponent(gameComponent);
-         // } catch (Exception e) {
-         //     e.printStackTrace();
-         // }
 
-        // gameTime = 0;
-        // new Timer(1000, new ActionListener() {
-        //     @Override
-        //     public void actionPerformed(ActionEvent e) {
-        //         gameTime++;
-        //         gameComponent.updateTime(gameTime);
-        //     }
-        // });
-
-
-         // levelSelectionComponent = new LevelSelectionComponent(test, 0, textures[TEXTURE_FLOOR], pixelFont);
-         // setComponent(levelSelectionComponent);
-         // menuPosition = 0;
-         // mainMenuComponent = new MainMenuComponent(GAME_NAME, new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
-         //         VERSION, COPYRIGHT, menuPosition, textures[TEXTURE_FLOOR], textures[TEXTURE_PLAYER], pixelFont);
-         // setComponent(mainMenuComponent);
 
     }
 
@@ -130,57 +109,101 @@ public class Sokoban extends GameFramework {
     public void goLeft() {
         switch (currentMode) {
             case MODE_GAME:
-                if (level.goLeft()) {
-                }
-                else {
-
-                }
-                gameComponent.update();
+                game(LEFT);
                 break;
-            default:
-                // Play error sound
+            case MODE_GAME_PAUSE:
+                break;
+            case MODE_GAME_WIN:
                 break;
         }
     }
 
     @Override
     public void goRight() {
-        // FIXME: Add check if a game is in progress
-        if (level.goRight()) {
+        switch (currentMode) {
+            case MODE_LEVEL_SELECTION:
+                break;
+            case MODE_GAME:
+                game(RIGHT);
+                break;
+            case MODE_GAME_WIN:
+                break;
         }
-        gameComponent.update();
 
     }
 
     @Override
     public void goUp() {
-        // FIXME: Add check if a game is in progress
-        // if (level.goUp()) {
-        //     // Do something else
-        // }
-        // else {
-        //     // Play error sound
-        // }
-        // gameComponent.update();
-        levelSelectionComponent.setPosition(--position);
-        levelSelectionComponent.update();
-        // mainMenuComponent.markSelection(--menuPosition);
+        switch (currentMode) {
+            case MODE_MAIN_MENU:
+                mainMenu(UP);
+                break;
+            case MODE_LEVEL_SELECTION:
+                levelSelection(UP);
+                break;
+            case MODE_GAME:
+                game(UP);
+                break;
+            case MODE_GAME_PAUSE:
+                gamePaused(UP);
+                break;
+            case MODE_GAME_WIN:
+                break;
+        }
     }
 
     @Override
     public void goDown() {
-        // FIXME: Add check if a game is in progress
-        // if (level.goDown()) {
-        // }
-        // gameComponent.update();
-        levelSelectionComponent.setPosition(++position);
-        levelSelectionComponent.update();
-        // mainMenuComponent.markSelection(++menuPosition);
+        switch (currentMode) {
+            case MODE_MAIN_MENU:
+                mainMenu(DOWN);
+                break;
+            case MODE_LEVEL_SELECTION:
+                levelSelection(DOWN);
+                break;
+            case MODE_GAME:
+                game(DOWN);
+                break;
+            case MODE_GAME_PAUSE:
+                gamePaused(DOWN);
+                break;
+            case MODE_GAME_WIN:
+                break;
+        }
     }
 
     @Override
     public void pressedEnter() {
+        switch (currentMode) {
+            case MODE_MAIN_MENU:
+                mainMenu(ENTER);
+                break;
+            case MODE_LEVEL_SELECTION:
+                levelSelection(ENTER);
+                break;
+            case MODE_GAME_PAUSE:
+                gamePaused(ENTER);
+                break;
+            case MODE_GAME_WIN:
+                break;
+        }
+    }
 
+    @Override
+    public void pressedBack() {
+        switch (currentMode) {
+            case MODE_GAME:
+                game(BACK);
+                break;
+            case MODE_LEVEL_SELECTION:
+                levelSelection(BACK);
+                break;
+            case MODE_GAME_PAUSE:
+                gamePaused(BACK);
+                break;
+            case MODE_GAME_WIN:
+                break;
+        }
     }
 
     private void loadTextures() {
@@ -201,6 +224,222 @@ public class Sokoban extends GameFramework {
         textures[TEXTURE_CIRCLE] = loadTexture(new File(PATH_TO_TEXTURES + "circle.png"));
         textures[TEXTURE_CIRCLE_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "circleHole.png"));
         textures[TEXTURE_CIRCLE_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "circleMarked.png"));
+    }
+
+    /**
+     * @param keyInput
+     */
+    private void mainMenu(int keyInput) {
+        if (currentMode != MODE_MAIN_MENU) {
+            return;
+        }
+
+        switch (keyInput) {
+            case UP:
+                if (position - 1 >= 0 && position -1 < MAIN_MENU_SELECTION.length) {
+                    position--;
+                }
+                break;
+            case DOWN:
+                if (position + 1 >= 0 && position + 1 < MAIN_MENU_SELECTION.length) {
+                    position++;
+                }
+                break;
+            case ENTER:
+                switch (position) {
+                    case 0:     // Start quest
+                        break;
+                    case 1:     // Select level
+                        position = 0;
+                        levelSelectionComponent = new LevelSelectionComponent(levelSelectionArray, position,
+                                textures[TEXTURE_FLOOR], pixelFont);
+                        currentMode = MODE_LEVEL_SELECTION;
+                        setComponent(levelSelectionComponent);
+                        return;
+                    case 2:     // How to play
+                        break;
+                    case 3:     // About
+                        break;
+                    case 4:     // Exit
+                        System.exit(0);
+                        break;
+                }
+                break;
+            default:
+                System.err.println("Incorrect selection!");
+                return;
+        }
+
+        mainMenuComponent.markSelection(position);
+
+    }
+
+    /**
+     * @param keyInput
+     */
+    private void levelSelection(int keyInput) {
+        if (currentMode != MODE_LEVEL_SELECTION) {
+            return;
+        }
+
+        switch (keyInput) {
+            case UP:
+                if (position - 1 >= 0 && position - 1 < levelSelectionArray.length) {
+                    position--;
+                }
+                break;
+            case DOWN:
+                if (position + 1 >= 0 && position + 1 < levelSelectionArray.length) {
+                    position++;
+                }
+                break;
+            case ENTER:
+
+                if (setupSpecificLevel(position)) {
+                    try {
+                        gameComponent = new GameComponent(level, textures, pixelFont, Color.BLUE, Color.MAGENTA,
+                                PAUSE_SELECTION, WIN_SELECTION);
+                        setComponent(gameComponent);
+                        currentMode = MODE_GAME;
+                        levelLoaded = position;
+                        return;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.err.println("An error occurred!");
+                    }
+                }
+                else {
+                    System.err.println("An error occurred!");
+                }
+                break;
+            case BACK:
+                position = 1;
+                currentMode = MODE_MAIN_MENU;
+                setComponent(mainMenuComponent);
+                return;
+            default:
+                System.err.println("Incorrect selection!");
+                return;
+        }
+
+        levelSelectionComponent.setPosition(position);
+    }
+
+    private void game(int keyInput) {
+        if (currentMode != MODE_GAME) {
+            return;
+        }
+
+        switch (keyInput) {
+            case UP:
+                level.goUp();
+                break;
+            case DOWN:
+                level.goDown();
+                break;
+            case LEFT:
+                level.goLeft();
+                break;
+            case RIGHT:
+                level.goRight();
+                break;
+            case BACK:  // Pause the game FIXME: Add also to pause the time!
+                currentMode = MODE_GAME_PAUSE;
+                position = 0;
+                gameComponent.setPosition(position);
+                gameComponent.setDisplayMode(MODE_PAUSE);
+                break;
+        }
+
+        gameComponent.update();
+    }
+
+    /**
+     * @param keyInput
+     */
+    private void gamePaused(int keyInput) {
+        if (currentMode != MODE_GAME_PAUSE) {
+            return;
+        }
+
+        switch (keyInput) {
+            case UP:
+                if (position - 1 >= 0 && position - 1 < PAUSE_SELECTION.length) {
+                    position--;
+                }
+                break;
+            case DOWN:
+                if (position + 1 >= 0 && position + 1 < PAUSE_SELECTION.length) {
+                    position++;
+                }
+                break;
+            case ENTER:
+                switch (position) {
+                    case 0:     // Continue
+                        gameComponent.setDisplayMode(GameComponent.MODE_GAME);
+                        currentMode = MODE_GAME;
+                        return;
+                    case 1:     // Restart
+                        if (setupSpecificLevel(levelLoaded)) {
+                            try {
+                                gameComponent = new GameComponent(level, textures, pixelFont, Color.BLUE, Color.MAGENTA,
+                                        PAUSE_SELECTION, WIN_SELECTION);
+                                setComponent(gameComponent);
+                                currentMode = MODE_GAME;
+                                return;
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                System.err.println("An error occurred!");
+                            }
+                        }
+                        break;
+                    case 2:     // Back to main menu
+                        setComponent(mainMenuComponent);
+                        position = 0;
+                        mainMenuComponent.markSelection(position);
+                        currentMode = MODE_MAIN_MENU;
+                        // FIXME: Add also other stuff here that has to be resetted!
+                        break;
+                    default:
+                        System.err.println("Incorrect selection!");
+                }
+                break;
+            case BACK:  // Return back to the game
+                break;
+        }
+
+        gameComponent.setPosition(position);
+    }
+
+    /**
+     *
+     */
+    private void setupGameQuest() {
+
+    }
+
+    /**
+     * @param arrayIndex
+     * @return
+     */
+    private boolean setupSpecificLevel(int arrayIndex) {
+        if (arrayIndex > levelDirectory.length || arrayIndex < 0) {
+            return false;
+        }
+
+        Object object = loadObject(new File(PATH_TO_LEVELS + levelDirectory[arrayIndex]));
+        if (object == null) {
+            return false;
+        }
+
+        if (object instanceof Level) {
+            level = (Level) object;
+        }
+        else {
+            return false;
+        }
+
+        return true;
     }
 
 }
