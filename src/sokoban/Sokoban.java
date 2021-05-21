@@ -35,12 +35,12 @@ public class Sokoban extends GameFramework {
     public static final int MODE_MAIN_MENU = 0;
     public static final int MODE_GAME = 1;
 
-    public static final String[] MAIN_MENU_SELECTION = new String[]{"START", "HOW TO PLAY", "ABOUT", "EXIT"};
+    public static final String[] MAIN_MENU_SELECTION = new String[]{"START QUEST","SELECT LEVEL", "HOW TO PLAY", "ABOUT", "EXIT"};
     public static final String[] PAUSE_SELECTION = new String[]{"CONTINUE", "RESTART", "BACK TO MAIN MENU"};
     public static final String[] WIN_SELECTION = new String[]{"NEXT", "MAIN MENU"};
 
     private int currentMode;
-    private int menuPosition;
+    private int position;
 
     private MainMenuComponent mainMenuComponent;
     private LevelSelectionComponent levelSelectionComponent;
@@ -67,7 +67,10 @@ public class Sokoban extends GameFramework {
         currentMode = MODE_MAIN_MENU;
 
         // Load the mainMenuComponent
-        mainMenuComponent = new MainMenuComponent(GAME_NAME, MAIN_MENU_SELECTION, );
+        position = 0;
+        mainMenuComponent = new MainMenuComponent(GAME_NAME, MAIN_MENU_SELECTION, VERSION, COPYRIGHT, position,
+                textures[TEXTURE_FLOOR], textures[TEXTURE_PLAYER], pixelFont);
+        setComponent(mainMenuComponent);
 
 
          // Object obj = loadObject(new File(PATH_TO_LEVELS + "Hello_World.lvl"));
@@ -98,14 +101,9 @@ public class Sokoban extends GameFramework {
         //     }
         // });
 
-         String[] test = new String[100];
 
-         for (int i = 0; i < test.length; i++) {
-             test[i] = Integer.toString(i);
-         }
-
-         levelSelectionComponent = new LevelSelectionComponent(test, 0, textures[TEXTURE_FLOOR], pixelFont);
-         setComponent(levelSelectionComponent);
+         // levelSelectionComponent = new LevelSelectionComponent(test, 0, textures[TEXTURE_FLOOR], pixelFont);
+         // setComponent(levelSelectionComponent);
          // menuPosition = 0;
          // mainMenuComponent = new MainMenuComponent(GAME_NAME, new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
          //         VERSION, COPYRIGHT, menuPosition, textures[TEXTURE_FLOOR], textures[TEXTURE_PLAYER], pixelFont);
@@ -164,7 +162,7 @@ public class Sokoban extends GameFramework {
         //     // Play error sound
         // }
         // gameComponent.update();
-        levelSelectionComponent.setPosition(--menuPosition);
+        levelSelectionComponent.setPosition(--position);
         levelSelectionComponent.update();
         // mainMenuComponent.markSelection(--menuPosition);
     }
@@ -175,7 +173,7 @@ public class Sokoban extends GameFramework {
         // if (level.goDown()) {
         // }
         // gameComponent.update();
-        levelSelectionComponent.setPosition(++menuPosition);
+        levelSelectionComponent.setPosition(++position);
         levelSelectionComponent.update();
         // mainMenuComponent.markSelection(++menuPosition);
     }
