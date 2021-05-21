@@ -35,6 +35,7 @@ public class Sokoban extends GameFramework {
     public static final int MODE_MAIN_MENU = 0;
     public static final int MODE_GAME = 1;
 
+    public static final String[] MAIN_MENU_SELECTION = new String[]{"START", "HOW TO PLAY", "ABOUT", "EXIT"};
     public static final String[] PAUSE_SELECTION = new String[]{"CONTINUE", "RESTART", "BACK TO MAIN MENU"};
     public static final String[] WIN_SELECTION = new String[]{"NEXT", "MAIN MENU"};
 
@@ -48,6 +49,7 @@ public class Sokoban extends GameFramework {
 
     private Font pixelFont;
     private BufferedImage[] textures;
+    private String[] levelDirectory;
 
     private int gameTime;
 
@@ -60,8 +62,11 @@ public class Sokoban extends GameFramework {
         }
 
         loadTextures();
+        levelDirectory = getFilesInDirectory(PATH_TO_LEVELS);
 
-        currentMode = MODE_GAME;
+        currentMode = MODE_MAIN_MENU;
+
+
 
          // Object obj = loadObject(new File(PATH_TO_LEVELS + "Hello_World.lvl"));
          // // TODO: Add an test to check if the object is null or not. Do not continue if it is null since there is either
@@ -91,7 +96,6 @@ public class Sokoban extends GameFramework {
         //     }
         // });
 
-         String[] levels = getFilesInDirectory(PATH_TO_LEVELS);
          String[] test = new String[100];
 
          for (int i = 0; i < test.length; i++) {
