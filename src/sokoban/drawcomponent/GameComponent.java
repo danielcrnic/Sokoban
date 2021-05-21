@@ -12,7 +12,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.Locale;
 
-public class GameComponent extends JComponent {
+public class GameComponent extends DrawComponent {
 
     public final static int TEXTURE_PLAYER = 0;
     public final static int TEXTURE_WALL = 1;
@@ -101,6 +101,9 @@ public class GameComponent extends JComponent {
         repaint();
     }
 
+    /**
+     * @param seconds
+     */
     public void updateTime(int seconds) {
         secondsPassed = seconds;
         repaint();
@@ -200,13 +203,8 @@ public class GameComponent extends JComponent {
     private void drawDashboard(Graphics2D g2) {
         fontRenderContext = new FontRenderContext(null, true, true);
 
-        // Top bar
-        Color backgroundColor = new Color(0, 0,0,0.2f);
-        g2.setColor(backgroundColor);
-        g2.fillRect(0, 0, getWidth(), 50);
-
-        // Bottom bar
-        g2.fillRect(0, getHeight() - 50, getWidth(), 50);
+        drawTopBar(g2);
+        drawBottomBar(g2);
 
         // Draw the top bar text
         g2.setFont(font);

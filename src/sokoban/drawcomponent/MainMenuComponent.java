@@ -5,8 +5,6 @@ import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Locale;
 
 public class MainMenuComponent extends JComponent {
@@ -23,8 +21,8 @@ public class MainMenuComponent extends JComponent {
     private BufferedImage selectionImage;
     private final Font font;
 
-    public MainMenuComponent(String title, String[] options, String versionNumber, String copyRightNotice, int position, BufferedImage backgroundImage,
-                             BufferedImage selectionImage, Font font) {
+    public MainMenuComponent(String title, String[] options, String versionNumber, String copyRightNotice, int position,
+                             BufferedImage backgroundImage, BufferedImage selectionImage, Font font) {
         this.title = title.toUpperCase(Locale.ROOT);
         this.options = options;
         this.versionNumber = versionNumber.toUpperCase(Locale.ROOT);
