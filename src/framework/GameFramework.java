@@ -133,7 +133,7 @@ public abstract class GameFramework implements InputObserver {
             System.err.println("Could not find the file: '" + file.getAbsolutePath() + "'");
             return null;
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.err.println("The map was created with a older version than this, please recreate the map.");
             return null;
         }
     }

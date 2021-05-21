@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.InvalidClassException;
 
 import static sokoban.drawcomponent.GameComponent.*;
 
@@ -28,6 +29,7 @@ public class Sokoban extends GameFramework {
     public static final String PATH_TO_FONTS = "resources/fonts/";
     public static final String PATH_TO_SOUND_EFFECTS = "resources/sounds/";
     public static final String PATH_TO_MUSIC = "resources/music/";
+    public static final String PATH_TO_LEVELS = "levels/";
 
     public static final int MODE_MAIN_MENU = 0;
     public static final int MODE_GAME = 1;
@@ -59,7 +61,9 @@ public class Sokoban extends GameFramework {
 
         currentMode = MODE_GAME;
 
-        Object obj = loadObject(new File("Hello_World.lvl"));
+        Object obj = loadObject(new File(PATH_TO_LEVELS + "simple2.lvl"));
+        // TODO: Add an test to check if the object is null or not. Do not continue if it is null since there is either
+        //       a problem with finding the file (maybe it is not there). Or the level was create with a older version
 
         if (obj instanceof Level) {
             level = (Level) obj;
@@ -81,12 +85,9 @@ public class Sokoban extends GameFramework {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gameTime++;
-                gameComponent.setCenterText(Integer.toString(gameTime));
                 gameComponent.updateTime(gameTime);
             }
         }).start();
-
-        gameComponent.setDisplayMode(MODE_CENTER_TEXT);
 
         // menuPosition = 0;
         // mainMenuComponent = new MainMenuComponent(GAME_NAME, new String[]{"START GAME", "CUSTOM GAME", "HOW TO PLAY", "ABOUT", "EXIT"},
