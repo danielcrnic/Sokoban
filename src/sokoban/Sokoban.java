@@ -5,7 +5,10 @@ import sokoban.drawcomponent.GameComponent;
 import sokoban.drawcomponent.LevelSelectionComponent;
 import sokoban.drawcomponent.MainMenuComponent;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -31,9 +34,13 @@ public class Sokoban extends GameFramework {
     public static final int MODE_GAME_PAUSE = 3;
     public static final int MODE_GAME_WIN = 4;
 
-    public static final String[] MAIN_MENU_SELECTION = new String[]{"START QUEST","SELECT LEVEL", "HOW TO PLAY", "ABOUT", "EXIT"};
+    public static final String[] MAIN_MENU_SELECTION = new String[]{"START QUEST","SELECT LEVEL", "HOW TO PLAY",
+            "ABOUT", "EXIT"};
     public static final String[] PAUSE_SELECTION = new String[]{"CONTINUE", "RESTART", "BACK TO MAIN MENU"};
     public static final String[] WIN_SELECTION = new String[]{"NEXT", "MAIN MENU"};
+
+    public static final String[] QUEST_LEVELS = new String[]{"simple2.lvl", "simple7.lvl", "simple6.lvl", "simple.lvl",
+            "simple3.lvl", "simple4.lvl", "simple8.lvl", "simple9.lvl"};
 
     private int currentMode;
     private int position;
@@ -42,6 +49,7 @@ public class Sokoban extends GameFramework {
     private LevelSelectionComponent levelSelectionComponent;
     private GameComponent gameComponent;
     private Level level;
+    private Timer secondsTimer;
 
     private Font pixelFont;
     private BufferedImage[] textures;
@@ -50,6 +58,9 @@ public class Sokoban extends GameFramework {
 
     private int gameTime;
     private int levelLoaded;
+
+    private boolean runningQuest;
+    private int questLevel;
 
     public Sokoban() {
         // Load fonts and texture, sounds, and music to the corresponding stuff
@@ -78,6 +89,7 @@ public class Sokoban extends GameFramework {
         levelSelectionArray = selDirectory.toArray(new String[0]);
 
         currentMode = MODE_MAIN_MENU;
+        runningQuest = false;
 
         // Load the mainMenuComponent
         position = 0;
@@ -85,9 +97,15 @@ public class Sokoban extends GameFramework {
                 textures[TEXTURE_FLOOR], textures[TEXTURE_PLAYER], pixelFont);
         setComponent(mainMenuComponent);
 
-
-
-
+        // Create a timer that will be called every second (when in a game), it will update the game time and send the
+        // time to the gameComponent which will display
+        secondsTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameTime++;     // Increment the counter by 1 (counter is in seconds)
+                gameComponent.updateTime(gameTime);
+            }
+        });
     }
 
     @Override
@@ -113,8 +131,6 @@ public class Sokoban extends GameFramework {
                 break;
             case MODE_GAME_PAUSE:
                 break;
-            case MODE_GAME_WIN:
-                break;
         }
     }
 
@@ -125,8 +141,6 @@ public class Sokoban extends GameFramework {
                 break;
             case MODE_GAME:
                 game(RIGHT);
-                break;
-            case MODE_GAME_WIN:
                 break;
         }
 
@@ -148,6 +162,7 @@ public class Sokoban extends GameFramework {
                 gamePaused(UP);
                 break;
             case MODE_GAME_WIN:
+                gameWin(UP);
                 break;
         }
     }
@@ -168,6 +183,7 @@ public class Sokoban extends GameFramework {
                 gamePaused(DOWN);
                 break;
             case MODE_GAME_WIN:
+                gameWin(DOWN);
                 break;
         }
     }
@@ -185,6 +201,7 @@ public class Sokoban extends GameFramework {
                 gamePaused(ENTER);
                 break;
             case MODE_GAME_WIN:
+                gameWin(ENTER);
                 break;
         }
     }
@@ -200,8 +217,6 @@ public class Sokoban extends GameFramework {
                 break;
             case MODE_GAME_PAUSE:
                 gamePaused(BACK);
-                break;
-            case MODE_GAME_WIN:
                 break;
         }
     }
@@ -248,6 +263,8 @@ public class Sokoban extends GameFramework {
             case ENTER:
                 switch (position) {
                     case 0:     // Start quest
+                        runningQuest = true;
+
                         break;
                     case 1:     // Select level
                         position = 0;
@@ -302,6 +319,7 @@ public class Sokoban extends GameFramework {
                         setComponent(gameComponent);
                         currentMode = MODE_GAME;
                         levelLoaded = position;
+                        secondsTimer.restart();       // Start the timer  FIXME: Maybe this will be changed
                         return;
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -325,6 +343,9 @@ public class Sokoban extends GameFramework {
         levelSelectionComponent.setPosition(position);
     }
 
+    /**
+     * @param keyInput
+     */
     private void game(int keyInput) {
         if (currentMode != MODE_GAME) {
             return;
@@ -343,15 +364,24 @@ public class Sokoban extends GameFramework {
             case RIGHT:
                 level.goRight();
                 break;
-            case BACK:  // Pause the game FIXME: Add also to pause the time!
+            case BACK:  // Pause the game
                 currentMode = MODE_GAME_PAUSE;
                 position = 0;
                 gameComponent.setPosition(position);
                 gameComponent.setDisplayMode(MODE_PAUSE);
+                secondsTimer.stop();
                 break;
         }
 
         gameComponent.update();
+
+        if (level.getNumberOfFilledHoles() == level.getNumberOfHoles()) {
+            position = 0;
+            secondsTimer.stop();
+            gameComponent.setPosition(position);
+            gameComponent.setDisplayMode(MODE_WIN);
+            currentMode = MODE_GAME_WIN;
+        }
     }
 
     /**
@@ -378,6 +408,8 @@ public class Sokoban extends GameFramework {
                     case 0:     // Continue
                         gameComponent.setDisplayMode(GameComponent.MODE_GAME);
                         currentMode = MODE_GAME;
+                        gameComponent.update();
+                        secondsTimer.start();
                         return;
                     case 1:     // Restart
                         if (setupSpecificLevel(levelLoaded)) {
@@ -386,6 +418,7 @@ public class Sokoban extends GameFramework {
                                         PAUSE_SELECTION, WIN_SELECTION);
                                 setComponent(gameComponent);
                                 currentMode = MODE_GAME;
+                                secondsTimer.restart();
                                 return;
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -405,6 +438,53 @@ public class Sokoban extends GameFramework {
                 }
                 break;
             case BACK:  // Return back to the game
+                gameComponent.setDisplayMode(GameComponent.MODE_GAME);
+                currentMode = MODE_GAME;
+                gameComponent.update();
+                secondsTimer.start();
+                return;
+        }
+
+        gameComponent.setPosition(position);
+    }
+
+    private void gameWin(int keyInput) {
+        if (currentMode != MODE_GAME_WIN) {
+            return;
+        }
+
+        switch (keyInput) {
+            case UP:
+                if (position - 1 >= 0 && position - 1 < WIN_SELECTION.length) {
+                    position--;
+                }
+                break;
+            case DOWN:
+                if (position + 1 >= 0 && position + 1 < WIN_SELECTION.length) {
+                    position++;
+                }
+                break;
+            case ENTER:
+                switch (position) {
+                    case 0:
+                        if (runningQuest) {
+
+                        }
+                        else {  // Goto level selection
+                            setComponent(levelSelectionComponent);
+                            position = 0;
+                            levelSelectionComponent.setPosition(position);
+                            currentMode = MODE_LEVEL_SELECTION;
+                        }
+                        break;
+                    case 1:
+                        // Goto main menu
+                        setComponent(mainMenuComponent);
+                        position = 0;
+                        mainMenuComponent.markSelection(position);
+                        currentMode = MODE_MAIN_MENU;
+                        return;
+                }
                 break;
         }
 
@@ -414,7 +494,7 @@ public class Sokoban extends GameFramework {
     /**
      *
      */
-    private void setupGameQuest() {
+    private void setupGameQuest(int level) {
 
     }
 
@@ -438,7 +518,27 @@ public class Sokoban extends GameFramework {
         else {
             return false;
         }
+        gameTime = 0;       // Resets the game time
+        return true;
+    }
 
+    /**
+     * @param filename
+     * @return
+     */
+    private boolean setupSpecificLevel(String filename) {
+        Object object = loadObject(new File(PATH_TO_LEVELS + filename));
+        if (object == null) {
+            return false;
+        }
+
+        if (object instanceof Level) {
+            level = (Level) object;
+        }
+        else {
+            return false;
+        }
+        gameTime = 0;       // Resets the game time
         return true;
     }
 
