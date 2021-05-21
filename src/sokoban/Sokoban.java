@@ -66,6 +66,8 @@ public class Sokoban extends GameFramework {
 
         currentMode = MODE_MAIN_MENU;
 
+        // Load the mainMenuComponent
+        mainMenuComponent = new MainMenuComponent(GAME_NAME, MAIN_MENU_SELECTION, );
 
 
          // Object obj = loadObject(new File(PATH_TO_LEVELS + "Hello_World.lvl"));
