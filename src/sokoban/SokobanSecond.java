@@ -62,6 +62,9 @@ public class SokobanSecond extends GameFramework {
     private String[] levelDirectory;
     private String[] levelSelectionArray;
 
+    private Color backgroundColor1;
+    private Color backgroundColor2;
+
     private boolean runningQuest;
 
     private int gameTime, questLevel, numberOfTries;
@@ -264,6 +267,7 @@ public class SokobanSecond extends GameFramework {
     }
 
     private void levelSelector(int selection) {
+        gameTime = 0;   // Reset the game time so new colors get generated
         if (!startGame(levelDirectory[selection])) {
             // Throw an error message
         }
@@ -283,6 +287,9 @@ public class SokobanSecond extends GameFramework {
                 break;
             case 2:
                 gameStatus = STATUS_MAIN_MENU;
+                if (runningQuest) {
+                    runningQuest = false;
+                }
                 // mainMenuDrawer.setSelection(0);
                 setComponent(mainMenuDrawer);
         }
@@ -336,6 +343,10 @@ public class SokobanSecond extends GameFramework {
             level = (Level) object;
         }
 
+        if (gameTime == 0) {
+            randomizeColors();
+        }
+
         gameStatus = STATUS_GAME;
         gameTime = 0;
         levelLoaded = levelSelection;
@@ -387,6 +398,11 @@ public class SokobanSecond extends GameFramework {
 
     private void endOfQuest() {
 
+    }
+
+    private void randomizeColors() {
+        backgroundColor1 = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
+        backgroundColor2 = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
     }
 
     private void loadTextures() {
@@ -510,12 +526,12 @@ public class SokobanSecond extends GameFramework {
 
         @Override
         public Color getGameBackgroundColor1() {
-            return Color.ORANGE;
+            return backgroundColor1;
         }
 
         @Override
         public Color getGameBackgroundColor2() {
-            return Color.RED;
+            return backgroundColor2;
         }
 
         @Override
