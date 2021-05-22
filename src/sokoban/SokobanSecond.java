@@ -65,10 +65,12 @@ public class SokobanSecond extends GameFramework {
     private Color backgroundColor1;
     private Color backgroundColor2;
 
-    private boolean runningQuest;
+    private boolean runningQuest, showEndingQuest;
 
     private int gameTime, questLevel, numberOfTries;
     private int gameStatus;
+
+    private int questTotalTime, questTotalCorrectMoves, questTotalIncorrectMoves, questTotalTries;
 
     private String levelLoaded;
 
@@ -248,6 +250,9 @@ public class SokobanSecond extends GameFramework {
 
     // --- Private methods ---
 
+    /**
+     * @param selection
+     */
     private void mainMenu(int selection) {
         switch (selection) {
             case 0:
@@ -266,6 +271,9 @@ public class SokobanSecond extends GameFramework {
         }
     }
 
+    /**
+     * @param selection
+     */
     private void levelSelector(int selection) {
         gameTime = 0;   // Reset the game time so new colors get generated
         if (!startGame(levelDirectory[selection])) {
@@ -276,6 +284,9 @@ public class SokobanSecond extends GameFramework {
         }
     }
 
+    /**
+     * @param selection
+     */
     private void gamePaused(int selection) {
         switch (selection) {
             case 0:
@@ -295,15 +306,30 @@ public class SokobanSecond extends GameFramework {
         }
     }
 
+    /**
+     * @param selection
+     */
     private void gameWin(int selection) {
         if (runningQuest) {
+            if (showEndingQuest) {
+                runningQuest = false;
+                showEndingQuest = false;
+                levelLoaded = "";
+                gameStatus = STATUS_MAIN_MENU;
+                setComponent(mainMenuDrawer);
+            }
+
             switch (selection) {
                 case 0:
+                    // Update the values FIXME: Add for tries also later
+                    questUpdateTotalValues(gameTime, level.getCorrectMoves(), level.getIncorrectMoves(), numberOfTries);
                     questLevel++;
                     if (questLevel >= QUEST_LEVELS.length) {
-                        // Finished, go to result page
+                        showEndingQuest = true;     // Finished, go to result page
+                        gameDrawer.repaint();
                     }
                     else {
+                        gameTime = 0;
                         startGame(QUEST_LEVELS[questLevel]);
                     }
                     break;
@@ -345,6 +371,10 @@ public class SokobanSecond extends GameFramework {
 
         if (gameTime == 0) {
             randomizeColors();
+            numberOfTries = 1;
+        }
+        else {
+            numberOfTries++;
         }
 
         gameStatus = STATUS_GAME;
@@ -359,9 +389,23 @@ public class SokobanSecond extends GameFramework {
 
     private boolean startQuest() {
         runningQuest = true;
+
+        // Reset the values
         questLevel = 0;
+        questTotalTime = 0;
+        questTotalCorrectMoves = 0;
+        questTotalIncorrectMoves = 0;
+        questTotalTries = 0;
+        numberOfTries = 0;          // Reset the number of tries
 
         return startGame(QUEST_LEVELS[questLevel]);
+    }
+
+    private void questUpdateTotalValues(int gameTime, int correctMoves, int incorrectMoves, int tries) {
+        questTotalTime += gameTime;
+        questTotalCorrectMoves += correctMoves;
+        questTotalIncorrectMoves += incorrectMoves;
+        questTotalTries += tries;
     }
 
     /**
@@ -396,9 +440,6 @@ public class SokobanSecond extends GameFramework {
         gameDrawer.showPauseMenu();     // Show the victory overlay
     }
 
-    private void endOfQuest() {
-
-    }
 
     private void randomizeColors() {
         backgroundColor1 = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
@@ -636,7 +677,10 @@ public class SokobanSecond extends GameFramework {
 
         @Override
         public String gamePausedTitle() {
-            if (gameStatus == STATUS_GAME_WIN) {
+            if (showEndingQuest) {
+                return "THE END";
+            }
+            else if (gameStatus == STATUS_GAME_WIN) {
                 return "VICTORY!";
             }
             else {
@@ -646,12 +690,27 @@ public class SokobanSecond extends GameFramework {
 
         @Override
         public String[] gamePausedDescription() {
-            if (gameStatus == STATUS_GAME_WIN) {
-                String[] toShow = new String[3];
+            if (showEndingQuest) {
+                //FIXME: Add some more stuff here!
+                String[] toShow = new String[7];
+                toShow[0] = "TOTAL TIME TO COMPLETE ALL LEVELS: " +  String.format("%02d", (questTotalTime / 60)) +
+                        ":" + String.format("%02d", (questTotalTime % 60));
+                toShow[1] = "";
+                toShow[2] = "TOTAL MOVES: " + (questTotalCorrectMoves + questTotalIncorrectMoves);
+                toShow[3] = "TOTAL CORRECT MOVES: " + questTotalCorrectMoves + "   TOTAL INCORRECT MOVES: " + questTotalIncorrectMoves;
+                toShow[4] = "";
+                toShow[5] = "TOTAL NUMBER OF TIRES: " + questTotalTries;
+                toShow[6] = "(AVERAGE OF " + String.format("%.2f",(float) questTotalTries / (float) QUEST_LEVELS.length) + " TRIES PER GAME)";
+
+                return toShow;
+            }
+            else if (gameStatus == STATUS_GAME_WIN) {
+                String[] toShow = new String[4];
                 toShow[0] = "TIME: " +  String.format("%02d", (gameTime / 60)) + ":" +
                         String.format("%02d", (gameTime % 60));
                 toShow[1] = "TOTAL MOVES: " + level.getTotalMoves();
                 toShow[2] = "CORRECT MOVES : " + level.getCorrectMoves() + "    INCORRECT MOVES : " + level.getIncorrectMoves();
+                toShow[3] = "NUMBER OF TRIES: " + numberOfTries;
 
                 return toShow;
             }
@@ -664,7 +723,10 @@ public class SokobanSecond extends GameFramework {
         public String[] gamePausedSelections() {
             if (gameStatus == STATUS_GAME_WIN) {
                 if (runningQuest) {
-                    if (questLevel + 1 >= QUEST_LEVELS.length) {
+                    if (showEndingQuest) {
+                        return new String[]{"BACK TO MAIN MENU"};
+                    }
+                    else if (questLevel + 1 >= QUEST_LEVELS.length) {
                         return WIN_QUEST_END_SELECTION;
                     }
                     else {
