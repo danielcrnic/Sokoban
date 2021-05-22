@@ -1,7 +1,6 @@
 package sokoban;
 
 import framework.GameFramework;
-import framework.GameUI;
 import framework.drawcomponent.GameComponent;
 import framework.drawcomponent.LevelSelectionComponent;
 import framework.drawcomponent.MainMenuComponent;
@@ -14,8 +13,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 
-import static framework.GameUI.SHOW_MAIN_MENU;
-import static framework.GameUI.SHOW_SELECTION;
 import static framework.inputs.InputSubject.*;
 import static framework.drawcomponent.GameComponent.*;
 

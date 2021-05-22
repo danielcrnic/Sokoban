@@ -2,7 +2,8 @@ package sokoban;
 
 import framework.GameComponent;
 import framework.GameFramework;
-import framework.GameUI;
+import framework.ListComponent;
+import framework.MenuComponent;
 import sokoban.objects.CusObj;
 
 import javax.swing.*;
@@ -39,9 +40,11 @@ public class SokobanSecond extends GameFramework {
     public static final String[] QUEST_LEVELS = new String[]{"simple2.lvl", "simple7.lvl", "simple6.lvl", "simple.lvl",
             "simple3.lvl", "simple4.lvl", "simple8.lvl", "simple9.lvl"};
 
-    private Displayer displayer;
     private GameDrawer gameDrawer;
-    public Level level;
+    private MenuComponent mainMenuDrawer;
+    private ListComponent levelListDrawer;
+
+    private Level level;
     private Timer secondsTimer;
 
     private Font pixelFont;
@@ -101,10 +104,15 @@ public class SokobanSecond extends GameFramework {
             level = (Level) object;
         }
 
+        mainMenuDrawer = new MainMenuDrawer();
+        levelListDrawer = new LevelSelectorDrawer();
         gameDrawer = new GameDrawer();
-        setComponent(gameDrawer);
 
-        gameDrawer.showPauseMenu();
+        setComponent(mainMenuDrawer);
+
+        // gameDrawer = new GameDrawer();
+        // setComponent(gameDrawer);
+        // gameDrawer.showPauseMenu();
     }
 
     @Override
@@ -178,10 +186,10 @@ public class SokobanSecond extends GameFramework {
         textures[TEXTURE_CIRCLE_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "circleMarked.png"));
     }
 
-    public class Displayer extends GameUI {
-        public Displayer(int selectWindow) {
-            super(selectWindow);
-        }
+    /**
+     *
+     */
+    public class MainMenuDrawer extends MenuComponent {
 
         @Override
         public String getTitle() {
@@ -218,28 +226,42 @@ public class SokobanSecond extends GameFramework {
             return textures[TEXTURE_PLAYER];
         }
 
+    }
+
+    /**
+     *
+     */
+    public class LevelSelectorDrawer extends ListComponent {
+
         @Override
-        public String getSelectionTitle() {
+        public Font getFont() {
+            return pixelFont;
+        }
+
+        @Override
+        public String getTitle() {
             return LEVEL_SELECTION_TITLE;
         }
 
         @Override
-        public String[] getSelectionOptions() {
+        public String[] getOptions() {
             return levelSelectionArray;
         }
 
         @Override
-        public String getSelectionBottomBarText() {
+        public String getBottomBarText() {
             return LEVEL_SELECTION_BOTTOM_BAR_TEXT;
         }
 
         @Override
-        public BufferedImage getSelectionBackground() {
+        public BufferedImage getBackgroundImage() {
             return textures[TEXTURE_FLOOR];
         }
-
     }
 
+    /**
+     *
+     */
     public class GameDrawer extends GameComponent {
         public final static int TEXTURE_PLAYER = 0;
         public final static int TEXTURE_WALL = 1;
