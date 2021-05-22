@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javafx_base.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javafx_media.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DT4014-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DT4014-Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/AudioPlayer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/AudioPlayer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/AudioPlayer$MusicThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/AudioPlayer$MusicThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/AudioPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/AudioPlayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/FrameworkTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/FrameworkTester.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/framework/AudioPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/AudioPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/framework/FrameworkTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/FrameworkTester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/framework/GameFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/GameFramework.java" afterDir="false" />
-    </list>
+    <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,7 +34,6 @@
     <setting file="file://$PROJECT_DIR$/src/framework/FrameworkTester.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/SokobanSecond.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/ListComponent.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/AudioPlayer.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/GameComponent.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/GameFramework.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputObserver.java" root0="FORCE_HIGHLIGHTING" />
@@ -59,7 +44,6 @@
     <setting file="file://$PROJECT_DIR$/src/sokoban/objects/boxes/CircleBox.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/objects/holes/SquareHole.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/objects/holes/CircleHole.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/SoundPlayer.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/objects/holes/StarHole.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/objects/boxes/StarBox.java" root0="FORCE_HIGHLIGHTING" />
   </component>

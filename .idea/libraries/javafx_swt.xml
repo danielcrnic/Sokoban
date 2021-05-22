@@ -6,7 +6,6 @@
       <root url="jar://$PROJECT_DIR$/lib/javafx.graphics.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javafx.media.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javafx.swing.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javafx.web.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
