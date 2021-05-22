@@ -3,12 +3,25 @@
   <component name="ChangeListManager">
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$GameDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$GameDrawer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$LevelSelectorDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$LevelSelectorDrawer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$MainMenuDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$MainMenuDrawer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GenerateMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenerateMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SaveFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SaveFiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StartSokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StartSokoban.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/drawcomponent/DrawComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/drawcomponent/GameComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/drawcomponent/LevelSelectionComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/drawcomponent/MainMenuComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sokoban/SokobanSecond.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/SokobanSecond.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/boxes/CircleBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/boxes/CircleBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/boxes/SquareBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/boxes/SquareBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/boxes/StarBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/boxes/StarBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/holes/CircleHole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/holes/CircleHole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/holes/SquareHole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/holes/SquareHole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/holes/StarHole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/holes/StarHole.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,14 +54,9 @@
     <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputObserver.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputSubject.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/SaveFiles.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponent/MainMenuComponent.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/GenerateMap.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/Level.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/Sokoban.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponent/GameComponent.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/StartSokoban.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponent/DrawComponent.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponent/LevelSelectionComponent.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/MenuComponent.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1s3p0b49JY6LcckDiCZvTqkDKNf" />
@@ -196,7 +204,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sokoban/SokobanSecond.java</url>
-          <line>332</line>
+          <line>333</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>

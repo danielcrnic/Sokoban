@@ -121,12 +121,12 @@ public class SokobanSecond extends GameFramework {
 
     @Override
     public int getGUIWidth() {
-        return 1000;
+        return 1200;
     }
 
     @Override
     public int getGUIHeight() {
-        return 700;
+        return 800;
     }
 
     @Override
@@ -317,6 +317,7 @@ public class SokobanSecond extends GameFramework {
                 levelLoaded = "";
                 gameStatus = STATUS_MAIN_MENU;
                 setComponent(mainMenuDrawer);
+                return;
             }
 
             switch (selection) {
@@ -692,25 +693,33 @@ public class SokobanSecond extends GameFramework {
         public String[] gamePausedDescription() {
             if (showEndingQuest) {
                 //FIXME: Add some more stuff here!
-                String[] toShow = new String[7];
+                String[] toShow = new String[8];
                 toShow[0] = "TOTAL TIME TO COMPLETE ALL LEVELS: " +  String.format("%02d", (questTotalTime / 60)) +
                         ":" + String.format("%02d", (questTotalTime % 60));
                 toShow[1] = "";
                 toShow[2] = "TOTAL MOVES: " + (questTotalCorrectMoves + questTotalIncorrectMoves);
-                toShow[3] = "TOTAL CORRECT MOVES: " + questTotalCorrectMoves + "   TOTAL INCORRECT MOVES: " + questTotalIncorrectMoves;
-                toShow[4] = "";
-                toShow[5] = "TOTAL NUMBER OF TIRES: " + questTotalTries;
-                toShow[6] = "(AVERAGE OF " + String.format("%.2f",(float) questTotalTries / (float) QUEST_LEVELS.length) + " TRIES PER GAME)";
+                toShow[3] = "TOTAL CORRECT MOVES: " + questTotalCorrectMoves + "   TOTAL INCORRECT MOVES: " +
+                        questTotalIncorrectMoves;
+                toShow[4] = "TOTAL AVERAGE MOVES PER SECOND: " + String.format("%.2f", ((float) (questTotalCorrectMoves
+                        + questTotalIncorrectMoves) / (float) questTotalTime)) + " MOVES/SEC";
+                toShow[5] = "";
+                toShow[6] = "TOTAL NUMBER OF TIRES: " + questTotalTries;
+                toShow[7] = "(AVERAGE OF " + String.format("%.2f",(float) questTotalTries / (float) QUEST_LEVELS.length)
+                        + " TRIES PER GAME)";
 
                 return toShow;
             }
             else if (gameStatus == STATUS_GAME_WIN) {
-                String[] toShow = new String[4];
+                String[] toShow = new String[6];
                 toShow[0] = "TIME: " +  String.format("%02d", (gameTime / 60)) + ":" +
                         String.format("%02d", (gameTime % 60));
                 toShow[1] = "TOTAL MOVES: " + level.getTotalMoves();
-                toShow[2] = "CORRECT MOVES : " + level.getCorrectMoves() + "    INCORRECT MOVES : " + level.getIncorrectMoves();
-                toShow[3] = "NUMBER OF TRIES: " + numberOfTries;
+                toShow[2] = "CORRECT MOVES: " + level.getCorrectMoves() + "    INCORRECT MOVES: " +
+                        level.getIncorrectMoves();
+                toShow[3] = "AVERAGE MOVES PER SECOND: " +
+                        String.format("%.2f", ((float) level.getTotalMoves() / (float) gameTime)) + " MOVES/SEC";
+                toShow[4] = "";
+                toShow[5] = "NUMBER OF TRIES: " + numberOfTries;
 
                 return toShow;
             }

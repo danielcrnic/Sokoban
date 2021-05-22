@@ -12,8 +12,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import static framework.drawcomponent.GameComponent.*;
-import static framework.drawcomponent.GameComponent.TEXTURE_WALL;
+import static sokoban.SokobanSecond.GameDrawer.*;
+
 
 public class SaveFiles {
 

@@ -4,7 +4,7 @@ import sokoban.objects.CusObj;
 
 import java.awt.*;
 
-import static framework.drawcomponent.GameComponent.TEXTURE_CIRCLE_HOLE;
+import static sokoban.SokobanSecond.GameDrawer.TEXTURE_CIRCLE_HOLE;
 
 public class CircleHole extends CusObj {
 

@@ -4,7 +4,7 @@ import sokoban.objects.CusObj;
 
 import java.awt.*;
 
-import static framework.drawcomponent.GameComponent.TEXTURE_SQUARE_HOLE;
+import static sokoban.SokobanSecond.GameDrawer.TEXTURE_SQUARE_HOLE;
 
 public class SquareHole extends CusObj {
 
