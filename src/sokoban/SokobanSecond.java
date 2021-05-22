@@ -217,34 +217,22 @@ public class SokobanSecond extends GameFramework {
     @Override
     public void pressedEnter() {
         switch (gameStatus) {
-            case STATUS_MAIN_MENU:
-                mainMenu(mainMenuDrawer.getSelection());
-                break;
-            case STATUS_LEVEL_SELECTOR:
-                levelSelector(levelListDrawer.getSelection());
-                break;
-            case STATUS_GAME_PAUSED:
-                gamePaused(gameDrawer.getSelection());
-                break;
-            case STATUS_GAME_WIN:
-                gameWin(gameDrawer.getSelection());
-                break;
+            case STATUS_MAIN_MENU -> mainMenu(mainMenuDrawer.getSelection());
+            case STATUS_LEVEL_SELECTOR -> levelSelector(levelListDrawer.getSelection());
+            case STATUS_GAME_PAUSED -> gamePaused(gameDrawer.getSelection());
+            case STATUS_GAME_WIN -> gameWin(gameDrawer.getSelection());
         }
     }
 
     @Override
     public void pressedBack() {
         switch (gameStatus) {
-            case STATUS_LEVEL_SELECTOR:
+            case STATUS_LEVEL_SELECTOR -> {
                 gameStatus = STATUS_MAIN_MENU;
                 setComponent(mainMenuDrawer);
-                break;
-            case STATUS_GAME:
-                pauseGame();
-                break;
-            case STATUS_GAME_PAUSED:
-                resumeGame();
-                break;
+            }
+            case STATUS_GAME -> pauseGame();
+            case STATUS_GAME_PAUSED -> resumeGame();
         }
     }
 
@@ -289,20 +277,18 @@ public class SokobanSecond extends GameFramework {
      */
     private void gamePaused(int selection) {
         switch (selection) {
-            case 0:
-                resumeGame();
-                break;
-            case 1:
+            case 0 -> resumeGame();
+            case 1 -> {
                 startGame(levelLoaded);
                 gameDrawer.showGame();
-                break;
-            case 2:
+            }
+            case 2 -> {
                 gameStatus = STATUS_MAIN_MENU;
                 if (runningQuest) {
                     runningQuest = false;
                 }
-                // mainMenuDrawer.setSelection(0);
                 setComponent(mainMenuDrawer);
+            }
         }
     }
 
@@ -321,39 +307,38 @@ public class SokobanSecond extends GameFramework {
             }
 
             switch (selection) {
-                case 0:
+                case 0 -> {
                     // Update the values FIXME: Add for tries also later
                     questUpdateTotalValues(gameTime, level.getCorrectMoves(), level.getIncorrectMoves(), numberOfTries);
                     questLevel++;
                     if (questLevel >= QUEST_LEVELS.length) {
                         showEndingQuest = true;     // Finished, go to result page
                         gameDrawer.repaint();
-                    }
-                    else {
+                    } else {
                         gameTime = 0;
                         startGame(QUEST_LEVELS[questLevel]);
                     }
-                    break;
-                case 1:
+                }
+                case 1 -> {
                     runningQuest = false;
                     levelLoaded = "";
                     gameStatus = STATUS_MAIN_MENU;
                     setComponent(mainMenuDrawer);
-                    break;
+                }
             }
         }
         else {
             switch (selection) {
-                case 0:
+                case 0 -> {
                     levelLoaded = "";
                     gameStatus = STATUS_LEVEL_SELECTOR;
                     setComponent(levelListDrawer);
-                    break;
-                case 1:
+                }
+                case 1 -> {
                     levelLoaded = "";
                     gameStatus = STATUS_MAIN_MENU;
                     setComponent(mainMenuDrawer);
-                    break;
+                }
             }
         }
     }

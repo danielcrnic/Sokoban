@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameComponent$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameComponent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/ListComponent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/MenuComponent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/framework/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponents/GameComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/framework/ListComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponents/ListComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/framework/MenuComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponents/MenuComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sokoban/SokobanSecond.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/SokobanSecond.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -196,11 +188,6 @@
           <url>file://$PROJECT_DIR$/src/framework/drawcomponent/MainMenuComponent.java</url>
           <line>61</line>
           <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sokoban/SokobanSecond.java</url>
-          <line>333</line>
-          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
