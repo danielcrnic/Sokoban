@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/framework/GameUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/framework/MenuComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/MenuComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Sokoban.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$GameDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$GameDrawer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$LevelSelectorDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$LevelSelectorDrawer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$MainMenuDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$MainMenuDrawer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/GameComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sokoban/SokobanSecond.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/SokobanSecond.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

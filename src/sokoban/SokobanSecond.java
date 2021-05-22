@@ -29,20 +29,30 @@ public class SokobanSecond extends GameFramework {
     public static final String PATH_TO_MUSIC = "resources/music/";
     public static final String PATH_TO_LEVELS = "levels/";
 
-    public static final String[] MAIN_MENU_SELECTION = new String[]{"START QUEST","SELECT LEVEL", "HOW TO PLAY",
-            "ABOUT", "EXIT"};
-    public static final String[] PAUSE_SELECTION = new String[]{"CONTINUE", "RESTART", "BACK TO MAIN MENU"};
-    public static final String[] WIN_SELECTION = new String[]{"NEXT", "MAIN MENU"};
+    public static final String[] MAIN_MENU_SELECTION = new String[]{"START QUEST", "SELECT LEVEL", "EXIT"};
+    public static final String[] PAUSE_SELECTION = new String[]{"CONTINUE", "RESTART LEVEL", "BACK TO MAIN MENU"};
+
+    public static final String[] WIN_SELECTION = new String[]{"BACK TO LEVEL SELECTOR", "BACK TO MAIN MENU"};
+    public static final String[] WIN_QUEST_SELECTION = new String[]{"NEXT LEVEL", "BACK TO MAIN MENU"};
+    public static final String[] WIN_QUEST_END_SELECTION = new String[]{"VIEW RESULT"};
+
 
     public static final String LEVEL_SELECTION_TITLE = "SELECT LEVEL";
     public static final String LEVEL_SELECTION_BOTTOM_BAR_TEXT = "ESC: TO GO BACK   ENTER: SELECT";
 
-    public static final String[] QUEST_LEVELS = new String[]{"simple2.lvl", "simple7.lvl", "simple6.lvl", "simple.lvl",
-            "simple3.lvl", "simple4.lvl", "simple8.lvl", "simple9.lvl"};
+    public static final String[] QUEST_LEVELS = new String[]{"simple5.lvl", "simple2.lvl", "simple7.lvl"};
+    // public static final String[] QUEST_LEVELS = new String[]{"simple2.lvl", "simple7.lvl", "simple6.lvl", "simple.lvl",
+    //         "simple3.lvl", "simple4.lvl", "simple8.lvl"};
 
-    private GameDrawer gameDrawer;
-    private MenuComponent mainMenuDrawer;
-    private ListComponent levelListDrawer;
+    public static final int STATUS_MAIN_MENU = 0;
+    public static final int STATUS_LEVEL_SELECTOR = 1;
+    public static final int STATUS_GAME = 2;
+    public static final int STATUS_GAME_PAUSED = 3;
+    public static final int STATUS_GAME_WIN = 4;
+
+    private final GameDrawer gameDrawer;
+    private final MenuComponent mainMenuDrawer;
+    private final ListComponent levelListDrawer;
 
     private Level level;
     private Timer secondsTimer;
@@ -52,11 +62,12 @@ public class SokobanSecond extends GameFramework {
     private String[] levelDirectory;
     private String[] levelSelectionArray;
 
-    private int gameTime;
-    private int levelLoaded;
-
     private boolean runningQuest;
-    private int questLevel;
+
+    private int gameTime, questLevel, numberOfTries;
+    private int gameStatus;
+
+    private String levelLoaded;
 
 
     public SokobanSecond() {
@@ -95,24 +106,12 @@ public class SokobanSecond extends GameFramework {
             }
         });
 
-        // secondsTimer.start();
-
-        Object object = loadObject(new File(PATH_TO_LEVELS + levelDirectory[5]));
-        System.out.println(levelDirectory[5]);
-
-        if (object instanceof Level) {
-            level = (Level) object;
-        }
-
         mainMenuDrawer = new MainMenuDrawer();
         levelListDrawer = new LevelSelectorDrawer();
         gameDrawer = new GameDrawer();
 
+        gameStatus = STATUS_MAIN_MENU;
         setComponent(mainMenuDrawer);
-
-        // gameDrawer = new GameDrawer();
-        // setComponent(gameDrawer);
-        // gameDrawer.showPauseMenu();
     }
 
     @Override
@@ -132,37 +131,261 @@ public class SokobanSecond extends GameFramework {
 
     @Override
     public void goLeft() {
-        level.goLeft();
-        gameDrawer.repaint();
+        if (gameStatus == STATUS_GAME) {
+            if (level.goLeft()) {
+                gameDrawer.repaint();
+                hasCompletedLevel();
+            }
+            else {
+                // Play error sound
+            }
+        }
     }
 
     @Override
     public void goRight() {
-        level.goRight();
-        gameDrawer.repaint();
+        if (gameStatus == STATUS_GAME) {
+            if (level.goRight()) {
+                gameDrawer.repaint();
+                hasCompletedLevel();
+            }
+            else {
+                // Play error sound
+            }
+        }
     }
 
     @Override
     public void goUp() {
-        level.goUp();
-        gameDrawer.selectionMoveUp();
-        gameDrawer.repaint();
+        switch (gameStatus) {
+            case STATUS_MAIN_MENU:
+                mainMenuDrawer.selectionMoveUp();
+                // FIXME: Add some ping sound or something
+                break;
+            case STATUS_LEVEL_SELECTOR:
+                levelListDrawer.selectionMoveUp();
+                // FIXME: Add some ping sound
+                break;
+            case STATUS_GAME:
+                if (level.goUp()) {
+                    gameDrawer.repaint();
+                    hasCompletedLevel();
+                }
+                else {
+                    // Play error sound
+                }
+                break;
+            case STATUS_GAME_PAUSED:
+            case STATUS_GAME_WIN:
+                gameDrawer.selectionMoveUp();
+                break;
+        }
     }
 
     @Override
     public void goDown() {
-        level.goDown();
-        gameDrawer.selectionMoveDown();
-        gameDrawer.repaint();
+        switch (gameStatus) {
+            case STATUS_MAIN_MENU:
+                mainMenuDrawer.selectionMoveDown();
+                // FIXME: Add some ping sound or something
+                break;
+            case STATUS_LEVEL_SELECTOR:
+                levelListDrawer.selectionMoveDown();
+                // FIXME: Add some ping sound
+                break;
+            case STATUS_GAME:
+                if (level.goDown()) {
+                    gameDrawer.repaint();
+                    hasCompletedLevel();
+                }
+                else {
+                    // Play error sound
+                }
+                break;
+            case STATUS_GAME_PAUSED:
+            case STATUS_GAME_WIN:
+                gameDrawer.selectionMoveDown();
+                break;
+        }
     }
 
     @Override
     public void pressedEnter() {
-
+        switch (gameStatus) {
+            case STATUS_MAIN_MENU:
+                mainMenu(mainMenuDrawer.getSelection());
+                break;
+            case STATUS_LEVEL_SELECTOR:
+                levelSelector(levelListDrawer.getSelection());
+                break;
+            case STATUS_GAME_PAUSED:
+                gamePaused(gameDrawer.getSelection());
+                break;
+            case STATUS_GAME_WIN:
+                gameWin(gameDrawer.getSelection());
+                break;
+        }
     }
 
     @Override
     public void pressedBack() {
+        switch (gameStatus) {
+            case STATUS_LEVEL_SELECTOR:
+                gameStatus = STATUS_MAIN_MENU;
+                setComponent(mainMenuDrawer);
+                break;
+            case STATUS_GAME:
+                pauseGame();
+                break;
+            case STATUS_GAME_PAUSED:
+                resumeGame();
+                break;
+        }
+    }
+
+    // --- Private methods ---
+
+    private void mainMenu(int selection) {
+        switch (selection) {
+            case 0:
+                // Start the quest
+                if (!startQuest()) {
+                    // Throw an error message
+                }
+                break;
+            case 1:
+                gameStatus = STATUS_LEVEL_SELECTOR;
+                setComponent(levelListDrawer);
+                break;
+            case 2:
+                System.exit(0);
+                break;
+        }
+    }
+
+    private void levelSelector(int selection) {
+        if (!startGame(levelDirectory[selection])) {
+            // Throw an error message
+        }
+        else {
+            // FIXME: Add an error message
+        }
+    }
+
+    private void gamePaused(int selection) {
+        switch (selection) {
+            case 0:
+                resumeGame();
+                break;
+            case 1:
+                startGame(levelLoaded);
+                gameDrawer.showGame();
+                break;
+            case 2:
+                gameStatus = STATUS_MAIN_MENU;
+                // mainMenuDrawer.setSelection(0);
+                setComponent(mainMenuDrawer);
+        }
+    }
+
+    private void gameWin(int selection) {
+        if (runningQuest) {
+            switch (selection) {
+                case 0:
+                    questLevel++;
+                    if (questLevel >= QUEST_LEVELS.length) {
+                        // Finished, go to result page
+                    }
+                    else {
+                        startGame(QUEST_LEVELS[questLevel]);
+                    }
+                    break;
+                case 1:
+                    runningQuest = false;
+                    levelLoaded = "";
+                    gameStatus = STATUS_MAIN_MENU;
+                    setComponent(mainMenuDrawer);
+                    break;
+            }
+        }
+        else {
+            switch (selection) {
+                case 0:
+                    levelLoaded = "";
+                    gameStatus = STATUS_LEVEL_SELECTOR;
+                    setComponent(levelListDrawer);
+                    break;
+                case 1:
+                    levelLoaded = "";
+                    gameStatus = STATUS_MAIN_MENU;
+                    setComponent(mainMenuDrawer);
+                    break;
+            }
+        }
+    }
+
+    private boolean startGame(String levelSelection) {
+        // Load the level
+        Object object = loadObject(new File(PATH_TO_LEVELS + levelSelection));
+
+        if (object == null) {
+            return false;
+        }
+
+        if (object instanceof Level) {
+            level = (Level) object;
+        }
+
+        gameStatus = STATUS_GAME;
+        gameTime = 0;
+        levelLoaded = levelSelection;
+        secondsTimer.start();
+
+        setComponent(gameDrawer);
+        gameDrawer.showGame();
+        return true;
+    }
+
+    private boolean startQuest() {
+        runningQuest = true;
+        questLevel = 0;
+
+        return startGame(QUEST_LEVELS[questLevel]);
+    }
+
+    /**
+     * When calling this method, it means that the player wants to pause the game and to display the pause menu
+     */
+    private void pauseGame() {
+        gameStatus = STATUS_GAME_PAUSED;
+        gameDrawer.showPauseMenu();     // Tell the draw component to lay over the pause menu
+
+        secondsTimer.stop();    // Stops the timer
+    }
+
+    /**
+     * When calling this method, it means that the player wants to go from the pause state back into the playing state,
+     * this method will start again the timer (from where it stopped last time)
+     */
+    private void resumeGame() {
+        gameStatus = STATUS_GAME;
+        gameDrawer.showGame();  // Tell the draw component to show the game
+
+        secondsTimer.start();   // Starts the timer again
+    }
+
+    private void hasCompletedLevel() {
+        // Check if the player has won, do not continue if the player has not won
+        if (level.getNumberOfHoles() != level.getNumberOfFilledHoles()) {
+            return;
+        }
+        gameStatus = STATUS_GAME_WIN;
+
+        secondsTimer.stop();            // Stop the game counter
+        gameDrawer.showPauseMenu();     // Show the victory overlay
+    }
+
+    private void endOfQuest() {
 
     }
 
@@ -313,7 +536,7 @@ public class SokobanSecond extends GameFramework {
             for (int i = 0; i < layout.length; i++) {
                 for (int j = 0; j < layout[i].length; j++) {
                     if (layout[i][j] != null) {
-                        toTextureNumbers[i][j] = layout[i][j].getTextureNumber();;
+                        toTextureNumbers[i][j] = layout[i][j].getTextureNumber();
                     }
                     else {
                         toTextureNumbers[i][j] = TEXTURE_NONE;
@@ -380,11 +603,9 @@ public class SokobanSecond extends GameFramework {
 
         @Override
         public String[] getGameBottomBarLeftTexts() {
-            String[] array = new String[]{"MOVES: " + level.getCorrectMoves() + "   INCORRECT MOVES: " +
+            return new String[]{"MOVES: " + level.getCorrectMoves() + "   INCORRECT MOVES: " +
                     level.getIncorrectMoves() + "   TOTAL MOVES: " + level.getTotalMoves()
-                    , "AVERAGE MOVES PER SECOND:" + ((float) level.getTotalMoves() / (float) gameTime) + " MOVES/SEC"};
-
-            return array;
+                    , "AVERAGE MOVES PER SECOND:" + String.format("%.2f", ((float) level.getTotalMoves() / (float) gameTime)) + " MOVES/SEC"};
         }
 
         @Override
@@ -394,18 +615,48 @@ public class SokobanSecond extends GameFramework {
 
         @Override
         public String gamePausedTitle() {
-            return "PAUSED";
+            if (gameStatus == STATUS_GAME_WIN) {
+                return "VICTORY!";
+            }
+            else {
+                return "PAUSED";
+            }
         }
 
         @Override
         public String[] gamePausedDescription() {
-            return null;
-            //return new String[]{"Hello world!", "This is a test to see how this", "will print out on the screen."};
+            if (gameStatus == STATUS_GAME_WIN) {
+                String[] toShow = new String[3];
+                toShow[0] = "TIME: " +  String.format("%02d", (gameTime / 60)) + ":" +
+                        String.format("%02d", (gameTime % 60));
+                toShow[1] = "TOTAL MOVES: " + level.getTotalMoves();
+                toShow[2] = "CORRECT MOVES : " + level.getCorrectMoves() + "    INCORRECT MOVES : " + level.getIncorrectMoves();
+
+                return toShow;
+            }
+            else {
+                return null;
+            }
         }
 
         @Override
         public String[] gamePausedSelections() {
-            return new String[]{"Continue", "Restart", "Main menu"};
+            if (gameStatus == STATUS_GAME_WIN) {
+                if (runningQuest) {
+                    if (questLevel + 1 >= QUEST_LEVELS.length) {
+                        return WIN_QUEST_END_SELECTION;
+                    }
+                    else {
+                        return WIN_QUEST_SELECTION;
+                    }
+                }
+                else {
+                    return WIN_SELECTION;
+                }
+            }
+            else {
+                return PAUSE_SELECTION;
+            }
         }
     }
 }

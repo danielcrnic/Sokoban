@@ -61,11 +61,13 @@ public abstract class GameComponent extends JComponent {
     public void showPauseMenu() {
         paused = true;
         timer.stop();
+        repaint();
     }
 
     public void showGame() {
         paused = false;
         timer.start();
+        repaint();
     }
 
     public void selectionMoveUp() {
@@ -74,6 +76,7 @@ public abstract class GameComponent extends JComponent {
             if (options != null) {
                 if (selection - 1 >= 0) {
                     selection--;
+                    repaint();
                 }
             }
         }
@@ -85,6 +88,7 @@ public abstract class GameComponent extends JComponent {
             if (options != null) {
                 if (selection + 1 < options.length) {
                     selection++;
+                    repaint();
                 }
             }
         }
@@ -227,25 +231,6 @@ public abstract class GameComponent extends JComponent {
 
             }
         }
-
-
-        // for (int i = 0; i < optionsPause.length; i++) {
-        //     if (i == position) {
-        //         g2.setFont(optionsSelectedFont);
-        //         rectangle2D = optionsSelectedFont.getStringBounds(optionsPause[i], FONT_RENDER_CONTEXT);
-//
-        //     }
-        //     else {
-        //         rectangle2D = optionsFont.getStringBounds(optionsPause[i], FONT_RENDER_CONTEXT);
-        //     }
-//
-        //     rWidth = (int) Math.round(rectangle2D.getWidth());
-        //     rHeight = (int) Math.round(rectangle2D.getHeight());
-        //     g2.drawString(optionsPause[i].toUpperCase(Locale.ROOT), (getWidth() / 2) - (rWidth / 2), optionsStartHeight);
-//
-        //     g2.setFont(optionsFont);     // Select back the default font again
-        //     optionsStartHeight += (rHeight + OPTIONS_PADDING);
-        // }
     }
 
     /**
