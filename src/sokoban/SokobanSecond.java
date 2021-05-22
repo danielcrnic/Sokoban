@@ -592,7 +592,12 @@ public class SokobanSecond extends GameFramework {
 
         @Override
         public String getGameTopBarMiddleText() {
-            return "LEVEL 1";
+            if (runningQuest) {
+                return "LEVEL " + (questLevel + 1) + "/" + QUEST_LEVELS.length;
+            }
+            else {
+                return levelLoaded.replace('_',' ').substring(0, levelLoaded.length() - 4);
+            }
         }
 
         @Override
