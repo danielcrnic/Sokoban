@@ -20,17 +20,21 @@ public abstract class GameComponent extends JComponent {
     public abstract Color getGameBackgroundColor2();
     public abstract int getGameBlockWidth();
     public abstract int getGameBlockHeight();
+
     public abstract int[][] getBackgroundLayout();
     public abstract int[][] getLayer1();
     public abstract int[][] getLayer2();
+
     public abstract BufferedImage getTexture(int i);
 
     public abstract String getGameTopBarLeftText();
     public abstract String getGameTopBarMiddleText();
     public abstract String getGameTopBarRightText();
+
     public abstract String[] getGameBottomBarLeftTexts();
     public abstract int getSecondsBetweenEach();
 
+    // For the "pause" menu
     public abstract String gamePausedTitle();
     public abstract String[] gamePausedDescription();
     public abstract String[] gamePausedSelections();
@@ -50,7 +54,6 @@ public abstract class GameComponent extends JComponent {
                 }
             }
         });
-
         selection = 0;
         lineToShow = 0;
     }
@@ -66,21 +69,29 @@ public abstract class GameComponent extends JComponent {
     }
 
     public void selectionMoveUp() {
-        String[] options = gamePausedSelections();
-        if (options != null) {
-            if (selection - 1 >= 0) {
-                selection--;
+        if (paused) {
+            String[] options = gamePausedSelections();
+            if (options != null) {
+                if (selection - 1 >= 0) {
+                    selection--;
+                }
             }
         }
     }
 
     public void selectionMoveDown() {
-        String[] options = gamePausedSelections();
-        if (options != null) {
-            if (selection + 1 < options.length) {
-                selection++;
+        if (paused) {
+            String[] options = gamePausedSelections();
+            if (options != null) {
+                if (selection + 1 < options.length) {
+                    selection++;
+                }
             }
         }
+    }
+
+    public int getSelection() {
+        return selection;
     }
 
     @Override
@@ -128,7 +139,7 @@ public abstract class GameComponent extends JComponent {
         text = getGameTopBarRightText();
         if (text != null) {
             int width = calculateStringDimensions(text, font).width;
-            drawString(g2, text, font, getWidth() - width - 5 , 37);
+            drawString(g2, text, font, getWidth() - width - 5, 37);
         }
 
         String[] texts = getGameBottomBarLeftTexts();
@@ -174,7 +185,7 @@ public abstract class GameComponent extends JComponent {
 
         Font titleFont = font.deriveFont(50f);
         Font optionsFont = font.deriveFont(20f);
-        Font optionsSelectedFont = font.deriveFont(30f).deriveFont(Font.BOLD);
+        Font optionsSelectedFont = font.deriveFont(25f).deriveFont(Font.BOLD);
 
         g2.setFont(titleFont);
         Rectangle2D rectangle2D = titleFont.getStringBounds(title, FONT_RENDER_CONTEXT);
@@ -184,15 +195,36 @@ public abstract class GameComponent extends JComponent {
 
         // Prints out the selection
         g2.setFont(optionsFont);
-        int height = (int) (getHeight() * 0.2);
+        int height;
 
         if (description != null) {
+            height = (int) (getHeight() * 0.2);
             for (int i = 0; i < description.length; i++) {
-                    rectangle2D = optionsFont.getStringBounds(description[i].toUpperCase(Locale.ROOT), FONT_RENDER_CONTEXT);
-                    rWidth = (int) Math.round(rectangle2D.getWidth());
+                Dimension stringDimension = calculateStringDimensions(description[i].toUpperCase(Locale.ROOT),
+                        optionsFont);
+                g2.drawString(description[i].toUpperCase(Locale.ROOT),
+                        (getWidth() / 2) - (stringDimension.width / 2), height);
+                height = height + stringDimension.height - 20;
+            }
+            height = (int) ((double) height * 1.5);
+        } else {
+            height = (int) (getHeight() * 0.4);
+        }
 
-                    g2.drawString(description[i].toUpperCase(Locale.ROOT), (getWidth() / 2) - (rWidth / 2), height);
-                    height = height + (int) Math.round(rectangle2D.getHeight()) - 20;
+        if (options != null) {
+            for (int i = 0; i < options.length; i++) {
+                Font toUse = optionsFont;
+                if (i == selection) {
+                    // Make it bold
+                    toUse = optionsSelectedFont;
+                    height = height + 15;
+                }
+
+                Dimension stringDimension = calculateStringDimensions(options[i].toUpperCase(Locale.ROOT),
+                        toUse);
+                drawString(g2, options[i].toUpperCase(Locale.ROOT), toUse, (getWidth() / 2) - (stringDimension.width / 2), height);
+                height = height + stringDimension.height - 20;
+
             }
         }
 
@@ -220,7 +252,7 @@ public abstract class GameComponent extends JComponent {
      * @param g2
      */
     public void drawBottomBar(Graphics2D g2) {
-        g2.setColor(new Color(0,0,0,0.2f));
+        g2.setColor(new Color(0, 0, 0, 0.2f));
         g2.fillRect(0, getHeight() - 50, getWidth(), 50);
     }
 
@@ -228,7 +260,7 @@ public abstract class GameComponent extends JComponent {
      * @param g2
      */
     public void drawTopBar(Graphics2D g2) {
-        g2.setColor(new Color(0,0,0,0.2f));
+        g2.setColor(new Color(0, 0, 0, 0.2f));
         g2.fillRect(0, 0, getWidth(), 50);
     }
 
@@ -256,7 +288,7 @@ public abstract class GameComponent extends JComponent {
         Rectangle2D rectangle2D = font.getStringBounds(string, FONT_RENDER_CONTEXT);
 
         g2.setFont(font);
-        g2.drawString(string, x ,y);
+        g2.drawString(string, x, y);
         return new Dimension((int) Math.round(rectangle2D.getWidth()), (int) Math.round(rectangle2D.getHeight()));
     }
 
@@ -264,12 +296,12 @@ public abstract class GameComponent extends JComponent {
      * Paints the background that is selected in the BufferedImage 'backgroundImage' variable. This should be run
      * when the window size gets enlarged or shrank (maybe not necessary when shrank)
      *
-     * @param g2 Graphics2D
+     * @param g2     Graphics2D
      * @param color1 The color to be painted
      * @param color2 The color to be painted
      */
     private void paintColorBackground(Graphics2D g2, Color color1, Color color2) {
-        GradientPaint gradientPaint = new GradientPaint(0, 0, color1, getWidth(),getHeight(), color2);
+        GradientPaint gradientPaint = new GradientPaint(0, 0, color1, getWidth(), getHeight(), color2);
         g2.setPaint(gradientPaint);
         g2.fillRect(0, 0, getWidth(), getHeight());
     }
@@ -281,7 +313,7 @@ public abstract class GameComponent extends JComponent {
      * @param g2 Graphics2D
      */
     private void paintGray(Graphics2D g2) {
-        g2.setColor(new Color(0, 0,0,0.7f));
+        g2.setColor(new Color(0, 0, 0, 0.7f));
         g2.fillRect(0, 0, getWidth(), getHeight());
 
     }

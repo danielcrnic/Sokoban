@@ -14,8 +14,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static framework.GameUI.SHOW_MAIN_MENU;
-import static sokoban.SokobanSecond.Displayer.*;
+import static sokoban.SokobanSecond.GameDrawer.*;
 
 public class SokobanSecond extends GameFramework {
 
@@ -102,7 +101,6 @@ public class SokobanSecond extends GameFramework {
             level = (Level) object;
         }
 
-        //displayer = new Displayer(SHOW_GAME);
         gameDrawer = new GameDrawer();
         setComponent(gameDrawer);
 
@@ -139,12 +137,14 @@ public class SokobanSecond extends GameFramework {
     @Override
     public void goUp() {
         level.goUp();
+        gameDrawer.selectionMoveUp();
         gameDrawer.repaint();
     }
 
     @Override
     public void goDown() {
         level.goDown();
+        gameDrawer.selectionMoveDown();
         gameDrawer.repaint();
     }
 
@@ -179,24 +179,6 @@ public class SokobanSecond extends GameFramework {
     }
 
     public class Displayer extends GameUI {
-        public final static int TEXTURE_PLAYER = 0;
-        public final static int TEXTURE_WALL = 1;
-        public final static int TEXTURE_FLOOR = 2;
-        public final static int TEXTURE_WATER = 3;
-
-        public final static int TEXTURE_STAR = 4;
-        public final static int TEXTURE_STAR_HOLE = 5;
-        public final static int TEXTURE_STAR_MARKED = 6;
-
-        public final static int TEXTURE_SQUARE = 7;
-        public final static int TEXTURE_SQUARE_HOLE = 8;
-        public final static int TEXTURE_SQUARE_MARKED = 9;
-
-        public final static int TEXTURE_CIRCLE = 10;
-        public final static int TEXTURE_CIRCLE_HOLE = 11;
-        public final static int TEXTURE_CIRCLE_MARKED = 12;
-
-
         public Displayer(int selectWindow) {
             super(selectWindow);
         }
@@ -259,6 +241,22 @@ public class SokobanSecond extends GameFramework {
     }
 
     public class GameDrawer extends GameComponent {
+        public final static int TEXTURE_PLAYER = 0;
+        public final static int TEXTURE_WALL = 1;
+        public final static int TEXTURE_FLOOR = 2;
+        public final static int TEXTURE_WATER = 3;
+
+        public final static int TEXTURE_STAR = 4;
+        public final static int TEXTURE_STAR_HOLE = 5;
+        public final static int TEXTURE_STAR_MARKED = 6;
+
+        public final static int TEXTURE_SQUARE = 7;
+        public final static int TEXTURE_SQUARE_HOLE = 8;
+        public final static int TEXTURE_SQUARE_MARKED = 9;
+
+        public final static int TEXTURE_CIRCLE = 10;
+        public final static int TEXTURE_CIRCLE_HOLE = 11;
+        public final static int TEXTURE_CIRCLE_MARKED = 12;
 
         @Override
         public Font getFont() {
@@ -298,8 +296,6 @@ public class SokobanSecond extends GameFramework {
                     else {
                         toTextureNumbers[i][j] = TEXTURE_NONE;
                     }
-
-
                 }
             }
 
@@ -381,12 +377,13 @@ public class SokobanSecond extends GameFramework {
 
         @Override
         public String[] gamePausedDescription() {
-            return new String[]{"Hello world!", "This is a test to see how this", "will print out on the screen."};
+            return null;
+            //return new String[]{"Hello world!", "This is a test to see how this", "will print out on the screen."};
         }
 
         @Override
         public String[] gamePausedSelections() {
-            return null;
+            return new String[]{"Continue", "Restart", "Main menu"};
         }
     }
 }
