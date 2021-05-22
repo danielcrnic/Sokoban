@@ -55,12 +55,12 @@ public class SokobanSecond extends GameFramework {
     private final ListComponent levelListDrawer;
 
     private Level level;
-    private Timer secondsTimer;
+    private final Timer secondsTimer;
 
     private Font pixelFont;
     private BufferedImage[] textures;
-    private String[] levelDirectory;
-    private String[] levelSelectionArray;
+    private final String[] levelDirectory;
+    private final String[] levelSelectionArray;
 
     private Color backgroundColor1;
     private Color backgroundColor2;
