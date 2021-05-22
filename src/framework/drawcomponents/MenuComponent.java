@@ -1,6 +1,4 @@
-package framework;
-
-import sokoban.objects.CusObj;
+package framework.drawcomponents;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,10 +22,10 @@ public abstract class MenuComponent extends JComponent {
     public abstract BufferedImage getMainMenuBackground();
     public abstract BufferedImage getMainMenuPositionImage();
 
-    private int position;
+    private int selection;
 
     public MenuComponent() {
-        position = 0;
+        selection = 0;
     }
 
     @Override
@@ -63,7 +61,7 @@ public abstract class MenuComponent extends JComponent {
         int optionsStartHeight = (int) (getHeight() * 0.4);
 
         for (int i = 0; i < options.length; i++) {
-            if (i == position) {
+            if (i == selection) {
                 g2.setFont(optionsSelectedFont);
                 rectangle2D = optionsSelectedFont.getStringBounds(options[i], FONT_RENDER_CONTEXT);
 
@@ -75,7 +73,7 @@ public abstract class MenuComponent extends JComponent {
             rHeight = (int) Math.round(rectangle2D.getHeight());
             g2.drawString(options[i].toUpperCase(Locale.ROOT), (getWidth() / 2) - (rWidth / 2), optionsStartHeight);
 
-            if (i == position) {
+            if (i == selection) {
                 // Draw the character
                 g2.drawImage(getMainMenuPositionImage(), null, (getWidth() / 2) - (rWidth / 2) - 50,
                         optionsStartHeight - getMainMenuPositionImage().getHeight() + 5);
@@ -96,22 +94,25 @@ public abstract class MenuComponent extends JComponent {
     }
 
     public int getSelection() {
-        return position;
+        return selection;
     }
 
     public void selectionMoveUp() {
-        if (position - 1 >= 0) {
-            position--;
+        if (selection - 1 >= 0) {
+            selection--;
             repaint();
         }
     }
 
-
     public void selectionMoveDown() {
-        if (position + 1 < getMainMenuOptions().length) {
-            position++;
+        if (selection + 1 < getMainMenuOptions().length) {
+            selection++;
             repaint();
         }
+    }
+
+    public void setSelection(int selection) {
+        this.selection = selection;
     }
 
     // --- Private methods that are used to simplify drawing ---

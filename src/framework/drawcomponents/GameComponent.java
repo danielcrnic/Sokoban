@@ -1,4 +1,4 @@
-package framework;
+package framework.drawcomponents;
 
 import javax.swing.*;
 import java.awt.*;
@@ -96,6 +96,10 @@ public abstract class GameComponent extends JComponent {
 
     public int getSelection() {
         return selection;
+    }
+
+    public void setSelection(int selection) {
+        this.selection = selection;
     }
 
     @Override

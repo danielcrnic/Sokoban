@@ -1,4 +1,4 @@
-package framework;
+package framework.drawcomponents;
 
 import javax.swing.*;
 import java.awt.*;

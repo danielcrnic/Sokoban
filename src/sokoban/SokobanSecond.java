@@ -1,9 +1,9 @@
 package sokoban;
 
-import framework.GameComponent;
+import framework.drawcomponents.GameComponent;
 import framework.GameFramework;
-import framework.ListComponent;
-import framework.MenuComponent;
+import framework.drawcomponents.ListComponent;
+import framework.drawcomponents.MenuComponent;
 import sokoban.objects.CusObj;
 
 import javax.swing.*;
@@ -414,6 +414,7 @@ public class SokobanSecond extends GameFramework {
      */
     private void pauseGame() {
         gameStatus = STATUS_GAME_PAUSED;
+        gameDrawer.setSelection(0);
         gameDrawer.showPauseMenu();     // Tell the draw component to lay over the pause menu
 
         secondsTimer.stop();    // Stops the timer
@@ -438,6 +439,7 @@ public class SokobanSecond extends GameFramework {
         gameStatus = STATUS_GAME_WIN;
 
         secondsTimer.stop();            // Stop the game counter
+        gameDrawer.setSelection(0);
         gameDrawer.showPauseMenu();     // Show the victory overlay
     }
 
