@@ -1,4 +1,4 @@
-package sokoban.drawcomponent;
+package framework.drawcomponent;
 
 import sokoban.Level;
 import sokoban.objects.CusObj;

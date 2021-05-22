@@ -4,8 +4,8 @@ import sokoban.objects.CusObj;
 
 import java.awt.*;
 
-import static sokoban.drawcomponent.GameComponent.TEXTURE_STAR;
-import static sokoban.drawcomponent.GameComponent.TEXTURE_STAR_MARKED;
+import static framework.drawcomponent.GameComponent.TEXTURE_STAR;
+import static framework.drawcomponent.GameComponent.TEXTURE_STAR_MARKED;
 
 public class StarBox extends CusObj {
 

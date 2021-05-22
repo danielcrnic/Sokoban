@@ -8,13 +8,12 @@ import sokoban.objects.boxes.StarBox;
 import sokoban.objects.holes.SquareHole;
 import sokoban.objects.holes.StarHole;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import static sokoban.drawcomponent.GameComponent.*;
-import static sokoban.drawcomponent.GameComponent.TEXTURE_WALL;
+import static framework.drawcomponent.GameComponent.*;
+import static framework.drawcomponent.GameComponent.TEXTURE_WALL;
 
 public class SaveFiles {
 

@@ -1,4 +1,4 @@
-package sokoban.drawcomponent;
+package framework.drawcomponent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,9 +53,15 @@ public class MainMenuComponent extends JComponent {
         }
     }
 
+    public void paint(Graphics g) {
+        paintComponent(g);
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
+
+        System.out.println(getWidth() + " " + getHeight());
 
         paintBackground(g2);     // TODO: Call this method only if the window size has been modified
         paintContent(g2);
@@ -91,58 +97,7 @@ public class MainMenuComponent extends JComponent {
     private void paintContent(Graphics2D g) {
         FontRenderContext fontRenderContext = new FontRenderContext(null, true, true);
 
-        Font titleFont = font.deriveFont(70f);
-        Font optionsFont = font.deriveFont(20f);
-        Font optionsSelectedFont = font.deriveFont(20f).deriveFont(Font.BOLD);
-        Font smallFont = font.deriveFont(10f);
 
-        // Prints out the title
-        g.setFont(titleFont);
-        g.setColor(Color.white);
-
-        // Calculates the center of the window to get the font in center
-        Rectangle2D rectangle2D = titleFont.getStringBounds(title, fontRenderContext);
-        int rWidth = (int) Math.round(rectangle2D.getWidth());
-        int rHeight;
-
-        g.drawString(title, (getWidth() / 2) - (rWidth / 2), (int) (getHeight() * 0.2));
-
-        // Prints out the selection
-        g.setFont(optionsFont);
-        int optionsStartHeight = (int) (getHeight() * 0.4);
-
-        for (int i = 0; i < options.length; i++) {
-            if (i == position) {
-                g.setFont(optionsSelectedFont);
-                rectangle2D = optionsSelectedFont.getStringBounds(options[i], fontRenderContext);
-
-            }
-            else {
-                rectangle2D = optionsFont.getStringBounds(options[i], fontRenderContext);
-            }
-
-            rWidth = (int) Math.round(rectangle2D.getWidth());
-            rHeight = (int) Math.round(rectangle2D.getHeight());
-            g.drawString(options[i].toUpperCase(Locale.ROOT), (getWidth() / 2) - (rWidth / 2), optionsStartHeight);
-
-            if (i == position) {
-                // Draw the character
-                g.drawImage(selectionImage, null, (getWidth() / 2) - (rWidth / 2) - 50,
-                        optionsStartHeight - selectionImage.getHeight() + 5);
-
-                g.setFont(optionsFont);     // Select back the default font again
-            }
-
-            optionsStartHeight += (rHeight + OPTIONS_PADDING);
-        }
-
-        g.setFont(smallFont);
-
-        rectangle2D = smallFont.getStringBounds(copyRightNotice, fontRenderContext);
-        rWidth = (int) Math.round(rectangle2D.getWidth());
-
-        g.drawString(versionNumber, 0, getHeight());
-        g.drawString(copyRightNotice, getWidth() - rWidth ,getHeight());
     }
 
 }

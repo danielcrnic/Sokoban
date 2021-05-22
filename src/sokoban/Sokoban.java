@@ -1,9 +1,10 @@
 package sokoban;
 
 import framework.GameFramework;
-import sokoban.drawcomponent.GameComponent;
-import sokoban.drawcomponent.LevelSelectionComponent;
-import sokoban.drawcomponent.MainMenuComponent;
+import framework.GameUI;
+import framework.drawcomponent.GameComponent;
+import framework.drawcomponent.LevelSelectionComponent;
+import framework.drawcomponent.MainMenuComponent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,8 +14,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 
+import static framework.GameUI.SHOW_MAIN_MENU;
+import static framework.GameUI.SHOW_SELECTION;
 import static framework.inputs.InputSubject.*;
-import static sokoban.drawcomponent.GameComponent.*;
+import static framework.drawcomponent.GameComponent.*;
 
 public class Sokoban extends GameFramework {
 
@@ -45,6 +48,8 @@ public class Sokoban extends GameFramework {
     private int currentMode;
     private int position;
 
+    private GUI gui;
+
     private MainMenuComponent mainMenuComponent;
     private LevelSelectionComponent levelSelectionComponent;
     private GameComponent gameComponent;
@@ -72,6 +77,7 @@ public class Sokoban extends GameFramework {
 
         loadTextures();
 
+
         // Filters out all non .lvl files and replaces '_' with spaces to show text better
         String[] lvlIndex = getFilesInDirectory(PATH_TO_LEVELS);
         ArrayList<String> lvlDirectory = new ArrayList<>();
@@ -91,11 +97,16 @@ public class Sokoban extends GameFramework {
         currentMode = MODE_MAIN_MENU;
         runningQuest = false;
 
+        gui = new GUI(SHOW_MAIN_MENU);
+        setComponent(gui);
+
+        // gui.setWindow(SHOW_SELECTION);
+
         // Load the mainMenuComponent
-        position = 0;
-        mainMenuComponent = new MainMenuComponent(GAME_NAME, MAIN_MENU_SELECTION, VERSION, COPYRIGHT, position,
-                textures[TEXTURE_FLOOR], textures[TEXTURE_PLAYER], pixelFont);
-        setComponent(mainMenuComponent);
+        // position = 0;
+        // mainMenuComponent = new MainMenuComponent(GAME_NAME, MAIN_MENU_SELECTION, VERSION, COPYRIGHT, position,
+        //         textures[TEXTURE_FLOOR], textures[TEXTURE_PLAYER], pixelFont);
+        // setComponent(mainMenuComponent);
 
         // Create a timer that will be called every second (when in a game), it will update the game time and send the
         // time to the gameComponent which will display
@@ -148,44 +159,46 @@ public class Sokoban extends GameFramework {
 
     @Override
     public void goUp() {
-        switch (currentMode) {
-            case MODE_MAIN_MENU:
-                mainMenu(UP);
-                break;
-            case MODE_LEVEL_SELECTION:
-                levelSelection(UP);
-                break;
-            case MODE_GAME:
-                game(UP);
-                break;
-            case MODE_GAME_PAUSE:
-                gamePaused(UP);
-                break;
-            case MODE_GAME_WIN:
-                gameWin(UP);
-                break;
-        }
+        gui.goUp();
+        // switch (currentMode) {
+        //     case MODE_MAIN_MENU:
+        //         mainMenu(UP);
+        //         break;
+        //     case MODE_LEVEL_SELECTION:
+        //         levelSelection(UP);
+        //         break;
+        //     case MODE_GAME:
+        //         game(UP);
+        //         break;
+        //     case MODE_GAME_PAUSE:
+        //         gamePaused(UP);
+        //         break;
+        //     case MODE_GAME_WIN:
+        //         gameWin(UP);
+        //         break;
+        // }
     }
 
     @Override
     public void goDown() {
-        switch (currentMode) {
-            case MODE_MAIN_MENU:
-                mainMenu(DOWN);
-                break;
-            case MODE_LEVEL_SELECTION:
-                levelSelection(DOWN);
-                break;
-            case MODE_GAME:
-                game(DOWN);
-                break;
-            case MODE_GAME_PAUSE:
-                gamePaused(DOWN);
-                break;
-            case MODE_GAME_WIN:
-                gameWin(DOWN);
-                break;
-        }
+        gui.goDown();
+        // switch (currentMode) {
+        //     case MODE_MAIN_MENU:
+        //         mainMenu(DOWN);
+        //         break;
+        //     case MODE_LEVEL_SELECTION:
+        //         levelSelection(DOWN);
+        //         break;
+        //     case MODE_GAME:
+        //         game(DOWN);
+        //         break;
+        //     case MODE_GAME_PAUSE:
+        //         gamePaused(DOWN);
+        //         break;
+        //     case MODE_GAME_WIN:
+        //         gameWin(DOWN);
+        //         break;
+        // }
     }
 
     @Override
@@ -540,6 +553,110 @@ public class Sokoban extends GameFramework {
         }
         gameTime = 0;       // Resets the game time
         return true;
+    }
+
+
+    public class GUI extends GameUI {
+
+        public GUI(int selectWindow) {
+            super(selectWindow);
+        }
+
+        @Override
+        public String getTitle() {
+            return GAME_NAME;
+        }
+
+        @Override
+        public String getVersion() {
+            return VERSION;
+        }
+
+        @Override
+        public String getCopyrightNotice() {
+            return COPYRIGHT;
+        }
+
+        @Override
+        public Font getFont() {
+            return pixelFont;
+        }
+
+        @Override
+        public String[] getMainMenuOptions() {
+            return MAIN_MENU_SELECTION;
+        }
+
+        @Override
+        public BufferedImage getMainMenuBackground() {
+            return textures[TEXTURE_FLOOR];
+        }
+
+        @Override
+        public BufferedImage getMainMenuPositionImage() {
+            return textures[TEXTURE_PLAYER];
+        }
+
+        @Override
+        public String getSelectionTitle() {
+            return "SELECT LEVEL";
+        }
+
+        @Override
+        public String[] getSelectionOptions() {
+            return levelSelectionArray;
+        }
+
+        @Override
+        public String getSelectionBottomBarText() {
+            return "ESC: TO GO BACK   ENTER: SELECT";
+        }
+
+        @Override
+        public BufferedImage getSelectionBackground() {
+            return textures[TEXTURE_FLOOR];
+        }
+
+        @Override
+        public Color getGameBackgroundColor1() {
+            return null;
+        }
+
+        @Override
+        public Color getGameBackgroundColor2() {
+            return null;
+        }
+
+        @Override
+        public int getGameBlockWidth() {
+            return 0;
+        }
+
+        @Override
+        public int getGameBlockHeight() {
+            return 0;
+        }
+
+        @Override
+        public int[][] getGameLayout() {
+            return new int[0][];
+        }
+
+        @Override
+        public int[][] getGameObjects() {
+            return new int[0][];
+        }
+
+        @Override
+        public int[][] getPlayerObject() {
+            return new int[0][];
+        }
+
+        @Override
+        public BufferedImage getTexture(int i) {
+            return null;
+        }
+
     }
 
 }

@@ -1,4 +1,4 @@
-package sokoban.drawcomponent;
+package framework.drawcomponent;
 
 import javax.swing.*;
 import java.awt.*;

@@ -18,7 +18,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static sokoban.drawcomponent.GameComponent.*;
+import static framework.drawcomponent.GameComponent.*;
 
 public class GenerateMap {
 

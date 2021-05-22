@@ -1,4 +1,4 @@
-package sokoban.drawcomponent;
+package framework.drawcomponent;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
