@@ -335,7 +335,7 @@ public class GameComponent extends DrawComponent {
         int rWidth = (int) Math.round(rectangle2D.getWidth());
         int rHeight;
 
-        g2.drawString(title, (getWidth() / 2) - (rWidth / 2), (int) (getHeight() * 0.2));
+        g2.drawString(title, (getWidth() / 2) - (rWidth / 2), (int) (getHeight() * 0.1));
 
         // Prints out the selection
         g2.setFont(optionsFont);

@@ -1,11 +1,14 @@
 package sokoban;
 
+import framework.GameComponent;
 import framework.GameFramework;
 import framework.GameUI;
 import sokoban.objects.CusObj;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -31,11 +34,15 @@ public class SokobanSecond extends GameFramework {
     public static final String[] PAUSE_SELECTION = new String[]{"CONTINUE", "RESTART", "BACK TO MAIN MENU"};
     public static final String[] WIN_SELECTION = new String[]{"NEXT", "MAIN MENU"};
 
+    public static final String LEVEL_SELECTION_TITLE = "SELECT LEVEL";
+    public static final String LEVEL_SELECTION_BOTTOM_BAR_TEXT = "ESC: TO GO BACK   ENTER: SELECT";
+
     public static final String[] QUEST_LEVELS = new String[]{"simple2.lvl", "simple7.lvl", "simple6.lvl", "simple.lvl",
             "simple3.lvl", "simple4.lvl", "simple8.lvl", "simple9.lvl"};
 
     private Displayer displayer;
-    private Level level;
+    private GameDrawer gameDrawer;
+    public Level level;
     private Timer secondsTimer;
 
     private Font pixelFont;
@@ -78,14 +85,28 @@ public class SokobanSecond extends GameFramework {
 
         runningQuest = false;
 
-        Object object = loadObject(new File(PATH_TO_LEVELS + levelDirectory[2]));
+        secondsTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameTime++;
+                gameDrawer.repaint();
+            }
+        });
+
+        // secondsTimer.start();
+
+        Object object = loadObject(new File(PATH_TO_LEVELS + levelDirectory[5]));
+        System.out.println(levelDirectory[5]);
 
         if (object instanceof Level) {
             level = (Level) object;
         }
 
-        displayer = new Displayer(SHOW_GAME);
-        setComponent(displayer);
+        //displayer = new Displayer(SHOW_GAME);
+        gameDrawer = new GameDrawer();
+        setComponent(gameDrawer);
+
+        gameDrawer.showPauseMenu();
     }
 
     @Override
@@ -106,25 +127,25 @@ public class SokobanSecond extends GameFramework {
     @Override
     public void goLeft() {
         level.goLeft();
-        displayer.refresh();
+        gameDrawer.repaint();
     }
 
     @Override
     public void goRight() {
         level.goRight();
-        displayer.refresh();
+        gameDrawer.repaint();
     }
 
     @Override
     public void goUp() {
         level.goUp();
-        displayer.refresh();
+        gameDrawer.repaint();
     }
 
     @Override
     public void goDown() {
         level.goDown();
-        displayer.refresh();
+        gameDrawer.repaint();
     }
 
     @Override
@@ -217,7 +238,7 @@ public class SokobanSecond extends GameFramework {
 
         @Override
         public String getSelectionTitle() {
-            return "SELECT LEVEL";
+            return LEVEL_SELECTION_TITLE;
         }
 
         @Override
@@ -227,7 +248,7 @@ public class SokobanSecond extends GameFramework {
 
         @Override
         public String getSelectionBottomBarText() {
-            return "ESC: TO GO BACK   ENTER: SELECT";
+            return LEVEL_SELECTION_BOTTOM_BAR_TEXT;
         }
 
         @Override
@@ -235,14 +256,23 @@ public class SokobanSecond extends GameFramework {
             return textures[TEXTURE_FLOOR];
         }
 
+    }
+
+    public class GameDrawer extends GameComponent {
+
+        @Override
+        public Font getFont() {
+            return pixelFont;
+        }
+
         @Override
         public Color getGameBackgroundColor1() {
-            return null;
+            return Color.ORANGE;
         }
 
         @Override
         public Color getGameBackgroundColor2() {
-            return null;
+            return Color.RED;
         }
 
         @Override
@@ -256,13 +286,20 @@ public class SokobanSecond extends GameFramework {
         }
 
         @Override
-        public int[][] getGameLayout() {
+        public int[][] getBackgroundLayout() {
             CusObj[][] layout = level.getLayout();
             int[][] toTextureNumbers = new int[layout.length][layout[0].length];
 
             for (int i = 0; i < layout.length; i++) {
                 for (int j = 0; j < layout[i].length; j++) {
-                    toTextureNumbers[i][j] = layout[i][j].getTextureNumber();
+                    if (layout[i][j] != null) {
+                        toTextureNumbers[i][j] = layout[i][j].getTextureNumber();;
+                    }
+                    else {
+                        toTextureNumbers[i][j] = TEXTURE_NONE;
+                    }
+
+
                 }
             }
 
@@ -270,8 +307,7 @@ public class SokobanSecond extends GameFramework {
         }
 
         @Override
-        public int[][] getGameObjects() {
-
+        public int[][] getLayer1() {
             int[][] toTextureNumbers = new int[getGameBlockHeight()][getGameBlockWidth()];
 
             for (int[] toTextureNumber : toTextureNumbers) {
@@ -280,15 +316,12 @@ public class SokobanSecond extends GameFramework {
             for (CusObj h : level.getHoles()) {
                 toTextureNumbers[h.getY()][h.getX()] = h.getTextureNumber();
             }
-            for (CusObj b : level.getBoxes()) {
-                toTextureNumbers[b.getY()][b.getX()] = b.getTextureNumber();
-            }
 
             return toTextureNumbers;
         }
 
         @Override
-        public int[][] getPlayerObject() {
+        public int[][] getLayer2() {
             CusObj player = level.getPlayer();
 
             int[][] toTextureNumbers = new int[getGameBlockHeight()][getGameBlockWidth()];
@@ -299,12 +332,61 @@ public class SokobanSecond extends GameFramework {
 
             toTextureNumbers[player.getY()][player.getX()] = player.getTextureNumber();
 
+            for (CusObj b : level.getBoxes()) {
+                toTextureNumbers[b.getY()][b.getX()] = b.getTextureNumber();
+            }
+
             return toTextureNumbers;
         }
 
         @Override
         public BufferedImage getTexture(int i) {
             return textures[i];
+        }
+
+        @Override
+        public String getGameTopBarLeftText() {
+            return "HOLES: " + level.getNumberOfFilledHoles() + "/" + level.getNumberOfHoles();
+        }
+
+        @Override
+        public String getGameTopBarMiddleText() {
+            return "LEVEL 1";
+        }
+
+        @Override
+        public String getGameTopBarRightText() {
+            return "TIME: " + String.format("%02d", (gameTime / 60)) + ":" +
+                    String.format("%02d", (gameTime % 60));
+        }
+
+        @Override
+        public String[] getGameBottomBarLeftTexts() {
+            String[] array = new String[]{"MOVES: " + level.getCorrectMoves() + "   INCORRECT MOVES: " +
+                    level.getIncorrectMoves() + "   TOTAL MOVES: " + level.getTotalMoves()
+                    , "AVERAGE MOVES PER SECOND:" + ((float) level.getTotalMoves() / (float) gameTime) + " MOVES/SEC"};
+
+            return array;
+        }
+
+        @Override
+        public int getSecondsBetweenEach() {
+            return 10;
+        }
+
+        @Override
+        public String gamePausedTitle() {
+            return "PAUSED";
+        }
+
+        @Override
+        public String[] gamePausedDescription() {
+            return new String[]{"Hello world!", "This is a test to see how this", "will print out on the screen."};
+        }
+
+        @Override
+        public String[] gamePausedSelections() {
+            return null;
         }
     }
 }

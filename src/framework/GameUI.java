@@ -11,7 +11,6 @@ import java.util.Locale;
 
 public abstract class GameUI extends JComponent {
 
-    public final static int TEXTURE_NONE = -1;
 
     public static final int SHOW_MAIN_MENU = 0;
     public static final int SHOW_SELECTION = 1;
@@ -36,14 +35,8 @@ public abstract class GameUI extends JComponent {
     public abstract BufferedImage getSelectionBackground();
 
     // Abstract classes for the game
-    public abstract Color getGameBackgroundColor1();
-    public abstract Color getGameBackgroundColor2();
-    public abstract int getGameBlockWidth();
-    public abstract int getGameBlockHeight();
-    public abstract int[][] getGameLayout();
-    public abstract int[][] getGameObjects();
-    public abstract int[][] getPlayerObject();
-    public abstract BufferedImage getTexture(int i);
+
+
 
     private int position;
     private int selectWindow;
@@ -60,7 +53,6 @@ public abstract class GameUI extends JComponent {
         switch (selectWindow) {
             case SHOW_MAIN_MENU -> mainMenu(g2);
             case SHOW_SELECTION -> selection(g2);
-            case SHOW_GAME -> game(g2);
         }
 
     }
@@ -235,39 +227,6 @@ public abstract class GameUI extends JComponent {
                     break;
                 }
             }
-        }
-    }
-
-    private void game(Graphics2D g2) {
-        // Get the width and height to be able to draw the level in center
-        int windowWidth = getWidth();
-        int windowHeight = getHeight();
-
-        int[][] layout = getGameLayout();
-        int[][] objects = getGameObjects();
-        int[][] player = getPlayerObject();
-
-        int width = layout[0].length * getTexture(1).getWidth();
-        int height = layout.length * getTexture(1).getHeight();
-
-        int x = (windowWidth / 2) - (width / 2);
-        int y = (windowHeight / 2) - (height / 2);
-
-        for (int i = 0; i < layout.length; i++) {
-            for (int j = 0; j < layout[i].length; j++) {
-                if (layout[i][j] != TEXTURE_NONE) {
-                    g2.drawImage(getTexture(layout[i][j]), null, x, y);
-                }
-                if (objects[i][j] != TEXTURE_NONE) {
-                    g2.drawImage(getTexture(objects[i][j]), null, x, y);
-                }
-                if (player[i][j] != TEXTURE_NONE) {
-                    g2.drawImage(getTexture(player[i][j]), null, x, y);
-                }
-                x += getTexture(1).getWidth();
-            }
-            x = (windowWidth / 2) - (width / 2);
-            y += getTexture(i).getHeight();
         }
     }
 

@@ -48,7 +48,6 @@ public class Sokoban extends GameFramework {
     private int currentMode;
     private int position;
 
-    private GUI gui;
 
     private MainMenuComponent mainMenuComponent;
     private LevelSelectionComponent levelSelectionComponent;
@@ -96,9 +95,6 @@ public class Sokoban extends GameFramework {
 
         currentMode = MODE_MAIN_MENU;
         runningQuest = false;
-
-        gui = new GUI(SHOW_MAIN_MENU);
-        setComponent(gui);
 
         // gui.setWindow(SHOW_SELECTION);
 
@@ -159,7 +155,6 @@ public class Sokoban extends GameFramework {
 
     @Override
     public void goUp() {
-        gui.goUp();
         // switch (currentMode) {
         //     case MODE_MAIN_MENU:
         //         mainMenu(UP);
@@ -181,7 +176,6 @@ public class Sokoban extends GameFramework {
 
     @Override
     public void goDown() {
-        gui.goDown();
         // switch (currentMode) {
         //     case MODE_MAIN_MENU:
         //         mainMenu(DOWN);
@@ -555,108 +549,5 @@ public class Sokoban extends GameFramework {
         return true;
     }
 
-
-    public class GUI extends GameUI {
-
-        public GUI(int selectWindow) {
-            super(selectWindow);
-        }
-
-        @Override
-        public String getTitle() {
-            return GAME_NAME;
-        }
-
-        @Override
-        public String getVersion() {
-            return VERSION;
-        }
-
-        @Override
-        public String getCopyrightNotice() {
-            return COPYRIGHT;
-        }
-
-        @Override
-        public Font getFont() {
-            return pixelFont;
-        }
-
-        @Override
-        public String[] getMainMenuOptions() {
-            return MAIN_MENU_SELECTION;
-        }
-
-        @Override
-        public BufferedImage getMainMenuBackground() {
-            return textures[TEXTURE_FLOOR];
-        }
-
-        @Override
-        public BufferedImage getMainMenuPositionImage() {
-            return textures[TEXTURE_PLAYER];
-        }
-
-        @Override
-        public String getSelectionTitle() {
-            return "SELECT LEVEL";
-        }
-
-        @Override
-        public String[] getSelectionOptions() {
-            return levelSelectionArray;
-        }
-
-        @Override
-        public String getSelectionBottomBarText() {
-            return "ESC: TO GO BACK   ENTER: SELECT";
-        }
-
-        @Override
-        public BufferedImage getSelectionBackground() {
-            return textures[TEXTURE_FLOOR];
-        }
-
-        @Override
-        public Color getGameBackgroundColor1() {
-            return null;
-        }
-
-        @Override
-        public Color getGameBackgroundColor2() {
-            return null;
-        }
-
-        @Override
-        public int getGameBlockWidth() {
-            return 0;
-        }
-
-        @Override
-        public int getGameBlockHeight() {
-            return 0;
-        }
-
-        @Override
-        public int[][] getGameLayout() {
-            return new int[0][];
-        }
-
-        @Override
-        public int[][] getGameObjects() {
-            return new int[0][];
-        }
-
-        @Override
-        public int[][] getPlayerObject() {
-            return new int[0][];
-        }
-
-        @Override
-        public BufferedImage getTexture(int i) {
-            return null;
-        }
-
-    }
 
 }

@@ -3,36 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/GenerateMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/GenerateMap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/SaveFiles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/SaveFiles.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/StartSokoban.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/StartSokoban.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/drawcomponent/GameComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/drawcomponent/GameComponent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$GUI.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/DrawComponent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/GameComponent$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/GameComponent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/LevelSelectionComponent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/drawcomponent/MainMenuComponent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/CircleBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/CircleBox.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/SquareBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/SquareBox.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/StarBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/boxes/StarBox.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/CircleHole.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/CircleHole.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/SquareHole.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/SquareHole.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/StarHole.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/StarHole.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GenerateMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenerateMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SaveFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SaveFiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StartSokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StartSokoban.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$Displayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond$Displayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/SokobanSecond.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/GameUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/GameUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/drawcomponent/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponent/GameComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Sokoban.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/drawcomponent/DrawComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponent/DrawComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/drawcomponent/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponent/GameComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/drawcomponent/LevelSelectionComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponent/LevelSelectionComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/drawcomponent/MainMenuComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponent/MainMenuComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/boxes/CircleBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/boxes/CircleBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/boxes/SquareBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/boxes/SquareBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/boxes/StarBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/boxes/StarBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/holes/CircleHole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/holes/CircleHole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/holes/SquareHole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/holes/SquareHole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/holes/StarHole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/holes/StarHole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/SokobanSecond.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/SokobanSecond.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,8 +199,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sokoban/SokobanSecond.java</url>
-          <line>279</line>
-          <option name="timeStamp" value="22" />
+          <line>302</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
