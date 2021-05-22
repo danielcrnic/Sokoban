@@ -3,15 +3,19 @@ package framework;
 import framework.inputs.InputObserver;
 import framework.inputs.InputSubject;
 import framework.inputs.listeners.KeyboardListener;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaException;
+import javafx.scene.media.MediaPlayer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 
-import static framework.AudioPlayer.supportPlayingAudio;
 import static java.awt.BorderLayout.PAGE_START;
 import static java.awt.BorderLayout.CENTER;
 
@@ -23,8 +27,7 @@ public abstract class GameFramework implements InputObserver {
     private JComponent mainComponent;
     private JMenuBar menuBar;
 
-    private boolean capablePlayingAudio;
-    private ArrayList<AudioPlayer> audioPlayers;
+    private ArrayList<MediaPlayer> audioMediaPlayers;
 
     // Methods for the GUI
     public abstract int getGUIWidth();
@@ -49,8 +52,7 @@ public abstract class GameFramework implements InputObserver {
      */
     public GameFramework() {
         // Test the audio capability
-        capablePlayingAudio = supportPlayingAudio();
-        audioPlayers = new ArrayList<>();
+        audioMediaPlayers = new ArrayList<>();
 
         frame = new JFrame();
 
@@ -67,6 +69,7 @@ public abstract class GameFramework implements InputObserver {
 
         initializeInput();
 
+        new JFXPanel();     // Need to be initialized to be able to use the audioplayer
     }
 
     /**
@@ -139,54 +142,56 @@ public abstract class GameFramework implements InputObserver {
 
     /**
      * @param file
-     * @return
+     * @param index
+     * @throws NoSuchFileException
      */
-    public int loadSound(File file) {
-        audioPlayers.add(new AudioPlayer(file));
-        return audioPlayers.size() - 1;
+    public void loadSound(File file, int index) throws NoSuchFileException {
+        try {
+            Media media = new Media(file.toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+            audioMediaPlayers.add(index, mediaPlayer);
+        }
+        catch (MediaException e) {
+            throw new NoSuchFileException(file.toURI().toString());
+        }
     }
 
     /**
      * @param index
-     * @return
      */
-    public boolean removeSound(int index) {
-        try {
-            AudioPlayer audioPlayer = audioPlayers.remove(index);
-            audioPlayer.stop();
-            return true;
-        } catch (IndexOutOfBoundsException e) {
-            return false;
-        }
+    public void playSound(int index) {
+        audioMediaPlayers.get(index).play();
     }
 
     /**
-     * @return
+     * @param index
      */
-    public ArrayList<File> getAudioList() {
-        ArrayList<File> fileArrayList = new ArrayList<>();
-
-        for (AudioPlayer a : audioPlayers) {
-            fileArrayList.add(a.getFile());
-        }
-
-        return fileArrayList;
+    public void pauseSound(int index) {
+        audioMediaPlayers.get(index).pause();
     }
 
-    public void playSound(int index) {
-        try {
-            audioPlayers.get(index).play();
-        } catch (IndexOutOfBoundsException ignored) {
-
-        }
-    }
-
+    /**
+     * @param index
+     */
     public void stopSound(int index) {
-        try {
-            audioPlayers.get(index).stop();
-        } catch (IndexOutOfBoundsException ignored) {
+        audioMediaPlayers.get(index).stop();
+    }
 
+    /**
+     * @param index
+     * @param volume
+     */
+    public void setVolumeSound(int index, double volume) {
+        double toSet = volume;
+
+        if (volume > 1.0) {
+            toSet = 1.0;
         }
+        else if (volume < 0.0) {
+            toSet = 0;
+        }
+
+        audioMediaPlayers.get(index).setVolume(toSet);
     }
 
     /**

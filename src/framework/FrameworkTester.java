@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class FrameworkTester extends GameFramework {
@@ -13,6 +14,7 @@ public class FrameworkTester extends GameFramework {
     private int count = 1;
 
     private int song2;
+    private int save;
 
     public FrameworkTester() {
         JPanel label = new JPanel();
@@ -28,17 +30,18 @@ public class FrameworkTester extends GameFramework {
         menuBar.add(new JMenu("Hello 4"));
         menuBar.add(new JMenu("Hello 5"));
 
-        JMenuBar menuBar2 = new JMenuBar();
-        menuBar2.add(new JMenu("Bruh momento")); // Inte Okej Daniel.. ;)   // Vad annars skulle jag ha skrivit? :P
+        // JMenuBar menuBar2 = new JMenuBar();
+        // menuBar2.add(new JMenu("Bruh momento")); // Inte Okej Daniel.. ;)   // Vad annars skulle jag ha skrivit? :P
+        //
+        // setMenuBar(menuBar);
+        // setComponent(label);
+        //
+        // File file = new File("resources/.");
+        //
+        // for (String f : file.list()) {
+            //     System.out.println(f);
+            // }
 
-        setMenuBar(menuBar);
-        setComponent(label);
-
-        File file = new File("resources/.");
-
-        for (String f : file.list()) {
-            System.out.println(f);
-        }
 
     }
 
