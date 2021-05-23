@@ -159,6 +159,33 @@ public abstract class GameFramework implements InputObserver {
         }
     }
 
+
+    /**
+     * @param file
+     * @param index
+     * @return
+     * @throws NoSuchFileException
+     */
+    public int loadSound(File file, int index) throws NoSuchFileException {
+        try {
+            Media media = new Media(file.toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+            mediaPlayer.setOnEndOfMedia(new Runnable() {
+                @Override
+                public void run() {
+                    mediaPlayer.stop();
+                }
+            });
+
+            audioMediaPlayers.add(index, mediaPlayer);
+            return audioMediaPlayers.size() - 1;
+        }
+        catch (MediaException e) {
+            throw new NoSuchFileException(file.toURI().toString());
+        }
+    }
+
     /**
      * @param index
      */
@@ -201,8 +228,12 @@ public abstract class GameFramework implements InputObserver {
         audioMediaPlayers.get(index).setVolume(toSet);
     }
 
-    public void toggleAutoplay(int index) {
+    public void playLoopSound(int index) {
+        audioMediaPlayers.get(index).setAutoPlay(true);
+    }
 
+    public void disableAutoplay(int index) {
+        audioMediaPlayers.get(index).setAutoPlay(false);
     }
 
     /**

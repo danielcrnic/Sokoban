@@ -15,6 +15,8 @@ import java.io.File;
 import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
+import java.util.Random;
 
 import static sokoban.Sokoban.GameDrawer.*;
 
@@ -33,7 +35,7 @@ public class Sokoban extends GameFramework {
     public static final String PATH_TO_LEVELS = "levels/";
 
     // -- Selections for the menus ---
-    public static final String[] MAIN_MENU_SELECTION = new String[]{"START QUEST", "SELECT LEVEL", "EXIT"};
+    public static final String[] MAIN_MENU_SELECTION = new String[]{"START QUEST", "START SHORT QUEST", "SELECT LEVEL", "EXIT"};
     public static final String[] PAUSE_SELECTION = new String[]{"CONTINUE", "RESTART LEVEL", "BACK TO MAIN MENU"};
 
     public static final String[] WIN_SELECTION = new String[]{"BACK TO LEVEL SELECTOR", "BACK TO MAIN MENU"};
@@ -44,9 +46,11 @@ public class Sokoban extends GameFramework {
     public static final String LEVEL_SELECTION_BOTTOM_BAR_TEXT = "ESC: TO GO BACK   ENTER: SELECT";
 
     // --- The quest levels (where the first one is the first level) ---
-    public static final String[] QUEST_LEVELS = new String[]{"level1.lvl", "level2.lvl", "level3.lvl"};
-    // public static final String[] QUEST_LEVELS = new String[]{"level1.lvl", "level2.lvl", "level3.lvl", "level4.lvl", "level5.lvl",
-    //         "level6.lvl", "level7.lvl", "level8.lvl"};
+    public static String[] QUEST_LEVELS;
+    // public static final String[] QUEST_LEVELS = new String[]{"level1.lvl", "level2.lvl", "level3.lvl"};
+    public static final String[] LONG_QUEST_LEVELS = new String[]{"level1.lvl", "level2.lvl", "level3.lvl", "level4.lvl", "level5.lvl",
+            "level6.lvl", "level7.lvl", "level8.lvl"};
+    public static final String[] SHORT_QUEST_LEVELS = new String[]{"level1.lvl", "level2.lvl", "level3.lvl", "level5.lvl"};
 
     // --- Status for different menus when controlling the application ---
     public static final int STATUS_MAIN_MENU = 0;
@@ -56,8 +60,16 @@ public class Sokoban extends GameFramework {
     public static final int STATUS_GAME_WIN = 4;
 
     // --- Variables for the sounds/music ---
+    public static int SOUND_MUSIC;
+
     public static int SOUND_DING;
     public static int SOUND_ERROR;
+    public static int SOUND_BOX_IN_HOLE;
+    public static int SOUND_BOX_NOT_IN_HOLE;
+    public static int SOUND_WIN;
+    public static int SOUND_THE_END;
+
+    private int[] musicList;
 
     private final GameDrawer gameDrawer;
     private final MenuComponent mainMenuDrawer;
@@ -78,6 +90,7 @@ public class Sokoban extends GameFramework {
 
     private int gameTime, questLevel, numberOfTries;
     private int gameStatus;
+    private int numberOfHolesBefore = 0;
 
     private int questTotalTime, questTotalCorrectMoves, questTotalIncorrectMoves, questTotalTries;
 
@@ -118,10 +131,31 @@ public class Sokoban extends GameFramework {
             }
         });
 
+        // Load the music directory and initialize the player for the music
+        try {
+            String[] musicDirectory = getFilesInDirectory(PATH_TO_MUSIC);
+            if (musicDirectory == null) {
+                SOUND_MUSIC = -1;
+            }
+            else {
+                musicList = new int[musicDirectory.length];
+                for (int i = 0; i < musicList.length; i++) {
+                    musicList[i] = loadSound(new File(PATH_TO_MUSIC + musicDirectory[i]));
+                }
+            }
+        } catch (NoSuchFileException e) {
+            SOUND_MUSIC = -1;
+            e.printStackTrace();
+        }
+
         // Load the sounds
         try {
             SOUND_DING = loadSound(new File(PATH_TO_SOUND_EFFECTS + "select.mp3"));
             SOUND_ERROR = loadSound(new File(PATH_TO_SOUND_EFFECTS + "error.mp3"));
+            SOUND_BOX_IN_HOLE = loadSound(new File(PATH_TO_SOUND_EFFECTS + "boxInHole.mp3"));
+            SOUND_BOX_NOT_IN_HOLE = loadSound(new File(PATH_TO_SOUND_EFFECTS + "boxNotInHole.wav"));
+            SOUND_WIN = loadSound(new File(PATH_TO_SOUND_EFFECTS + "win.wav"));
+            SOUND_THE_END = loadSound(new File(PATH_TO_SOUND_EFFECTS + "theEnd.wav"));
         } catch (NoSuchFileException e) {
             e.printStackTrace();
         }
@@ -262,16 +296,24 @@ public class Sokoban extends GameFramework {
     private void mainMenu(int selection) {
         switch (selection) {
             case 0:
-                // Start the quest
+                // Start normal quest
+                QUEST_LEVELS = LONG_QUEST_LEVELS;
                 if (!startQuest()) {
                     // Throw an error message
                 }
                 break;
             case 1:
+                // Start normal quest
+                QUEST_LEVELS = SHORT_QUEST_LEVELS;
+                if (!startQuest()) {
+                    // Throw an error message
+                }
+                break;
+            case 2:
                 gameStatus = STATUS_LEVEL_SELECTOR;
                 setComponent(levelListDrawer);
                 break;
-            case 2:
+            case 3:
                 System.exit(0);
                 break;
         }
@@ -282,11 +324,11 @@ public class Sokoban extends GameFramework {
      */
     private void levelSelector(int selection) {
         gameTime = 0;   // Reset the game time so new colors get generated
+        shuffleMusic();
         if (!startGame(levelDirectory[selection])) {
             // Throw an error message
-        }
-        else {
-            // FIXME: Add an error message
+            playSound(SOUND_ERROR);
+            System.err.println("An problem occurred when trying to launch the game!");
         }
     }
 
@@ -297,10 +339,13 @@ public class Sokoban extends GameFramework {
         switch (selection) {
             case 0 -> resumeGame();
             case 1 -> {
+                numberOfHolesBefore = 0;    // Reset the number of holes
+                stopSound(SOUND_MUSIC);
                 startGame(levelLoaded);
                 gameDrawer.showGame();
             }
             case 2 -> {
+                stopSound(SOUND_MUSIC);
                 gameStatus = STATUS_MAIN_MENU;
                 if (runningQuest) {
                     runningQuest = false;
@@ -316,6 +361,7 @@ public class Sokoban extends GameFramework {
     private void gameWin(int selection) {
         if (runningQuest) {
             if (showEndingQuest) {
+                stopSound(SOUND_MUSIC);
                 runningQuest = false;
                 showEndingQuest = false;
                 levelLoaded = "";
@@ -326,12 +372,13 @@ public class Sokoban extends GameFramework {
 
             switch (selection) {
                 case 0 -> {
-                    // Update the values FIXME: Add for tries also later
+                    // Update the values
                     questUpdateTotalValues(gameTime, level.getCorrectMoves(), level.getIncorrectMoves(), numberOfTries);
                     questLevel++;
                     if (questLevel >= QUEST_LEVELS.length) {
                         showEndingQuest = true;     // Finished, go to result page
                         gameDrawer.repaint();
+                        playSound(SOUND_THE_END);
                     } else {
                         gameTime = 0;
                         startGame(QUEST_LEVELS[questLevel]);
@@ -391,6 +438,12 @@ public class Sokoban extends GameFramework {
 
         setComponent(gameDrawer);
         gameDrawer.showGame();
+
+        // Play music
+        setVolumeSound(SOUND_MUSIC, 0.5);
+        playSound(SOUND_MUSIC);     // Play the music
+
+
         return true;
     }
 
@@ -404,6 +457,7 @@ public class Sokoban extends GameFramework {
         questTotalIncorrectMoves = 0;
         questTotalTries = 0;
         numberOfTries = 0;          // Reset the number of tries
+        shuffleMusic();     // Select a random song
 
         return startGame(QUEST_LEVELS[questLevel]);
     }
@@ -422,6 +476,7 @@ public class Sokoban extends GameFramework {
         gameStatus = STATUS_GAME_PAUSED;
         gameDrawer.setSelection(0);
         gameDrawer.showPauseMenu();     // Tell the draw component to lay over the pause menu
+        pauseSound(SOUND_MUSIC);        // Pause the music
 
         secondsTimer.stop();    // Stops the timer
     }
@@ -433,22 +488,47 @@ public class Sokoban extends GameFramework {
     private void resumeGame() {
         gameStatus = STATUS_GAME;
         gameDrawer.showGame();  // Tell the draw component to show the game
+        playSound(SOUND_MUSIC);     // Play the music
 
         secondsTimer.start();   // Starts the timer again
     }
 
     private void hasCompletedLevel() {
+        // Check if the numberOfHoles has increased or decreased
+        if (numberOfHolesBefore > level.getNumberOfFilledHoles()) {
+            playSound(SOUND_BOX_NOT_IN_HOLE);
+            numberOfHolesBefore--;
+        }
+        else if (numberOfHolesBefore < level.getNumberOfFilledHoles()) {
+            playSound(SOUND_BOX_IN_HOLE);
+            numberOfHolesBefore++;
+        }
+
         // Check if the player has won, do not continue if the player has not won
         if (level.getNumberOfHoles() != level.getNumberOfFilledHoles()) {
             return;
         }
+
         gameStatus = STATUS_GAME_WIN;
 
+        numberOfHolesBefore = 0;
         secondsTimer.stop();            // Stop the game counter
         gameDrawer.setSelection(0);
         gameDrawer.showPauseMenu();     // Show the victory overlay
+
+        if (runningQuest) {
+            pauseSound(SOUND_MUSIC);
+        }
+        else {
+            stopSound(SOUND_MUSIC);
+        }
+
+        playSound(SOUND_WIN);
     }
 
+    private void shuffleMusic() {
+        SOUND_MUSIC = musicList[new Random().nextInt(musicList.length)];
+    }
 
     private void randomizeColors() {
         backgroundColor1 = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
@@ -659,10 +739,18 @@ public class Sokoban extends GameFramework {
         @Override
         public String getGameTopBarMiddleText() {
             if (runningQuest) {
-                return "LEVEL " + (questLevel + 1) + "/" + QUEST_LEVELS.length;
+                int level = questLevel + 1;
+                int numberOfLevels = QUEST_LEVELS.length;
+                if ((level) > numberOfLevels) {
+                    return ":D";
+                }
+                else {
+                    return "LEVEL " + level + "/" + numberOfLevels;
+                }
             }
             else {
-                return levelLoaded.replace('_',' ').substring(0, levelLoaded.length() - 4);
+                return levelLoaded.replace('_',' ').substring(0, levelLoaded.length() - 4)
+                        .toUpperCase(Locale.ROOT);
             }
         }
 

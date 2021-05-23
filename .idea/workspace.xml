@@ -3,19 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Level Updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/GenerateMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/GenerateMap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Level.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$GameDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$GameDrawer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$LevelSelectorDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$LevelSelectorDrawer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$MainMenuDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$MainMenuDrawer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/CusObj.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/CusObj.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/PlayerObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/PlayerObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GenerateMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenerateMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sounds/select2.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/GameFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/GameFramework.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Sokoban.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/PlayerObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/PlayerObject.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,11 +209,6 @@
           <url>file://$PROJECT_DIR$/src/framework/drawcomponent/MainMenuComponent.java</url>
           <line>61</line>
           <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sokoban/Level.java</url>
-          <line>183</line>
-          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
