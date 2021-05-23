@@ -44,9 +44,9 @@ public class Sokoban extends GameFramework {
     public static final String LEVEL_SELECTION_BOTTOM_BAR_TEXT = "ESC: TO GO BACK   ENTER: SELECT";
 
     // --- The quest levels (where the first one is the first level) ---
-    // public static final String[] QUEST_LEVELS = new String[]{"level1.lvl", "level2.lvl", "level3.lvl"};
-    public static final String[] QUEST_LEVELS = new String[]{"level1.lvl", "level2.lvl", "level3.lvl", "level4.lvl", "level5.lvl",
-            "level6.lvl", "level7.lvl", "level8.lvl"};
+    public static final String[] QUEST_LEVELS = new String[]{"level1.lvl", "level2.lvl", "level3.lvl"};
+    // public static final String[] QUEST_LEVELS = new String[]{"level1.lvl", "level2.lvl", "level3.lvl", "level4.lvl", "level5.lvl",
+    //         "level6.lvl", "level7.lvl", "level8.lvl"};
 
     // --- Status for different menus when controlling the application ---
     public static final int STATUS_MAIN_MENU = 0;
@@ -371,6 +371,9 @@ public class Sokoban extends GameFramework {
 
         if (object instanceof Level) {
             level = (Level) object;
+        }
+        else {
+            return false;
         }
 
         if (gameTime == 0) {

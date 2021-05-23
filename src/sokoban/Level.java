@@ -202,23 +202,23 @@ public class Level implements Serializable {
                         return false;
                     }
                 }
-                else {
-                    // FIXME: Den kommer ju aldrig komma in hit ju...
-                    if (!o.isSteppable()) {
-                        foundMatching = true;
-                        if (push(o, x, y,true)) {
-                            obj.setX(obj.getX() + x);
-                            obj.setY(obj.getY() + y);
-                            return true;
-                        }
-                    }
-                }
+                // else {
+                //     // FIXME: Den kommer ju aldrig komma in hit ju...
+                //     if (!o.isSteppable()) {
+                //         foundMatching = true;
+                //         if (push(o, x, y,true)) {
+                //             obj.setX(obj.getX() + x);
+                //             obj.setY(obj.getY() + y);
+                //             return true;
+                //         }
+                //     }
+                // }
             }
         }
 
-        if (foundMatching) {
-            return false;
-        }
+        // if (foundMatching) {
+        //     return false;
+        // }
 
         foundMatching = false;
         for (CusObj o : boxes) {

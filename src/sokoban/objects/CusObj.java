@@ -157,16 +157,11 @@ public abstract class CusObj implements Serializable {
                 if (o.objectName().equals(objectName())) {
                     // Check if their colors match
                     if (o.modifyColor().equals(modifyColor())) {
-                        o.changeToTriggerTexture();
-                        changeToTriggerTexture();
                         return true;
                     }
                 }
             }
         }
-
-        o.changeToDefaultTexture();
-        changeToDefaultTexture();
         return false;
     }
 

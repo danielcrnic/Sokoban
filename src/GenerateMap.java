@@ -22,7 +22,7 @@ import static sokoban.Sokoban.GameDrawer.*;
 
 public class GenerateMap {
 
-    public static final String FILE_TXT = "simple7";
+    public static final String FILE_TXT = "very_easy";
 
     public static void main(String[] args) {
         File file = new File(FILE_TXT + ".txt");
@@ -140,7 +140,6 @@ public class GenerateMap {
                 System.exit(-1);
             }
         }
-        new Sokoban();
 
     }
 

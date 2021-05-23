@@ -23,7 +23,7 @@ public class PlayerObject extends CusObj{
 
     @Override
     public boolean isSteppable() {
-        return true;
+        return false;
     }
 
     @Override
