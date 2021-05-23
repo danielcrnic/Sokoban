@@ -44,9 +44,9 @@ public class Sokoban extends GameFramework {
     public static final String LEVEL_SELECTION_BOTTOM_BAR_TEXT = "ESC: TO GO BACK   ENTER: SELECT";
 
     // --- The quest levels (where the first one is the first level) ---
-    public static final String[] QUEST_LEVELS = new String[]{"simple5.lvl", "simple2.lvl", "simple7.lvl"};
-    // public static final String[] QUEST_LEVELS = new String[]{"simple2.lvl", "simple7.lvl", "simple6.lvl", "simple.lvl",
-    //         "simple3.lvl", "simple4.lvl", "simple8.lvl"};
+    // public static final String[] QUEST_LEVELS = new String[]{"level1.lvl", "level2.lvl", "level3.lvl"};
+    public static final String[] QUEST_LEVELS = new String[]{"level1.lvl", "level2.lvl", "level3.lvl", "level4.lvl", "level5.lvl",
+            "level6.lvl", "level7.lvl", "level8.lvl"};
 
     // --- Status for different menus when controlling the application ---
     public static final int STATUS_MAIN_MENU = 0;
@@ -57,6 +57,7 @@ public class Sokoban extends GameFramework {
 
     // --- Variables for the sounds/music ---
     public static int SOUND_DING;
+    public static int SOUND_ERROR;
 
     private final GameDrawer gameDrawer;
     private final MenuComponent mainMenuDrawer;
@@ -119,7 +120,8 @@ public class Sokoban extends GameFramework {
 
         // Load the sounds
         try {
-            SOUND_DING = loadSound(new File(PATH_TO_SOUND_EFFECTS + "select2.mp3"));
+            SOUND_DING = loadSound(new File(PATH_TO_SOUND_EFFECTS + "select.mp3"));
+            SOUND_ERROR = loadSound(new File(PATH_TO_SOUND_EFFECTS + "error.mp3"));
         } catch (NoSuchFileException e) {
             e.printStackTrace();
         }
@@ -155,7 +157,7 @@ public class Sokoban extends GameFramework {
                 hasCompletedLevel();
             }
             else {
-                // Play error sound
+                playSound(SOUND_ERROR);     // Play error sound
             }
         }
     }
@@ -168,7 +170,7 @@ public class Sokoban extends GameFramework {
                 hasCompletedLevel();
             }
             else {
-                // Play error sound
+                playSound(SOUND_ERROR);     // Play error sound
             }
         }
     }
@@ -190,7 +192,7 @@ public class Sokoban extends GameFramework {
                     hasCompletedLevel();
                 }
                 else {
-                    // Play error sound
+                    playSound(SOUND_ERROR);     // Play error sound
                 }
                 break;
             case STATUS_GAME_PAUSED:
@@ -217,7 +219,7 @@ public class Sokoban extends GameFramework {
                     hasCompletedLevel();
                 }
                 else {
-                    // Play error sound
+                    playSound(SOUND_ERROR);     // Play error sound
                 }
                 break;
             case STATUS_GAME_PAUSED:
@@ -234,6 +236,8 @@ public class Sokoban extends GameFramework {
             case STATUS_LEVEL_SELECTOR -> levelSelector(levelListDrawer.getSelection());
             case STATUS_GAME_PAUSED -> gamePaused(gameDrawer.getSelection());
             case STATUS_GAME_WIN -> gameWin(gameDrawer.getSelection());
+            default -> playSound(SOUND_ERROR);     // Play error sound
+
         }
     }
 
@@ -246,6 +250,7 @@ public class Sokoban extends GameFramework {
             }
             case STATUS_GAME -> pauseGame();
             case STATUS_GAME_PAUSED -> resumeGame();
+            default -> playSound(SOUND_ERROR);     // Play error sound
         }
     }
 

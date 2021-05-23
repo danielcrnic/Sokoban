@@ -27,7 +27,7 @@ public abstract class GameFramework implements InputObserver {
     private JComponent mainComponent;
     private JMenuBar menuBar;
 
-    private ArrayList<MediaPlayer> audioMediaPlayers;
+    private final ArrayList<MediaPlayer> audioMediaPlayers;
 
     // Methods for the GUI
     public abstract int getGUIWidth();
@@ -42,11 +42,6 @@ public abstract class GameFramework implements InputObserver {
     public abstract void pressedEnter();
     public abstract void pressedBack();
 
-    // TODO: This will have to be implemented later in the development
-    // These methods will be called when the player wants to undo/redo a move
-    // public abstract void undoMove();
-    // public abstract void redoMove();
-    
     /**
      * Constructor for the framework
      */
@@ -69,7 +64,7 @@ public abstract class GameFramework implements InputObserver {
 
         initializeInput();
 
-        new JFXPanel();     // Need to be initialized to be able to use the audioplayer
+        new JFXPanel();     // Need to be initialized to be able to use the audio player
     }
 
     /**
@@ -116,7 +111,6 @@ public abstract class GameFramework implements InputObserver {
         }
     }
 
-
     /**
      * Loads an object from a file stored locally. It also checks that the object loaded matches with the same type as
      * the one the user wants.
@@ -135,7 +129,7 @@ public abstract class GameFramework implements InputObserver {
             System.err.println("Could not find the file: '" + file.getAbsolutePath() + "'");
             return null;
         } catch (IOException | ClassNotFoundException e) {
-            System.err.println("The map was created with a older version than this, please recreate the map.");
+            System.err.println("The object was created with a older version than this, please recreate the object.");
             return null;
         }
     }
@@ -205,6 +199,10 @@ public abstract class GameFramework implements InputObserver {
         }
 
         audioMediaPlayers.get(index).setVolume(toSet);
+    }
+
+    public void toggleAutoplay(int index) {
+
     }
 
     /**

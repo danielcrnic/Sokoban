@@ -61,7 +61,7 @@ public class SaveFiles {
             e.printStackTrace();
         }
 
-        FileOutputStream fileOutputStream = new FileOutputStream("simple.lvl");
+        FileOutputStream fileOutputStream = new FileOutputStream("level5.lvl");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
         objectOutputStream.writeObject(level);
