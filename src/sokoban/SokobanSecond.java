@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -19,16 +20,19 @@ import static sokoban.SokobanSecond.GameDrawer.*;
 
 public class SokobanSecond extends GameFramework {
 
+    // --- Game information ---
     public static final String GAME_NAME = "Sokoban";
     public static final String VERSION = "V0.1";
     public static final String COPYRIGHT = "(C) 2021, Daniel Crnic and Alfred Mattsson";
 
+    // --- Paths to files ---
     public static final String PATH_TO_TEXTURES = "resources/textures/";
     public static final String PATH_TO_FONTS = "resources/fonts/";
     public static final String PATH_TO_SOUND_EFFECTS = "resources/sounds/";
     public static final String PATH_TO_MUSIC = "resources/music/";
     public static final String PATH_TO_LEVELS = "levels/";
 
+    // -- Selections for the menus ---
     public static final String[] MAIN_MENU_SELECTION = new String[]{"START QUEST", "SELECT LEVEL", "EXIT"};
     public static final String[] PAUSE_SELECTION = new String[]{"CONTINUE", "RESTART LEVEL", "BACK TO MAIN MENU"};
 
@@ -36,19 +40,23 @@ public class SokobanSecond extends GameFramework {
     public static final String[] WIN_QUEST_SELECTION = new String[]{"NEXT LEVEL", "BACK TO MAIN MENU"};
     public static final String[] WIN_QUEST_END_SELECTION = new String[]{"VIEW RESULT"};
 
-
     public static final String LEVEL_SELECTION_TITLE = "SELECT LEVEL";
     public static final String LEVEL_SELECTION_BOTTOM_BAR_TEXT = "ESC: TO GO BACK   ENTER: SELECT";
 
+    // --- The quest levels (where the first one is the first level) ---
     public static final String[] QUEST_LEVELS = new String[]{"simple5.lvl", "simple2.lvl", "simple7.lvl"};
     // public static final String[] QUEST_LEVELS = new String[]{"simple2.lvl", "simple7.lvl", "simple6.lvl", "simple.lvl",
     //         "simple3.lvl", "simple4.lvl", "simple8.lvl"};
 
+    // --- Status for different menus when controlling the application ---
     public static final int STATUS_MAIN_MENU = 0;
     public static final int STATUS_LEVEL_SELECTOR = 1;
     public static final int STATUS_GAME = 2;
     public static final int STATUS_GAME_PAUSED = 3;
     public static final int STATUS_GAME_WIN = 4;
+
+    // --- Variables for the sounds/music ---
+    public static int SOUND_DING;
 
     private final GameDrawer gameDrawer;
     private final MenuComponent mainMenuDrawer;
@@ -65,7 +73,7 @@ public class SokobanSecond extends GameFramework {
     private Color backgroundColor1;
     private Color backgroundColor2;
 
-    private boolean runningQuest, showEndingQuest;
+    private boolean runningQuest, showEndingQuest = false;
 
     private int gameTime, questLevel, numberOfTries;
     private int gameStatus;
@@ -73,7 +81,6 @@ public class SokobanSecond extends GameFramework {
     private int questTotalTime, questTotalCorrectMoves, questTotalIncorrectMoves, questTotalTries;
 
     private String levelLoaded;
-
 
     public SokobanSecond() {
         // Load fonts and texture, sounds, and music to the corresponding stuff
@@ -83,7 +90,7 @@ public class SokobanSecond extends GameFramework {
             pixelFont = new Font("Cantarell", Font.PLAIN, 12);
         }
 
-        loadTextures();
+        loadTextures();     // Load the textures
 
         // Filters out all non .lvl files and replaces '_' with spaces to show text better
         String[] lvlIndex = getFilesInDirectory(PATH_TO_LEVELS);
@@ -101,8 +108,7 @@ public class SokobanSecond extends GameFramework {
         levelDirectory = lvlDirectory.toArray(new String[0]);
         levelSelectionArray = selDirectory.toArray(new String[0]);
 
-        runningQuest = false;
-
+        // Create a timer that can increment a counter every second
         secondsTimer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -110,6 +116,13 @@ public class SokobanSecond extends GameFramework {
                 gameDrawer.repaint();
             }
         });
+
+        // Load the sounds
+        try {
+            SOUND_DING = loadSound(new File(PATH_TO_SOUND_EFFECTS + "select.mp3"));
+        } catch (NoSuchFileException e) {
+            e.printStackTrace();
+        }
 
         mainMenuDrawer = new MainMenuDrawer();
         levelListDrawer = new LevelSelectorDrawer();
@@ -165,11 +178,11 @@ public class SokobanSecond extends GameFramework {
         switch (gameStatus) {
             case STATUS_MAIN_MENU:
                 mainMenuDrawer.selectionMoveUp();
-                // FIXME: Add some ping sound or something
+                playSound(SOUND_DING);
                 break;
             case STATUS_LEVEL_SELECTOR:
                 levelListDrawer.selectionMoveUp();
-                // FIXME: Add some ping sound
+                playSound(SOUND_DING);
                 break;
             case STATUS_GAME:
                 if (level.goUp()) {
@@ -192,11 +205,11 @@ public class SokobanSecond extends GameFramework {
         switch (gameStatus) {
             case STATUS_MAIN_MENU:
                 mainMenuDrawer.selectionMoveDown();
-                // FIXME: Add some ping sound or something
+                playSound(SOUND_DING);
                 break;
             case STATUS_LEVEL_SELECTOR:
                 levelListDrawer.selectionMoveDown();
-                // FIXME: Add some ping sound
+                playSound(SOUND_DING);
                 break;
             case STATUS_GAME:
                 if (level.goDown()) {

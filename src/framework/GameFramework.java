@@ -142,14 +142,23 @@ public abstract class GameFramework implements InputObserver {
 
     /**
      * @param file
-     * @param index
+     * @return
      * @throws NoSuchFileException
      */
-    public void loadSound(File file, int index) throws NoSuchFileException {
+    public int loadSound(File file) throws NoSuchFileException {
         try {
             Media media = new Media(file.toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(media);
-            audioMediaPlayers.add(index, mediaPlayer);
+
+            mediaPlayer.setOnEndOfMedia(new Runnable() {
+                @Override
+                public void run() {
+                    mediaPlayer.stop();
+                }
+            });
+
+            audioMediaPlayers.add(mediaPlayer);
+            return audioMediaPlayers.size() - 1;
         }
         catch (MediaException e) {
             throw new NoSuchFileException(file.toURI().toString());
