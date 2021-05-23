@@ -151,7 +151,7 @@ public class Sokoban extends GameFramework {
         // Load the sounds
         try {
             SOUND_DING = loadSound(new File(PATH_TO_SOUND_EFFECTS + "select.mp3"));
-            SOUND_ERROR = loadSound(new File(PATH_TO_SOUND_EFFECTS + "error.mp3"));
+            SOUND_ERROR = loadSound(new File(PATH_TO_SOUND_EFFECTS + "error.wav"));
             SOUND_BOX_IN_HOLE = loadSound(new File(PATH_TO_SOUND_EFFECTS + "boxInHole.mp3"));
             SOUND_BOX_NOT_IN_HOLE = loadSound(new File(PATH_TO_SOUND_EFFECTS + "boxNotInHole.wav"));
             SOUND_WIN = loadSound(new File(PATH_TO_SOUND_EFFECTS + "win.wav"));
@@ -291,7 +291,9 @@ public class Sokoban extends GameFramework {
     // --- Private methods ---
 
     /**
-     * @param selection
+     * Controls the main menu requests that are made
+     *
+     * @param selection The selection that the user has choosen (index value from the array)
      */
     private void mainMenu(int selection) {
         switch (selection) {
@@ -299,14 +301,14 @@ public class Sokoban extends GameFramework {
                 // Start normal quest
                 QUEST_LEVELS = LONG_QUEST_LEVELS;
                 if (!startQuest()) {
-                    // Throw an error message
+                    System.err.println("An error has occurred!");
                 }
                 break;
             case 1:
                 // Start normal quest
                 QUEST_LEVELS = SHORT_QUEST_LEVELS;
                 if (!startQuest()) {
-                    // Throw an error message
+                    System.err.println("An error has occurred!");
                 }
                 break;
             case 2:
