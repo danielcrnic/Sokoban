@@ -191,7 +191,7 @@ public class Level implements Serializable {
                         }
                         else {
                             o.changeToDefaultTexture();
-                            o.changeToDefaultTexture();
+                            obj.changeToDefaultTexture();
                         }
 
                         obj.setX(obj.getX() + x);
@@ -203,15 +203,15 @@ public class Level implements Serializable {
                     }
                 }
                 // else {
-                //     // FIXME: Den kommer ju aldrig komma in hit ju...
-                //     if (!o.isSteppable()) {
-                //         foundMatching = true;
-                //         if (push(o, x, y,true)) {
-                //             obj.setX(obj.getX() + x);
-                //             obj.setY(obj.getY() + y);
-                //             return true;
-                //         }
-                //     }
+                //     // // FIXME: Den kommer ju aldrig komma in hit ju...
+                //     // if (!o.isSteppable()) {
+                //     //     foundMatching = true;
+                //     //     if (push(o, x, y,true)) {
+                //     //         obj.setX(obj.getX() + x);
+                //     //         obj.setY(obj.getY() + y);
+                //     //         return true;
+                //     //     }
+                //     // }
                 // }
             }
         }
@@ -231,7 +231,7 @@ public class Level implements Serializable {
                         }
                         else {
                             o.changeToDefaultTexture();
-                            o.changeToDefaultTexture();
+                            obj.changeToDefaultTexture();
                         }
 
                         obj.setX(obj.getX() + x);
