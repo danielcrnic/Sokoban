@@ -97,6 +97,7 @@ public class Sokoban extends GameFramework {
     private String levelLoaded;
 
     public Sokoban() {
+        super(true);
         // Load fonts and texture, sounds, and music to the corresponding stuff
         pixelFont = loadFont(new File(PATH_TO_FONTS + "Pixeled.ttf"));
         if (pixelFont == null) {

@@ -16,7 +16,8 @@ public class FrameworkTester extends GameFramework {
     private int song2;
     private int save;
 
-    public FrameworkTester() {
+    public FrameworkTester()
+    {   super(true);
         JPanel label = new JPanel();
         label.setBackground(Color.RED);
 

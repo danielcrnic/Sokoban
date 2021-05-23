@@ -23,6 +23,7 @@ public abstract class GameFramework implements InputObserver {
 
     // Objects that will hold information
     private final JFrame frame;
+    private InputSubject keySubject;
 
     private JComponent mainComponent;
     private JMenuBar menuBar;
@@ -45,8 +46,7 @@ public abstract class GameFramework implements InputObserver {
     /**
      * Constructor for the framework
      */
-    public GameFramework() {
-        // Test the audio capability
+    public GameFramework(boolean loadKeyboardListener) {
         audioMediaPlayers = new ArrayList<>();
 
         frame = new JFrame();
@@ -62,7 +62,10 @@ public abstract class GameFramework implements InputObserver {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        initializeInput();
+        keySubject = new InputSubject(this);
+        if (loadKeyboardListener) {
+            new KeyboardListener(keySubject);
+        }
 
         new JFXPanel();     // Need to be initialized to be able to use the audio player
     }
@@ -276,6 +279,13 @@ public abstract class GameFramework implements InputObserver {
     }
 
     /**
+     * @return A InputSubject that can be sent to input listeners to be able to send commands to the game
+     */
+    public InputSubject getInputSubject() {
+        return keySubject;
+    }
+
+    /**
      * Triggers actions when the user presses a button or does in a way a move which get registered by the subject.
      *
      * @param button The button being called from one (or more) subjects
@@ -294,8 +304,4 @@ public abstract class GameFramework implements InputObserver {
         }
     }
 
-    private void initializeInput() {
-        InputSubject keySubject = new InputSubject(this);
-        KeyboardListener keyboardListener = new KeyboardListener(keySubject);
-    }
 }
