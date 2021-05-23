@@ -1,5 +1,6 @@
 package sokoban;
 
+import framework.RequiredLoad;
 import framework.drawcomponents.GameComponent;
 import framework.GameFramework;
 import framework.drawcomponents.ListComponent;
@@ -80,8 +81,8 @@ public class Sokoban extends GameFramework {
 
     private Font pixelFont;
     private BufferedImage[] textures;
-    private final String[] levelDirectory;
-    private final String[] levelSelectionArray;
+    private String[] levelDirectory;
+    private String[] levelSelectionArray;
 
     private Color backgroundColor1;
     private Color backgroundColor2;
@@ -98,6 +99,7 @@ public class Sokoban extends GameFramework {
 
     public Sokoban() {
         super(true);
+
         // Load fonts and texture, sounds, and music to the corresponding stuff
         pixelFont = loadFont(new File(PATH_TO_FONTS + "Pixeled.ttf"));
         if (pixelFont == null) {
@@ -105,23 +107,7 @@ public class Sokoban extends GameFramework {
             pixelFont = new Font("Cantarell", Font.PLAIN, 12);
         }
 
-        loadTextures();     // Load the textures
 
-        // Filters out all non .lvl files and replaces '_' with spaces to show text better
-        String[] lvlIndex = getFilesInDirectory(PATH_TO_LEVELS);
-        ArrayList<String> lvlDirectory = new ArrayList<>();
-        ArrayList<String> selDirectory = new ArrayList<>();
-
-        for (String l : lvlIndex) {
-            if (l.endsWith(".lvl")) {
-                lvlDirectory.add(l);
-
-                String newString = l.replace('_',' ').substring(0, l.length() - 4);
-                selDirectory.add(newString);
-            }
-        }
-        levelDirectory = lvlDirectory.toArray(new String[0]);
-        levelSelectionArray = selDirectory.toArray(new String[0]);
 
         // Create a timer that can increment a counter every second
         secondsTimer = new Timer(1000, new ActionListener() {
@@ -133,33 +119,7 @@ public class Sokoban extends GameFramework {
         });
 
         // Load the music directory and initialize the player for the music
-        try {
-            String[] musicDirectory = getFilesInDirectory(PATH_TO_MUSIC);
-            if (musicDirectory == null) {
-                SOUND_MUSIC = -1;
-            }
-            else {
-                musicList = new int[musicDirectory.length];
-                for (int i = 0; i < musicList.length; i++) {
-                    musicList[i] = loadSound(new File(PATH_TO_MUSIC + musicDirectory[i]));
-                }
-            }
-        } catch (NoSuchFileException e) {
-            SOUND_MUSIC = -1;
-            e.printStackTrace();
-        }
 
-        // Load the sounds
-        try {
-            SOUND_DING = loadSound(new File(PATH_TO_SOUND_EFFECTS + "select.mp3"));
-            SOUND_ERROR = loadSound(new File(PATH_TO_SOUND_EFFECTS + "error.wav"));
-            SOUND_BOX_IN_HOLE = loadSound(new File(PATH_TO_SOUND_EFFECTS + "boxInHole.mp3"));
-            SOUND_BOX_NOT_IN_HOLE = loadSound(new File(PATH_TO_SOUND_EFFECTS + "boxNotInHole.wav"));
-            SOUND_WIN = loadSound(new File(PATH_TO_SOUND_EFFECTS + "win.wav"));
-            SOUND_THE_END = loadSound(new File(PATH_TO_SOUND_EFFECTS + "theEnd.wav"));
-        } catch (NoSuchFileException e) {
-            e.printStackTrace();
-        }
 
         mainMenuDrawer = new MainMenuDrawer();
         levelListDrawer = new LevelSelectorDrawer();
@@ -450,6 +410,7 @@ public class Sokoban extends GameFramework {
         return true;
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean startQuest() {
         runningQuest = true;
 
@@ -538,7 +499,8 @@ public class Sokoban extends GameFramework {
         backgroundColor2 = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
     }
 
-    private void loadTextures() {
+    @RequiredLoad
+    public void loadTextures() {
         textures = new BufferedImage[13];
         textures[TEXTURE_PLAYER] = loadTexture(new File(PATH_TO_TEXTURES + "player.png"));
         textures[TEXTURE_WALL] = loadTexture(new File(PATH_TO_TEXTURES + "wall.png"));
@@ -556,6 +518,48 @@ public class Sokoban extends GameFramework {
         textures[TEXTURE_CIRCLE] = loadTexture(new File(PATH_TO_TEXTURES + "circle.png"));
         textures[TEXTURE_CIRCLE_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "circleHole.png"));
         textures[TEXTURE_CIRCLE_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "circleMarked.png"));
+    }
+
+    @RequiredLoad
+    public void loadAudio() throws NoSuchFileException {
+            String[] musicDirectory = getFilesInDirectory(PATH_TO_MUSIC);
+            if (musicDirectory == null) {
+                SOUND_MUSIC = -1;
+            }
+            else {
+                musicList = new int[musicDirectory.length];
+                for (int i = 0; i < musicList.length; i++) {
+                    musicList[i] = loadSound(new File(PATH_TO_MUSIC + musicDirectory[i]));
+                }
+            }
+            SOUND_MUSIC = -1;
+
+        // Load the sounds
+        SOUND_DING = loadSound(new File(PATH_TO_SOUND_EFFECTS + "select.mp3"));
+        SOUND_ERROR = loadSound(new File(PATH_TO_SOUND_EFFECTS + "error.wav"));
+        SOUND_BOX_IN_HOLE = loadSound(new File(PATH_TO_SOUND_EFFECTS + "boxInHole.mp3"));
+        SOUND_BOX_NOT_IN_HOLE = loadSound(new File(PATH_TO_SOUND_EFFECTS + "boxNotInHole.wav"));
+        SOUND_WIN = loadSound(new File(PATH_TO_SOUND_EFFECTS + "win.wav"));
+        SOUND_THE_END = loadSound(new File(PATH_TO_SOUND_EFFECTS + "theEnd.wav"));
+    }
+
+    @RequiredLoad
+    public void loadLevelDirectory() {
+        // Filters out all non .lvl files and replaces '_' with spaces to show text better
+        String[] lvlIndex = getFilesInDirectory(PATH_TO_LEVELS);
+        ArrayList<String> lvlDirectory = new ArrayList<>();
+        ArrayList<String> selDirectory = new ArrayList<>();
+
+        for (String l : lvlIndex) {
+            if (l.endsWith(".lvl")) {
+                lvlDirectory.add(l);
+
+                String newString = l.replace('_',' ').substring(0, l.length() - 4);
+                selDirectory.add(newString);
+            }
+        }
+        levelDirectory = lvlDirectory.toArray(new String[0]);
+        levelSelectionArray = selDirectory.toArray(new String[0]);
     }
 
     /**

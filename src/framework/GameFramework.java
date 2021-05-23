@@ -13,6 +13,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 
@@ -68,6 +70,21 @@ public abstract class GameFramework implements InputObserver {
         }
 
         new JFXPanel();     // Need to be initialized to be able to use the audio player
+
+        // Call methods that needs to be loaded, if the methods cannot be called. The framework will exit
+        Class<?> clazz = getClass();
+
+        for (Method m : clazz.getDeclaredMethods()) {
+            if (m.isAnnotationPresent(RequiredLoad.class)) {
+                try {
+                    m.invoke(this);
+                    System.out.println("Loaded " + m.toString());
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    System.out.println("Could not load " + m.toString());
+                    System.exit(-1);
+                }
+            }
+        }
     }
 
     /**
