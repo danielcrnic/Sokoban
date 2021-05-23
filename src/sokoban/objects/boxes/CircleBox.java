@@ -4,8 +4,8 @@ import sokoban.objects.CusObj;
 
 import java.awt.*;
 
-import static sokoban.SokobanSecond.GameDrawer.TEXTURE_CIRCLE;
-import static sokoban.SokobanSecond.GameDrawer.TEXTURE_CIRCLE_MARKED;
+import static sokoban.Sokoban.GameDrawer.TEXTURE_CIRCLE;
+import static sokoban.Sokoban.GameDrawer.TEXTURE_CIRCLE_MARKED;
 
 
 public class CircleBox extends CusObj {

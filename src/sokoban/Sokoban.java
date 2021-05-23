@@ -16,9 +16,9 @@ import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static sokoban.SokobanSecond.GameDrawer.*;
+import static sokoban.Sokoban.GameDrawer.*;
 
-public class SokobanSecond extends GameFramework {
+public class Sokoban extends GameFramework {
 
     // --- Game information ---
     public static final String GAME_NAME = "Sokoban";
@@ -82,7 +82,7 @@ public class SokobanSecond extends GameFramework {
 
     private String levelLoaded;
 
-    public SokobanSecond() {
+    public Sokoban() {
         // Load fonts and texture, sounds, and music to the corresponding stuff
         pixelFont = loadFont(new File(PATH_TO_FONTS + "Pixeled.ttf"));
         if (pixelFont == null) {

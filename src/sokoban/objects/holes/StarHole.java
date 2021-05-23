@@ -4,7 +4,7 @@ import sokoban.objects.CusObj;
 
 import java.awt.*;
 
-import static sokoban.SokobanSecond.GameDrawer.TEXTURE_STAR_HOLE;
+import static sokoban.Sokoban.GameDrawer.TEXTURE_STAR_HOLE;
 
 public class StarHole extends CusObj {
 

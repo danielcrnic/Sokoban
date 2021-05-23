@@ -4,8 +4,8 @@ import sokoban.objects.CusObj;
 
 import java.awt.*;
 
-import static sokoban.SokobanSecond.GameDrawer.TEXTURE_SQUARE;
-import static sokoban.SokobanSecond.GameDrawer.TEXTURE_SQUARE_MARKED;
+import static sokoban.Sokoban.GameDrawer.TEXTURE_SQUARE;
+import static sokoban.Sokoban.GameDrawer.TEXTURE_SQUARE_MARKED;
 
 public class SquareBox extends CusObj {
 

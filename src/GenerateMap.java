@@ -1,5 +1,5 @@
 import sokoban.Level;
-import sokoban.SokobanSecond;
+import sokoban.Sokoban;
 import sokoban.objects.CusObj;
 import sokoban.objects.FloorObject;
 import sokoban.objects.PlayerObject;
@@ -18,7 +18,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static sokoban.SokobanSecond.GameDrawer.*;
+import static sokoban.Sokoban.GameDrawer.*;
 
 public class GenerateMap {
 
@@ -140,7 +140,7 @@ public class GenerateMap {
                 System.exit(-1);
             }
         }
-        new SokobanSecond();
+        new Sokoban();
 
     }
 

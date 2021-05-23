@@ -1,10 +1,10 @@
-import sokoban.SokobanSecond;
+import sokoban.Sokoban;
 
 public class StartSokoban {
 
     public static void main(String[] args) {
         // Add here the sokoban
-        SokobanSecond sokobanSecond = new SokobanSecond();
+        Sokoban sokoban = new Sokoban();
     }
 
 }

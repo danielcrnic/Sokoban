@@ -12,7 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import static sokoban.SokobanSecond.GameDrawer.*;
+import static sokoban.Sokoban.GameDrawer.*;
 
 
 public class SaveFiles {
