@@ -2,10 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Level Updated">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_openjfx_javafx_media_16.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DT4014-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DT4014-Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javafx-swt.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javafx.base.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javafx.controls.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javafx.fxml.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javafx.graphics.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javafx.media.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javafx.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javafx.swing.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javafx.web.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libavplugin-54.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libavplugin-56.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libavplugin-57.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libavplugin-ffmpeg-56.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libavplugin-ffmpeg-57.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libavplugin-ffmpeg-58.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libdecora_sse.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libfxplugins.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libglass.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libglassgtk2.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libglassgtk3.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libgstreamer-lite.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libjavafx_font.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libjavafx_font_freetype.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libjavafx_font_pango.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libjavafx_iio.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libjfxmedia.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libjfxwebkit.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libprism_common.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libprism_es2.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libprism_sw.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/AudioTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/GameFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/GameFramework.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Sokoban.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +112,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AudioTest">
+  <component name="RunManager" selected="Application.StartSokoban">
     <configuration name="AudioTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="framework.AudioTest" />
       <module name="DT4014-Project" />
@@ -129,8 +162,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.AudioTest" />
         <item itemvalue="Application.StartSokoban" />
+        <item itemvalue="Application.AudioTest" />
         <item itemvalue="Application.SoundPlayer" />
         <item itemvalue="Application.FrameworkTester" />
         <item itemvalue="Application.GenerateMap" />

@@ -169,6 +169,10 @@ public abstract class GameFramework implements InputObserver {
      * @param index
      */
     public void playSound(int index) {
+        if (audioMediaPlayers.get(index).getStatus() == MediaPlayer.Status.PLAYING) {
+            audioMediaPlayers.get(index).seek(audioMediaPlayers.get(index).getStartTime());
+        }
+
         audioMediaPlayers.get(index).play();
     }
 

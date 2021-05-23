@@ -119,7 +119,7 @@ public class Sokoban extends GameFramework {
 
         // Load the sounds
         try {
-            SOUND_DING = loadSound(new File(PATH_TO_SOUND_EFFECTS + "select.mp3"));
+            SOUND_DING = loadSound(new File(PATH_TO_SOUND_EFFECTS + "select2.mp3"));
         } catch (NoSuchFileException e) {
             e.printStackTrace();
         }
