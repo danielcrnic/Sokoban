@@ -3,8 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Level Updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/framework/GameFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/GameFramework.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Sokoban.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/StartSokoban.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/Load.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/holes/holes.plantuml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SaveFiles.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StartSokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/StartSokoban.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/holes/holes.plantuml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,11 +43,10 @@
     <setting file="file://$PROJECT_DIR$/src/framework/GameFramework.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputObserver.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputSubject.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/SaveFiles.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/GenerateMap.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/Level.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/Component.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/StartSokoban.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/StartSokoban.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/objects/boxes/SquareBox.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/MenuComponent.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/objects/boxes/CircleBox.java" root0="FORCE_HIGHLIGHTING" />
@@ -80,7 +85,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.StartSokoban">
+  <component name="RunManager" selected="Application.StartMemory">
     <configuration name="AudioTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="framework.AudioTest" />
       <module name="DT4014-Project" />
@@ -90,13 +95,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FrameworkTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="framework.FrameworkTester" />
-      <module name="DT4014-Project" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -121,8 +119,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StartMemory" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="memory.StartMemory" />
+      <module name="DT4014-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="memory.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="StartSokoban" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="StartSokoban" />
+      <option name="MAIN_CLASS_NAME" value="sokoban.StartSokoban" />
       <module name="DT4014-Project" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -130,11 +141,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StartMemory" />
         <item itemvalue="Application.StartSokoban" />
         <item itemvalue="Application.GenerateMap" />
         <item itemvalue="Application.AudioTest" />
         <item itemvalue="Application.SoundPlayer" />
-        <item itemvalue="Application.FrameworkTester" />
       </list>
     </recent_temporary>
   </component>

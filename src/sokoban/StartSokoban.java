@@ -1,3 +1,5 @@
+package sokoban;
+
 import sokoban.Sokoban;
 
 public class StartSokoban {
