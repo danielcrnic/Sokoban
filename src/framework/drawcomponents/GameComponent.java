@@ -162,11 +162,15 @@ public abstract class GameComponent extends Component {
                 if (backgroundLayout[i][j] != TEXTURE_NONE) {
                     g2.drawImage(getTexture(backgroundLayout[i][j]), null, x, y);
                 }
-                if (layer1[i][j] != TEXTURE_NONE) {
-                    g2.drawImage(getTexture(layer1[i][j]), null, x, y);
+                if (layer1 != null) {
+                    if (layer1[i][j] != TEXTURE_NONE) {
+                        g2.drawImage(getTexture(layer1[i][j]), null, x, y);
+                    }
                 }
-                if (layer2[i][j] != TEXTURE_NONE) {
-                    g2.drawImage(getTexture(layer2[i][j]), null, x, y);
+                if (layer2 != null) {
+                    if (layer2[i][j] != TEXTURE_NONE) {
+                        g2.drawImage(getTexture(layer2[i][j]), null, x, y);
+                    }
                 }
                 x += getTexture(1).getWidth();
             }

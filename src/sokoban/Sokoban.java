@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -500,7 +501,7 @@ public class Sokoban extends GameFramework {
     }
 
     @RequiredLoad
-    public void loadTextures() {
+    private void loadTextures() throws IOException {
         textures = new BufferedImage[13];
         textures[TEXTURE_PLAYER] = loadTexture(new File(PATH_TO_TEXTURES + "player.png"));
         textures[TEXTURE_WALL] = loadTexture(new File(PATH_TO_TEXTURES + "wall.png"));
@@ -521,7 +522,7 @@ public class Sokoban extends GameFramework {
     }
 
     @RequiredLoad
-    public void loadAudio() throws NoSuchFileException {
+    private void loadAudio() throws NoSuchFileException {
             String[] musicDirectory = getFilesInDirectory(PATH_TO_MUSIC);
             if (musicDirectory == null) {
                 SOUND_MUSIC = -1;
@@ -544,7 +545,7 @@ public class Sokoban extends GameFramework {
     }
 
     @RequiredLoad
-    public void loadLevelDirectory() {
+    private void loadLevelDirectory() {
         // Filters out all non .lvl files and replaces '_' with spaces to show text better
         String[] lvlIndex = getFilesInDirectory(PATH_TO_LEVELS);
         ArrayList<String> lvlDirectory = new ArrayList<>();

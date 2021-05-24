@@ -77,6 +77,7 @@ public abstract class GameFramework implements InputObserver {
         for (Method m : clazz.getDeclaredMethods()) {
             if (m.isAnnotationPresent(RequiredLoad.class)) {
                 try {
+                    m.setAccessible(true);
                     m.invoke(this);
                     System.out.println("Loaded " + m.toString());
                 } catch (IllegalAccessException | InvocationTargetException e) {
@@ -104,14 +105,8 @@ public abstract class GameFramework implements InputObserver {
      * @return An BufferedImage with the image, if null is returned it means that it could not either find the file
      *         or there was a problem with loading that image.
      */
-    public BufferedImage loadTexture(File file) {
-        try {
-            return ImageIO.read(file);
-        }
-        catch (IOException e) {
-            System.err.println("Had an problem loading the texture!");
-            return null;
-        }
+    public BufferedImage loadTexture(File file) throws IOException {
+        return ImageIO.read(file);
     }
 
     /**
