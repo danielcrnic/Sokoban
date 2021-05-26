@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Level Updated">
-      <change beforePath="$PROJECT_DIR$/src/framework/GameFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/GameFramework.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Sokoban.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,11 +225,6 @@
           <url>file://$PROJECT_DIR$/src/framework/drawcomponent/MainMenuComponent.java</url>
           <line>61</line>
           <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sokoban/Sokoban.java</url>
-          <line>540</line>
-          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

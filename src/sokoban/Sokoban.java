@@ -67,7 +67,6 @@ public class Sokoban extends GameFramework {
     public static String SOUND_BOX_NOT_IN_HOLE = "NOT_IN_HOLE";
     public static String SOUND_WIN = "WIN";
     public static String SOUND_THE_END = "END";
-    public static String BRUH = "BRUH";
 
     static String PIXEL_FONT = "pixelfont";
 
@@ -198,7 +197,7 @@ public class Sokoban extends GameFramework {
         switch (gameStatus) {
             case STATUS_MAIN_MENU:
                 mainMenuDrawer.selectionMoveDown();
-                playSound(BRUH);
+                playSound(SOUND_DING);
                 break;
             case STATUS_LEVEL_SELECTOR:
                 levelListDrawer.selectionMoveDown();
@@ -538,7 +537,6 @@ public class Sokoban extends GameFramework {
         loadSound(new File(PATH_TO_SOUND_EFFECTS + "boxNotInHole.wav"), SOUND_BOX_NOT_IN_HOLE);
         loadSound(new File(PATH_TO_SOUND_EFFECTS + "win.wav"), SOUND_WIN);
         loadSound(new File(PATH_TO_SOUND_EFFECTS + "theEnd.wav"), SOUND_THE_END);
-        loadSound(new File(PATH_TO_SOUND_EFFECTS + "select.mp3"), BRUH);
     }
 
     @RequiredLoad
