@@ -116,10 +116,14 @@ public abstract class GameFramework implements InputObserver {
 
 
     /**
-     * @param file
-     * @param index
-     * @throws Exception
-     * @throws IOException
+     * Loads the textures into a singleton based storage which prevents files from being duplicated. If multiple
+     * loadings are made with the same file but different indexes, it will still accept but will instead merge the
+     * indexes with each others (this reduces unnecessary initializations of a same texture).
+     *
+     * @param file The file to be loaded
+     * @param index The index of the file (has to be unique!)
+     * @throws Exception If the index already exists
+     * @throws IOException If there is a problem loading the texture (file not found or have not access to file)
      */
     public void loadTexture(File file, String index) throws Exception, IOException {
         // Check if file already exits
