@@ -138,8 +138,11 @@ public abstract class GameFramework implements InputObserver {
     }
 
     /**
-     * @param index
-     * @return
+     * Returns the texture that is is loaded by the index. If the texture does not exist (index does not point to
+     * anything) it will return null.
+     *
+     * @param index The index of the stored texture
+     * @return The texture as a BufferedImage
      */
     public BufferedImage returnTexture(String index) {
         return textures.getObject(index);
