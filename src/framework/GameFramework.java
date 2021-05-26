@@ -157,10 +157,10 @@ public abstract class GameFramework implements InputObserver {
      * collide with other fonts (to have same index)
      *
      * @param file The filepath of where the font is located.
-     * @param index
-     * @throws Exception
-     * @throws IOException
-     * @throws FontFormatException
+     * @param index The index of the font to be (it has to be unique)
+     * @throws Exception If the index already exists
+     * @throws IOException If there is a problem loading the font (file not found or have not access to file)
+     * @throws FontFormatException Problems with font formatting
      */
     public void loadFont(File file, String index) throws Exception, IOException, FontFormatException {
         // Check if file already exits
