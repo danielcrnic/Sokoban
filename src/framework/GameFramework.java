@@ -175,8 +175,10 @@ public abstract class GameFramework implements InputObserver {
     }
 
     /**
-     * @param index
-     * @return
+     * Returns the font from the list by the defined index (the font has to been loaded first by the loadFont method)
+     *
+     * @param index The index of the font
+     * @return The font if the index exists or null if nothing was found
      */
     public Font getFont(String index) {
         return fonts.getObject(index);
