@@ -34,8 +34,6 @@ public abstract class GameFramework implements InputObserver {
     private final Storage<Font> fonts;
     private final Storage<MediaPlayer> mediaPlayers;
 
-
-
     // Methods for the GUI
     public abstract int getGUIWidth();
     public abstract int getGUIHeight();
@@ -113,7 +111,6 @@ public abstract class GameFramework implements InputObserver {
     public String[] getFilesInDirectory(String path) throws NullPointerException {
         return new File(path + ".").list();
     }
-
 
     /**
      * Loads the textures into a singleton based storage which prevents files from being duplicated. If multiple
@@ -208,9 +205,17 @@ public abstract class GameFramework implements InputObserver {
     }
 
     /**
-     * @param file
-     * @return
-     * @throws NoSuchFileException
+     * Loads a audio file into the music player where then the index can be used to control playback of the audio. The
+     * audio playback is provided by the JavaFX library (OpenJFX) which supports varieties of audio files (including
+     * .mp3 and .wav files).
+     *
+     * More information about the JavaFX MediaPlayer can be found on this site:
+     * https://docs.oracle.com/javafx/2/api/javafx/scene/media/MediaPlayer.html
+     *
+     * @param file The filepath to the audio
+     * @param index Index (or "tag") for the specific audio (has to be unique)
+     * @throws Exception If the index already exists
+     * @throws NoSuchFileException Throws if the file was not found or it does not have access.
      */
     public void loadSound(File file, String index) throws Exception, NoSuchFileException {
         // Check if file already exits
