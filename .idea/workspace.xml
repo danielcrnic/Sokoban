@@ -2,16 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Level Updated">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/SaveFiles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/memory/Memory$Game.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/memory/Memory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/memory/StartMemory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/fifteenpuzzle/FifteenPuzzle$Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/fifteenpuzzle/FifteenPuzzle$Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/fifteenpuzzle/FifteenPuzzle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/fifteenpuzzle/FifteenPuzzle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/FrameworkTester.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/InputObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/InputObserver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/InputSubject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/InputSubject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/listeners/KeyboardListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/inputs/listeners/KeyboardListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$GameDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$GameDrawer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/textures/blank.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/textures/blank.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/textures/player.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/textures/player.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/textures/wall.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/textures/wall.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GenerateMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenerateMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fifteenpuzzle/FifteenPuzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fifteenpuzzle/FifteenPuzzle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/FrameworkTester.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/framework/GameFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/GameFramework.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/framework/RequiredLoad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/RequiredLoad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/framework/drawcomponents/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponents/GameComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/inputs/InputObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/inputs/InputObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/inputs/InputSubject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/inputs/InputSubject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/inputs/listeners/KeyboardListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/inputs/listeners/KeyboardListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Sokoban.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/boxes/CircleBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/boxes/CircleBox.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,27 +52,26 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/sokoban/Sokoban.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/ListComponent.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/PlayerObject.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/GameComponent.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/GameFramework.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputObserver.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/FloorObject.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputSubject.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/StaticObject.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/GenerateMap.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/Level.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/Component.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/Sokoban.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/StartSokoban.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/boxes/SquareBox.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/MenuComponent.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/boxes/CircleBox.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/holes/SquareHole.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/holes/CircleHole.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/FrameworkTester.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/holes/StarHole.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/Level.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/StaticObject.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/PlayerObject.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/FloorObject.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/objects/boxes/StarBox.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/boxes/CircleBox.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/boxes/SquareBox.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/holes/SquareHole.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/holes/StarHole.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/holes/CircleHole.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/MenuComponent.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/GameComponent.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/ListComponent.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/Component.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1s3p0b49JY6LcckDiCZvTqkDKNf" />
   <component name="ProjectViewState">
@@ -73,10 +86,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -89,13 +105,24 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FifteenPuzzle">
+  <component name="RunManager" selected="Application.StartSokoban">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AudioTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="framework.AudioTest" />
       <module name="DT4014-Project" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="framework.*" />
+          <option name="PATTERN" value="framework.storage.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -145,8 +172,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FifteenPuzzle" />
         <item itemvalue="Application.StartSokoban" />
+        <item itemvalue="Application.FifteenPuzzle" />
         <item itemvalue="Application.StartMemory" />
         <item itemvalue="Application.GenerateMap" />
         <item itemvalue="Application.AudioTest" />
@@ -161,6 +188,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1620110904494</updated>
+      <workItem from="1621952698017" duration="1478000" />
     </task>
     <task id="LOCAL-00001" summary="Lite Trasig bufferedImage">
       <created>1620113283162</created>
@@ -193,6 +221,9 @@
     <option name="localTasksCounter" value="5" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -217,6 +248,11 @@
           <url>file://$PROJECT_DIR$/src/framework/drawcomponent/MainMenuComponent.java</url>
           <line>61</line>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sokoban/Sokoban.java</url>
+          <line>540</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

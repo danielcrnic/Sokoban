@@ -13,8 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
@@ -49,7 +47,6 @@ public class Sokoban extends GameFramework {
 
     // --- The quest levels (where the first one is the first level) ---
     public static String[] QUEST_LEVELS;
-    // public static final String[] QUEST_LEVELS = new String[]{"level1.lvl", "level2.lvl", "level3.lvl"};
     public static final String[] LONG_QUEST_LEVELS = new String[]{"level1.lvl", "level2.lvl", "level3.lvl", "level4.lvl", "level5.lvl",
             "level6.lvl", "level7.lvl", "level8.lvl"};
     public static final String[] SHORT_QUEST_LEVELS = new String[]{"level1.lvl", "level2.lvl", "level3.lvl", "level5.lvl"};
@@ -62,53 +59,54 @@ public class Sokoban extends GameFramework {
     public static final int STATUS_GAME_WIN = 4;
 
     // --- Variables for the sounds/music ---
-    public static int SOUND_MUSIC;
+    public static String SOUND_MUSIC;
 
-    public static int SOUND_DING;
-    public static int SOUND_ERROR;
-    public static int SOUND_BOX_IN_HOLE;
-    public static int SOUND_BOX_NOT_IN_HOLE;
-    public static int SOUND_WIN;
-    public static int SOUND_THE_END;
+    public static String SOUND_DING = "DING";
+    public static String SOUND_ERROR = "ERROR";
+    public static String SOUND_BOX_IN_HOLE = "IN_HOLE";
+    public static String SOUND_BOX_NOT_IN_HOLE = "NOT_IN_HOLE";
+    public static String SOUND_WIN = "WIN";
+    public static String SOUND_THE_END = "END";
+    public static String BRUH = "BRUH";
 
-    private int[] musicList;
+    static String PIXEL_FONT = "pixelfont";
 
-    private final GameDrawer gameDrawer;
-    private final MenuComponent mainMenuDrawer;
-    private final ListComponent levelListDrawer;
+    private String[] musicList;
 
-    private Level level;
+    GameDrawer gameDrawer;
+    MenuComponent mainMenuDrawer;
+    ListComponent levelListDrawer;
+
+    static Level level;
     private final Timer secondsTimer;
 
-    private Font pixelFont;
-    private BufferedImage[] textures;
+    static Font pixelFont;
     private String[] levelDirectory;
-    private String[] levelSelectionArray;
+    static String[] levelSelectionArray;
 
-    private Color backgroundColor1;
-    private Color backgroundColor2;
+    static Color backgroundColor1;
+    static Color backgroundColor2;
 
-    private boolean runningQuest, showEndingQuest = false;
+    static boolean runningQuest;
+    static boolean showEndingQuest = false;
 
-    private int gameTime, questLevel, numberOfTries;
-    private int gameStatus;
+    static int gameTime;
+    static int questLevel;
+    static int numberOfTries;
+    static int gameStatus;
     private int numberOfHolesBefore = 0;
 
-    private int questTotalTime, questTotalCorrectMoves, questTotalIncorrectMoves, questTotalTries;
+    static int questTotalTime;
+    static int questTotalCorrectMoves;
+    static int questTotalIncorrectMoves;
+    static int questTotalTries;
 
-    private String levelLoaded;
+    static String levelLoaded;
 
     public Sokoban() {
         super(true);
 
-        // Load fonts and texture, sounds, and music to the corresponding stuff
-        pixelFont = loadFont(new File(PATH_TO_FONTS + "Pixeled.ttf"));
-        if (pixelFont == null) {
-            // Could not find/load the fond
-            pixelFont = new Font("Cantarell", Font.PLAIN, 12);
-        }
-
-
+        pixelFont = getFont(PIXEL_FONT);
 
         // Create a timer that can increment a counter every second
         secondsTimer = new Timer(1000, new ActionListener() {
@@ -119,13 +117,10 @@ public class Sokoban extends GameFramework {
             }
         });
 
-        // Load the music directory and initialize the player for the music
-
-
         mainMenuDrawer = new MainMenuDrawer();
         levelListDrawer = new LevelSelectorDrawer();
         gameDrawer = new GameDrawer();
-
+        
         gameStatus = STATUS_MAIN_MENU;
         setComponent(mainMenuDrawer);
     }
@@ -203,7 +198,7 @@ public class Sokoban extends GameFramework {
         switch (gameStatus) {
             case STATUS_MAIN_MENU:
                 mainMenuDrawer.selectionMoveDown();
-                playSound(SOUND_DING);
+                playSound(BRUH);
                 break;
             case STATUS_LEVEL_SELECTOR:
                 levelListDrawer.selectionMoveDown();
@@ -458,7 +453,7 @@ public class Sokoban extends GameFramework {
         secondsTimer.start();   // Starts the timer again
     }
 
-    private void hasCompletedLevel() {
+    void hasCompletedLevel() {
         // Check if the numberOfHoles has increased or decreased
         if (numberOfHolesBefore > level.getNumberOfFilledHoles()) {
             playSound(SOUND_BOX_NOT_IN_HOLE);
@@ -501,51 +496,53 @@ public class Sokoban extends GameFramework {
     }
 
     @RequiredLoad
-    private void loadTextures() throws IOException {
-        textures = new BufferedImage[13];
-        textures[TEXTURE_PLAYER] = loadTexture(new File(PATH_TO_TEXTURES + "player.png"));
-        textures[TEXTURE_WALL] = loadTexture(new File(PATH_TO_TEXTURES + "wall.png"));
-        textures[TEXTURE_FLOOR] = loadTexture(new File(PATH_TO_TEXTURES + "blank.png"));
-        textures[TEXTURE_WATER] = loadTexture(new File(PATH_TO_TEXTURES + "waterway.png"));
+    private void loadTextures() throws Exception {
+        loadTexture(new File(PATH_TO_TEXTURES + "player.png"), Integer.toString(TEXTURE_PLAYER));
+        loadTexture(new File(PATH_TO_TEXTURES + "wall.png"), Integer.toString(TEXTURE_WALL));
+        loadTexture(new File(PATH_TO_TEXTURES + "blank.png"), Integer.toString(TEXTURE_FLOOR));
+        loadTexture(new File(PATH_TO_TEXTURES + "waterway.png"), Integer.toString(TEXTURE_WATER));
 
-        textures[TEXTURE_STAR] = loadTexture(new File(PATH_TO_TEXTURES + "star.png"));
-        textures[TEXTURE_STAR_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "starHole.png"));
-        textures[TEXTURE_STAR_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "starMarked.png"));
+        loadTexture(new File(PATH_TO_TEXTURES + "star.png"), Integer.toString(TEXTURE_STAR));
+        loadTexture(new File(PATH_TO_TEXTURES + "starHole.png"), Integer.toString(TEXTURE_STAR_HOLE));
+        loadTexture(new File(PATH_TO_TEXTURES + "starMarked.png"), Integer.toString(TEXTURE_STAR_MARKED));
 
-        textures[TEXTURE_SQUARE] = loadTexture(new File(PATH_TO_TEXTURES + "square.png"));
-        textures[TEXTURE_SQUARE_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "squareHole.png"));
-        textures[TEXTURE_SQUARE_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "squareMarked.png"));
+        loadTexture(new File(PATH_TO_TEXTURES + "square.png"), Integer.toString(TEXTURE_SQUARE));
+        loadTexture(new File(PATH_TO_TEXTURES + "squareHole.png"), Integer.toString(TEXTURE_SQUARE_HOLE));
+        loadTexture(new File(PATH_TO_TEXTURES + "squareMarked.png"), Integer.toString(TEXTURE_SQUARE_MARKED));
 
-        textures[TEXTURE_CIRCLE] = loadTexture(new File(PATH_TO_TEXTURES + "circle.png"));
-        textures[TEXTURE_CIRCLE_HOLE] = loadTexture(new File(PATH_TO_TEXTURES + "circleHole.png"));
-        textures[TEXTURE_CIRCLE_MARKED] = loadTexture(new File(PATH_TO_TEXTURES + "circleMarked.png"));
+        loadTexture(new File(PATH_TO_TEXTURES + "circle.png"), Integer.toString(TEXTURE_CIRCLE));
+        loadTexture(new File(PATH_TO_TEXTURES + "circleHole.png"), Integer.toString(TEXTURE_CIRCLE_HOLE));
+        loadTexture(new File(PATH_TO_TEXTURES + "circleMarked.png"), Integer.toString(TEXTURE_CIRCLE_MARKED));
     }
 
     @RequiredLoad
-    private void loadAudio() throws NoSuchFileException {
+    private void loadAudio() throws Exception {
             String[] musicDirectory = getFilesInDirectory(PATH_TO_MUSIC);
             if (musicDirectory == null) {
-                SOUND_MUSIC = -1;
+                SOUND_MUSIC = "null";
             }
             else {
-                musicList = new int[musicDirectory.length];
+                String text = "music";
+                musicList = new String[musicDirectory.length];
                 for (int i = 0; i < musicList.length; i++) {
-                    musicList[i] = loadSound(new File(PATH_TO_MUSIC + musicDirectory[i]));
+                    musicList[i] = text + i;
+                    loadSound(new File(PATH_TO_MUSIC + musicDirectory[i]), musicList[i]);
                 }
             }
-            SOUND_MUSIC = -1;
+            SOUND_MUSIC = "null";
 
         // Load the sounds
-        SOUND_DING = loadSound(new File(PATH_TO_SOUND_EFFECTS + "select.mp3"));
-        SOUND_ERROR = loadSound(new File(PATH_TO_SOUND_EFFECTS + "error.wav"));
-        SOUND_BOX_IN_HOLE = loadSound(new File(PATH_TO_SOUND_EFFECTS + "boxInHole.mp3"));
-        SOUND_BOX_NOT_IN_HOLE = loadSound(new File(PATH_TO_SOUND_EFFECTS + "boxNotInHole.wav"));
-        SOUND_WIN = loadSound(new File(PATH_TO_SOUND_EFFECTS + "win.wav"));
-        SOUND_THE_END = loadSound(new File(PATH_TO_SOUND_EFFECTS + "theEnd.wav"));
+        loadSound(new File(PATH_TO_SOUND_EFFECTS + "select.mp3"), SOUND_DING);
+        loadSound(new File(PATH_TO_SOUND_EFFECTS + "error.wav"), SOUND_ERROR);
+        loadSound(new File(PATH_TO_SOUND_EFFECTS + "boxInHole.mp3"), SOUND_BOX_IN_HOLE);
+        loadSound(new File(PATH_TO_SOUND_EFFECTS + "boxNotInHole.wav"), SOUND_BOX_NOT_IN_HOLE);
+        loadSound(new File(PATH_TO_SOUND_EFFECTS + "win.wav"), SOUND_WIN);
+        loadSound(new File(PATH_TO_SOUND_EFFECTS + "theEnd.wav"), SOUND_THE_END);
+        loadSound(new File(PATH_TO_SOUND_EFFECTS + "select.mp3"), BRUH);
     }
 
     @RequiredLoad
-    private void loadLevelDirectory() {
+    private void loadLevelDirectory() throws NullPointerException {
         // Filters out all non .lvl files and replaces '_' with spaces to show text better
         String[] lvlIndex = getFilesInDirectory(PATH_TO_LEVELS);
         ArrayList<String> lvlDirectory = new ArrayList<>();
@@ -561,6 +558,11 @@ public class Sokoban extends GameFramework {
         }
         levelDirectory = lvlDirectory.toArray(new String[0]);
         levelSelectionArray = selDirectory.toArray(new String[0]);
+    }
+
+    @RequiredLoad
+    private void loadFonts() throws Exception {
+        loadFont(new File(PATH_TO_FONTS + "Pixeled.ttf"), PIXEL_FONT);
     }
 
     /**
@@ -595,12 +597,12 @@ public class Sokoban extends GameFramework {
 
         @Override
         public BufferedImage getMainMenuBackground() {
-            return textures[TEXTURE_FLOOR];
+            return returnTexture(Integer.toString(TEXTURE_FLOOR));
         }
 
         @Override
         public BufferedImage getMainMenuPositionImage() {
-            return textures[TEXTURE_PLAYER];
+            return returnTexture(Integer.toString(TEXTURE_PLAYER));
         }
 
     }
@@ -632,7 +634,7 @@ public class Sokoban extends GameFramework {
 
         @Override
         public BufferedImage getBackgroundImage() {
-            return textures[TEXTURE_FLOOR];
+            return returnTexture(Integer.toString(TEXTURE_FLOOR));
         }
     }
 
@@ -736,7 +738,10 @@ public class Sokoban extends GameFramework {
 
         @Override
         public BufferedImage getTexture(int i) {
-            return textures[i];
+            if (i == -1) {
+                return null;
+            }
+            return returnTexture(Integer.toString(i));
         }
 
         @Override
@@ -796,7 +801,6 @@ public class Sokoban extends GameFramework {
         @Override
         public String[] gamePausedDescription() {
             if (showEndingQuest) {
-                //FIXME: Add some more stuff here!
                 String[] toShow = new String[8];
                 toShow[0] = "TOTAL TIME TO COMPLETE ALL LEVELS: " +  String.format("%02d", (questTotalTime / 60)) +
                         ":" + String.format("%02d", (questTotalTime % 60));
@@ -855,4 +859,6 @@ public class Sokoban extends GameFramework {
             }
         }
     }
+
+
 }

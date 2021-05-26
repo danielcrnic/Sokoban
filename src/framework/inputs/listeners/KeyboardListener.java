@@ -5,7 +5,7 @@ import framework.inputs.InputSubject;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-import static framework.inputs.InputSubject.*;
+import static framework.inputs.InputObserver.*;
 
 public class KeyboardListener implements KeyEventDispatcher {
 

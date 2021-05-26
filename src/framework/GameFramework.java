@@ -3,6 +3,7 @@ package framework;
 import framework.inputs.InputObserver;
 import framework.inputs.InputSubject;
 import framework.inputs.listeners.KeyboardListener;
+import framework.storage.Storage;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaException;
@@ -16,7 +17,6 @@ import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.file.NoSuchFileException;
-import java.util.ArrayList;
 
 import static java.awt.BorderLayout.PAGE_START;
 import static java.awt.BorderLayout.CENTER;
@@ -25,12 +25,16 @@ public abstract class GameFramework implements InputObserver {
 
     // Objects that will hold information
     private final JFrame frame;
-    private InputSubject keySubject;
+    private final InputSubject keySubject;
 
     private JComponent mainComponent;
     private JMenuBar menuBar;
 
-    private final ArrayList<MediaPlayer> audioMediaPlayers;
+    private final Storage<BufferedImage> textures;
+    private final Storage<Font> fonts;
+    private final Storage<MediaPlayer> mediaPlayers;
+
+
 
     // Methods for the GUI
     public abstract int getGUIWidth();
@@ -49,8 +53,6 @@ public abstract class GameFramework implements InputObserver {
      * Constructor for the framework
      */
     public GameFramework(boolean loadKeyboardListener) {
-        audioMediaPlayers = new ArrayList<>();
-
         frame = new JFrame();
 
         frame.setLayout(new BorderLayout());
@@ -69,19 +71,32 @@ public abstract class GameFramework implements InputObserver {
             new KeyboardListener(keySubject);
         }
 
+        textures = new Storage<>();
+        fonts = new Storage<>();
+        mediaPlayers = new Storage<>();
+
         new JFXPanel();     // Need to be initialized to be able to use the audio player
 
         // Call methods that needs to be loaded, if the methods cannot be called. The framework will exit
+        // for this feature to work properly, the methods that has the @RequiredLoad annotation will have to
+        // throw an exception, or else it is not possible to know if the execution has failed.
         Class<?> clazz = getClass();
 
         for (Method m : clazz.getDeclaredMethods()) {
             if (m.isAnnotationPresent(RequiredLoad.class)) {
+                if (m.getExceptionTypes().length <= 0) {
+                    System.err.println("WARNING: The method: " + m.getName() + " does not throw a exception if it " +
+                            "fails!\nThis is required if the annotation @RequiredLoad should be used.");
+                    System.exit(-1);
+                }
+
                 try {
                     m.setAccessible(true);
                     m.invoke(this);
-                    System.out.println("Loaded " + m.toString());
+                    System.out.println("Loaded successfully: " + m.getName());
                 } catch (IllegalAccessException | InvocationTargetException e) {
-                    System.out.println("Could not load " + m.toString());
+                    System.err.println("Could not load: " + m.getName());
+                    e.printStackTrace();
                     System.exit(-1);
                 }
             }
@@ -95,18 +110,35 @@ public abstract class GameFramework implements InputObserver {
      * @param path The path of where to get the files and folders
      * @return An String array with the values
      */
-    public String[] getFilesInDirectory(String path) {
+    public String[] getFilesInDirectory(String path) throws NullPointerException {
         return new File(path + ".").list();
     }
 
+
     /**
-     * Loads an image texture into a BufferedImage variable which is then returned to the developer
-     *
-     * @return An BufferedImage with the image, if null is returned it means that it could not either find the file
-     *         or there was a problem with loading that image.
+     * @param file
+     * @param index
+     * @throws Exception
+     * @throws IOException
      */
-    public BufferedImage loadTexture(File file) throws IOException {
-        return ImageIO.read(file);
+    public void loadTexture(File file, String index) throws Exception, IOException {
+        // Check if file already exits
+        if (textures.hasFile(file)) {
+            if (!textures.addIndex(file, index)) {
+                throw new Exception("Index already exits!");
+            }
+        }
+
+        BufferedImage bufferedImage = ImageIO.read(file);
+        textures.loadObject(bufferedImage, file, index);
+    }
+
+    /**
+     * @param index
+     * @return
+     */
+    public BufferedImage returnTexture(String index) {
+        return textures.getObject(index);
     }
 
     /**
@@ -114,16 +146,33 @@ public abstract class GameFramework implements InputObserver {
      * easily. Furthermore, the end developer can use Font methods like .deriveFont() to change the style (bold, italic
      * e.t.c.) and the font size.
      *
+     * This font can be then access throughout the index which is assigned. But the index has to be unique and cannot
+     * collide with other fonts (to have same index)
+     *
      * @param file The filepath of where the font is located.
-     * @return An Font variable with the font, if the font could not be loaded. It will instead return null.
-     * */
-    public Font loadFont(File file) {
-        try {
-            return Font.createFont(Font.TRUETYPE_FONT, file);
-        } catch (IOException | FontFormatException e) {
-            System.err.println("Had an problem loading the font!");
-            return null;
+     * @param index
+     * @throws Exception
+     * @throws IOException
+     * @throws FontFormatException
+     */
+    public void loadFont(File file, String index) throws Exception, IOException, FontFormatException {
+        // Check if file already exits
+        if (fonts.hasFile(file)) {
+            if (!fonts.addIndex(file, index)) {
+                throw new Exception("Index already exits!");
+            }
         }
+
+        Font font = Font.createFont(Font.TRUETYPE_FONT, file);
+        fonts.loadObject(font, file, index);
+    }
+
+    /**
+     * @param index
+     * @return
+     */
+    public Font getFont(String index) {
+        return fonts.getObject(index);
     }
 
     /**
@@ -154,7 +203,17 @@ public abstract class GameFramework implements InputObserver {
      * @return
      * @throws NoSuchFileException
      */
-    public int loadSound(File file) throws NoSuchFileException {
+    public void loadSound(File file, String index) throws Exception, NoSuchFileException {
+        // Check if file already exits
+        if (mediaPlayers.hasFile(file)) {
+            if (!mediaPlayers.addIndex(file, index)) {
+                throw new Exception("Index already exits!");
+            }
+            else {
+                return;
+            }
+        }
+
         try {
             Media media = new Media(file.toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -166,8 +225,7 @@ public abstract class GameFramework implements InputObserver {
                 }
             });
 
-            audioMediaPlayers.add(mediaPlayer);
-            return audioMediaPlayers.size() - 1;
+            mediaPlayers.loadObject(mediaPlayer, file, index);
         }
         catch (MediaException e) {
             throw new NoSuchFileException(file.toURI().toString());
@@ -176,61 +234,45 @@ public abstract class GameFramework implements InputObserver {
 
 
     /**
-     * @param file
      * @param index
-     * @return
-     * @throws NoSuchFileException
      */
-    public int loadSound(File file, int index) throws NoSuchFileException {
-        try {
-            Media media = new Media(file.toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(media);
-
-            mediaPlayer.setOnEndOfMedia(new Runnable() {
-                @Override
-                public void run() {
-                    mediaPlayer.stop();
-                }
-            });
-
-            audioMediaPlayers.add(index, mediaPlayer);
-            return audioMediaPlayers.size() - 1;
+    public void playSound(String index) {
+        MediaPlayer mediaPlayer = mediaPlayers.getObject(index);
+        if (mediaPlayer == null) {
+            return;
         }
-        catch (MediaException e) {
-            throw new NoSuchFileException(file.toURI().toString());
+
+        if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+            mediaPlayer.seek(mediaPlayer.getStartTime());
+        }
+
+        mediaPlayer.play();
+    }
+
+    /**
+     * @param index
+     */
+    public void pauseSound(String index) {
+        MediaPlayer mediaPlayer = mediaPlayers.getObject(index);
+        if (mediaPlayer != null) {
+            mediaPlayer.pause();
         }
     }
 
     /**
      * @param index
      */
-    public void playSound(int index) {
-        if (audioMediaPlayers.get(index).getStatus() == MediaPlayer.Status.PLAYING) {
-            audioMediaPlayers.get(index).seek(audioMediaPlayers.get(index).getStartTime());
-        }
-
-        audioMediaPlayers.get(index).play();
-    }
-
-    /**
-     * @param index
-     */
-    public void pauseSound(int index) {
-        audioMediaPlayers.get(index).pause();
-    }
-
-    /**
-     * @param index
-     */
-    public void stopSound(int index) {
-        audioMediaPlayers.get(index).stop();
-    }
+    public void stopSound(String index) {
+        MediaPlayer mediaPlayer = mediaPlayers.getObject(index);
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+        }    }
 
     /**
      * @param index
      * @param volume
      */
-    public void setVolumeSound(int index, double volume) {
+    public void setVolumeSound(String index, double volume) {
         double toSet = volume;
 
         if (volume > 1.0) {
@@ -240,15 +282,10 @@ public abstract class GameFramework implements InputObserver {
             toSet = 0;
         }
 
-        audioMediaPlayers.get(index).setVolume(toSet);
-    }
-
-    public void playLoopSound(int index) {
-        audioMediaPlayers.get(index).setAutoPlay(true);
-    }
-
-    public void disableAutoplay(int index) {
-        audioMediaPlayers.get(index).setAutoPlay(false);
+        MediaPlayer mediaPlayer = mediaPlayers.getObject(index);
+        if (mediaPlayer != null) {
+            mediaPlayer.setVolume(toSet);
+        }
     }
 
     /**
@@ -307,12 +344,12 @@ public abstract class GameFramework implements InputObserver {
         // In feature, if the "main menu" should not use the keys by the "game mode", a feature could be added that
         // only triggers goUp(), goDown()... IF a game is being played.
         switch (button) {
-            case InputSubject.UP -> goUp();
-            case InputSubject.DOWN -> goDown();
-            case InputSubject.LEFT -> goLeft();
-            case InputSubject.RIGHT -> goRight();
-            case InputSubject.ENTER -> pressedEnter();
-            case InputSubject.BACK -> pressedBack();
+            case UP -> goUp();
+            case DOWN -> goDown();
+            case LEFT -> goLeft();
+            case RIGHT -> goRight();
+            case ENTER -> pressedEnter();
+            case BACK -> pressedBack();
         }
     }
 

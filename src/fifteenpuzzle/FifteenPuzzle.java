@@ -31,15 +31,15 @@ public class FifteenPuzzle extends GameFramework {
     public FifteenPuzzle() {
         super(true);
 
-        pixelFont = loadFont(new File( "resources/fonts/Pixeled.ttf"));
-        if (pixelFont == null) {
-            // Could not find/load the fond
-            pixelFont = new Font("Cantarell", Font.PLAIN, 12);
-        }
+       //  pixelFont = loadFont(new File( "resources/fonts/Pixeled.ttf"));
+       //  if (pixelFont == null) {
+       //      // Could not find/load the fond
+       //      pixelFont = new Font("Cantarell", Font.PLAIN, 12);
+       //  }
 
         // --- UNMARK ONE OF THESE ---
-        // initializeGame();
-        cheat();
+        initializeGame();
+        // cheat();
 
         // Enable the component
         game = new Game();
@@ -215,22 +215,22 @@ public class FifteenPuzzle extends GameFramework {
     private void loadTexture() throws IOException {
         textures = new BufferedImage[16];
 
-        textures[Game.TEXTURE_EMPTY] = loadTexture(new File("resources/fifteenpuzzle/TileBlank.png"));
-        textures[Game.TEXTURE_1] = loadTexture(new File("resources/fifteenpuzzle/TileOne.png"));
-        textures[Game.TEXTURE_2] = loadTexture(new File("resources/fifteenpuzzle/TileTwo.png"));
-        textures[Game.TEXTURE_3] = loadTexture(new File("resources/fifteenpuzzle/TileThree.png"));
-        textures[Game.TEXTURE_4] = loadTexture(new File("resources/fifteenpuzzle/TileFour.png"));
-        textures[Game.TEXTURE_5] = loadTexture(new File("resources/fifteenpuzzle/TileFive.png"));
-        textures[Game.TEXTURE_6] = loadTexture(new File("resources/fifteenpuzzle/TileSix.png"));
-        textures[Game.TEXTURE_7] = loadTexture(new File("resources/fifteenpuzzle/TileSeven.png"));
-        textures[Game.TEXTURE_8] = loadTexture(new File("resources/fifteenpuzzle/TileEight.png"));
-        textures[Game.TEXTURE_9] = loadTexture(new File("resources/fifteenpuzzle/TileNine.png"));
-        textures[Game.TEXTURE_10] = loadTexture(new File("resources/fifteenpuzzle/TileTen.png"));
-        textures[Game.TEXTURE_11] = loadTexture(new File("resources/fifteenpuzzle/TileEleven.png"));
-        textures[Game.TEXTURE_12] = loadTexture(new File("resources/fifteenpuzzle/TileTwelve.png"));
-        textures[Game.TEXTURE_13] = loadTexture(new File("resources/fifteenpuzzle/TileThirteen.png"));
-        textures[Game.TEXTURE_14] = loadTexture(new File("resources/fifteenpuzzle/TileFourteen.png"));
-        textures[Game.TEXTURE_15] = loadTexture(new File("resources/fifteenpuzzle/TileFifteen.png"));
+        // textures[Game.TEXTURE_EMPTY] = loadTexture(new File("resources/fifteenpuzzle/TileBlank.png"));
+        // textures[Game.TEXTURE_1] = loadTexture(new File("resources/fifteenpuzzle/TileOne.png"));
+        // textures[Game.TEXTURE_2] = loadTexture(new File("resources/fifteenpuzzle/TileTwo.png"));
+        // textures[Game.TEXTURE_3] = loadTexture(new File("resources/fifteenpuzzle/TileThree.png"));
+        // textures[Game.TEXTURE_4] = loadTexture(new File("resources/fifteenpuzzle/TileFour.png"));
+        // textures[Game.TEXTURE_5] = loadTexture(new File("resources/fifteenpuzzle/TileFive.png"));
+        // textures[Game.TEXTURE_6] = loadTexture(new File("resources/fifteenpuzzle/TileSix.png"));
+        // textures[Game.TEXTURE_7] = loadTexture(new File("resources/fifteenpuzzle/TileSeven.png"));
+        // textures[Game.TEXTURE_8] = loadTexture(new File("resources/fifteenpuzzle/TileEight.png"));
+        // textures[Game.TEXTURE_9] = loadTexture(new File("resources/fifteenpuzzle/TileNine.png"));
+        // textures[Game.TEXTURE_10] = loadTexture(new File("resources/fifteenpuzzle/TileTen.png"));
+        // textures[Game.TEXTURE_11] = loadTexture(new File("resources/fifteenpuzzle/TileEleven.png"));
+        // textures[Game.TEXTURE_12] = loadTexture(new File("resources/fifteenpuzzle/TileTwelve.png"));
+        // textures[Game.TEXTURE_13] = loadTexture(new File("resources/fifteenpuzzle/TileThirteen.png"));
+        // textures[Game.TEXTURE_14] = loadTexture(new File("resources/fifteenpuzzle/TileFourteen.png"));
+        // textures[Game.TEXTURE_15] = loadTexture(new File("resources/fifteenpuzzle/TileFifteen.png"));
     }
 
     public class Game extends GameComponent {

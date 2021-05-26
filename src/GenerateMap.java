@@ -1,5 +1,4 @@
 import sokoban.Level;
-import sokoban.Sokoban;
 import sokoban.objects.CusObj;
 import sokoban.objects.FloorObject;
 import sokoban.objects.PlayerObject;
@@ -68,33 +67,15 @@ public class GenerateMap {
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
                 switch (map[i][j]) {
-                    case 'W':
-                        layout[i][j] = new StaticObject(0, 0, TEXTURE_WALL);
-                        break;
-                    case 'A':
-                        layout[i][j] = new StaticObject(0, 0, TEXTURE_WATER);
-                        break;
-                    case 'P':
-                        player = new PlayerObject(j, i, TEXTURE_PLAYER);
-                        break;
-                    case 'S':
-                        boxes.add(new StarBox(j, i));
-                        break;
-                    case 's':
-                        holes.add(new StarHole(j, i));
-                        break;
-                    case 'Q':
-                        boxes.add(new SquareBox(j, i));
-                        break;
-                    case 'q':
-                        holes.add(new SquareHole(j, i));
-                        break;
-                    case 'C':
-                        boxes.add(new CircleBox(j, i));
-                        break;
-                    case 'c':
-                        holes.add(new CircleHole(j, i));
-                        break;
+                    case 'W' -> layout[i][j] = new StaticObject(0, 0, TEXTURE_WALL);
+                    case 'A' -> layout[i][j] = new StaticObject(0, 0, TEXTURE_WATER);
+                    case 'P' -> player = new PlayerObject(j, i, TEXTURE_PLAYER);
+                    case 'S' -> boxes.add(new StarBox(j, i));
+                    case 's' -> holes.add(new StarHole(j, i));
+                    case 'Q' -> boxes.add(new SquareBox(j, i));
+                    case 'q' -> holes.add(new SquareHole(j, i));
+                    case 'C' -> boxes.add(new CircleBox(j, i));
+                    case 'c' -> holes.add(new CircleHole(j, i));
                 }
 
                 if (layout[i][j] == null && map[i][j] != 'E') {
