@@ -1,14 +1,5 @@
 import sokoban.Level;
-import sokoban.objects.CusObj;
-import sokoban.objects.FloorObject;
-import sokoban.objects.PlayerObject;
-import sokoban.objects.StaticObject;
-import sokoban.objects.boxes.CircleBox;
-import sokoban.objects.boxes.SquareBox;
-import sokoban.objects.boxes.StarBox;
-import sokoban.objects.holes.CircleHole;
-import sokoban.objects.holes.SquareHole;
-import sokoban.objects.holes.StarHole;
+import sokoban.objects.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,7 +12,7 @@ import static sokoban.Sokoban.GameDrawer.*;
 
 public class GenerateMap {
 
-    public static final String FILE_TXT = "very_easy";
+    public static final String FILE_TXT = "levelsRaw/level8";
 
     public static void main(String[] args) {
         File file = new File(FILE_TXT + ".txt");
@@ -64,19 +55,36 @@ public class GenerateMap {
         ArrayList<CusObj> holes = new ArrayList<>();
         CusObj player = null;
 
+        ObjectFactory objectFactory = new ObjectFactory();
+
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
-                switch (map[i][j]) {
-                    case 'W' -> layout[i][j] = new StaticObject(0, 0, TEXTURE_WALL);
-                    case 'A' -> layout[i][j] = new StaticObject(0, 0, TEXTURE_WATER);
-                    case 'P' -> player = new PlayerObject(j, i, TEXTURE_PLAYER);
-                    case 'S' -> boxes.add(new StarBox(j, i));
-                    case 's' -> holes.add(new StarHole(j, i));
-                    case 'Q' -> boxes.add(new SquareBox(j, i));
-                    case 'q' -> holes.add(new SquareHole(j, i));
-                    case 'C' -> boxes.add(new CircleBox(j, i));
-                    case 'c' -> holes.add(new CircleHole(j, i));
+                CusObj fromFactory = objectFactory.create(String.valueOf(map[i][j]), j, i);
+
+                if (fromFactory instanceof Box) {
+                    boxes.add(fromFactory);
                 }
+                else if (fromFactory instanceof Hole) {
+                    holes.add(fromFactory);
+                }
+                else if (fromFactory instanceof PlayerObject) {
+                    player = fromFactory;
+                }
+                else if (fromFactory instanceof StaticObject) {
+                    layout[i][j] = fromFactory;
+                }
+
+                // switch (map[i][j]) {
+                //     case 'W' -> layout[i][j] = new StaticObject(0, 0, TEXTURE_WALL);
+                //     case 'A' -> layout[i][j] = new StaticObject(0, 0, TEXTURE_WATER);
+                //     case 'P' -> player = new PlayerObject(j, i, TEXTURE_PLAYER);
+                //     case 'S' -> boxes.add(new StarBox(j, i));
+                //     case 's' -> holes.add(new StarHole(j, i));
+                //     case 'Q' -> boxes.add(new SquareBox(j, i));
+                //     case 'q' -> holes.add(new SquareHole(j, i));
+                //     case 'C' -> boxes.add(new CircleBox(j, i));
+                //     case 'c' -> holes.add(new CircleHole(j, i));
+                // }
 
                 if (layout[i][j] == null && map[i][j] != 'E') {
                     layout[i][j] = new FloorObject(0, 0, TEXTURE_FLOOR);
