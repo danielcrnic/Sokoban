@@ -12,25 +12,31 @@ public class Storage<AnyType> {
     }
 
     /**
-     * @param object
-     * @param file
-     * @param index
-     * @throws Exception
+     * Loads an object, if the object already exits (i.e. has same filepath) the tag will try to be inserted
+     *
+     * @param object The object
+     * @param file Filepath to the object
+     * @param tag The tag/index to be uniquely identified to the object
+     * @throws Exception If the tag/index already exists
      */
-    public void loadObject(AnyType object, File file, String index) throws Exception {
-        // Check if the if a identical file already exists or if there is already an object linking to the index.
+    public void loadObject(AnyType object, File file, String tag) throws Exception {
+        String index = tag.toUpperCase();
+
+        for (Store<AnyType> s :arrayList) {
+            if (s.hasIndex(index)) {
+                throw new Exception("Can't have multiple indexes with same value!");
+            }
+        }
+
+        // Check if the if a identical file already exists
         for (Store<AnyType> s : arrayList) {
             if (s.sameFile(file)) {
-                if (s.addIndex(index)) {
+                if (s.addIndex(index)) {    // Try to add the index
                     return;
                 }
                 else {
                     throw new Exception("An texture already exists with the same index!");
                 }
-            }
-
-            if (s.hasIndex(index)) {
-                throw new Exception("Can't have multiple indexes with same value!");
             }
         }
 
@@ -38,8 +44,10 @@ public class Storage<AnyType> {
     }
 
     /**
-     * @param file
-     * @return
+     * Checks if the object exists in the storage
+     *
+     * @param file The filepath of the object
+     * @return True if it exists or false if it does not
      */
     public boolean hasFile(File file) {
         for (Store<AnyType> s : arrayList) {
@@ -52,18 +60,25 @@ public class Storage<AnyType> {
     }
 
     /**
-     * @param file
-     * @param index
-     * @return
+     * Adds an additional tag/index to an object if it exits.
+     *
+     * @param file The filepath
+     * @param tag The tag to be added
+     * @return False if the index already exits. True if it was sucessfully added
      */
-    public boolean addIndex(File file, String index) {
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    public boolean addIndex(File file, String tag) {
+        String index = tag.toUpperCase();
+
+        for (Store<AnyType> s : arrayList) {
+            if (s.hasIndex(index)) {
+                return false;
+            }
+        }
+
         for (Store<AnyType> s : arrayList) {
             if (s.sameFile(file)) {
                 return s.addIndex(index);
-            }
-
-            if (s.hasIndex(index)) {
-                return false;
             }
         }
 
@@ -71,10 +86,12 @@ public class Storage<AnyType> {
     }
 
     /**
-     * @param index
-     * @return
+     * @param tag The tag to find the object searching for
+     * @return The object if it is found or null if it does not exits
      */
-    public AnyType getObject(String index) {
+    public AnyType getObject(String tag) {
+        String index = tag.toUpperCase();
+
         for (Store<AnyType> s : arrayList) {
             if (s.hasIndex(index)) {
                 return s.getObject();

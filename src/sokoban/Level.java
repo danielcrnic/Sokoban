@@ -211,7 +211,6 @@ public class Level implements Serializable {
         }
 
 
-        foundMatching = false;
         for (CusObj o : boxes) {
             if (o.samePosition(obj.getX() + x, obj.getY() + y)) {
                 if (second) {
