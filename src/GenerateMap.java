@@ -74,18 +74,6 @@ public class GenerateMap {
                     layout[i][j] = fromFactory;
                 }
 
-                // switch (map[i][j]) {
-                //     case 'W' -> layout[i][j] = new StaticObject(0, 0, TEXTURE_WALL);
-                //     case 'A' -> layout[i][j] = new StaticObject(0, 0, TEXTURE_WATER);
-                //     case 'P' -> player = new PlayerObject(j, i, TEXTURE_PLAYER);
-                //     case 'S' -> boxes.add(new StarBox(j, i));
-                //     case 's' -> holes.add(new StarHole(j, i));
-                //     case 'Q' -> boxes.add(new SquareBox(j, i));
-                //     case 'q' -> holes.add(new SquareHole(j, i));
-                //     case 'C' -> boxes.add(new CircleBox(j, i));
-                //     case 'c' -> holes.add(new CircleHole(j, i));
-                // }
-
                 if (layout[i][j] == null && map[i][j] != 'E') {
                     layout[i][j] = new FloorObject(0, 0, TEXTURE_FLOOR);
                 }

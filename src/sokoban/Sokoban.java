@@ -108,12 +108,9 @@ public class Sokoban extends GameFramework {
         pixelFont = getFont(PIXEL_FONT);
 
         // Create a timer that can increment a counter every second
-        secondsTimer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gameTime++;
-                gameDrawer.repaint();
-            }
+        secondsTimer = new Timer(1000, e -> {
+            gameTime++;
+            gameDrawer.repaint();
         });
 
         mainMenuDrawer = new MainMenuDrawer();
@@ -253,27 +250,25 @@ public class Sokoban extends GameFramework {
      */
     private void mainMenu(int selection) {
         switch (selection) {
-            case 0:
+            case 0 -> {
                 // Start normal quest
                 QUEST_LEVELS = LONG_QUEST_LEVELS;
                 if (!startQuest()) {
                     System.err.println("An error has occurred!");
                 }
-                break;
-            case 1:
+            }
+            case 1 -> {
                 // Start normal quest
                 QUEST_LEVELS = SHORT_QUEST_LEVELS;
                 if (!startQuest()) {
                     System.err.println("An error has occurred!");
                 }
-                break;
-            case 2:
+            }
+            case 2 -> {
                 gameStatus = STATUS_LEVEL_SELECTOR;
                 setComponent(levelListDrawer);
-                break;
-            case 3:
-                System.exit(0);
-                break;
+            }
+            case 3 -> System.exit(0);
         }
     }
 

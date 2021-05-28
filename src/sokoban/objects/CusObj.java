@@ -2,6 +2,7 @@ package sokoban.objects;
 
 import java.awt.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 public abstract class CusObj implements Serializable {
 
@@ -24,12 +25,8 @@ public abstract class CusObj implements Serializable {
         this.texture = texture;
         this.triggerTexture = triggerTexture;
 
-        if (color == null) {
-            this.color = new Color(0, true);    // Create a transparent color
-        }
-        else {
-            this.color = color;
-        }
+        // Create a transparent color
+        this.color = Objects.requireNonNullElseGet(color, () -> new Color(0, true));
     }
 
     public CusObj(int x, int y, int texture, int triggerTexture) {
@@ -157,9 +154,7 @@ public abstract class CusObj implements Serializable {
                 // Checks if their names matches
                 if (o.objectName().equals(objectName())) {
                     // Check if their colors match
-                    if (o.modifyColor().equals(modifyColor())) {
-                        return true;
-                    }
+                    return o.modifyColor().equals(modifyColor());
                 }
             }
         }
