@@ -18,7 +18,10 @@ public abstract class Component extends JComponent {
     // --- Public method that makes it easier to draw on the screen ---
 
     /**
-     * @param g2
+     * Paints the bottom bar which has an dark transparent background. The bottom fills the whole window width but
+     * height is only 50px.
+     *
+     * @param g2 Graphics2D
      */
     public void drawBottomBar(Graphics2D g2) {
         g2.setColor(new Color(0, 0, 0, 0.2f));
@@ -26,7 +29,10 @@ public abstract class Component extends JComponent {
     }
 
     /**
-     * @param g2
+     * Paints the top bar which has an dark transparent background. The top fills the whole window width but height is
+     * only 50px.
+     *
+     * @param g2 Graphics2D
      */
     public void drawTopBar(Graphics2D g2) {
         g2.setColor(new Color(0, 0, 0, 0.2f));
@@ -36,9 +42,9 @@ public abstract class Component extends JComponent {
     /**
      * Calculates the dimension of the string with the font that will be used
      *
-     * @param string
-     * @param font
-     * @return
+     * @param string The text that wants to be printed
+     * @param font The font what wants to be used
+     * @return An Dimension object which contains the width and height of the String that it would require
      */
     public Dimension calculateStringDimensions(String string, Font font) {
         Rectangle2D rectangle2D = font.getStringBounds(string, FONT_RENDER_CONTEXT);
@@ -46,12 +52,16 @@ public abstract class Component extends JComponent {
     }
 
     /**
-     * @param g2
-     * @param string
-     * @param font
-     * @param x
-     * @param y
-     * @return
+     * Paints a string on the screen with the selected font (the font color has to be defined before). When painted it
+     * will return an Dimension object that contains the width and height of the painted text.
+     *
+     * @param g2 Graphics2D
+     * @param string The string to be printed
+     * @param font The font to used
+     * @param x The x position (Starts at 0 on the left)
+     * @param y The y position (Starts at 0 on the top)
+     *
+     * @return Dimensions of the painted string
      */
     public Dimension drawString(Graphics2D g2, String string, Font font, int x, int y) {
         Rectangle2D rectangle2D = font.getStringBounds(string, FONT_RENDER_CONTEXT);
@@ -90,11 +100,11 @@ public abstract class Component extends JComponent {
      * Paints over the whole screen a 70% transparent gray background. This is used when drawing information that
      * is important and so that the player is not seeing the game as much
      *
-     * @param g2
-     * @param xFrom
-     * @param yFrom
-     * @param xTo
-     * @param yTo
+     * @param g2 Graphics2D
+     * @param xFrom From x position
+     * @param yFrom From y position
+     * @param xTo To x position
+     * @param yTo To y position
      */
     public void drawGrayBox(Graphics2D g2, int xFrom, int yFrom, int xTo, int yTo) {
         g2.setColor(new Color(0, 0, 0, 0.7f));

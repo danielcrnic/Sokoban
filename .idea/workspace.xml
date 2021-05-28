@@ -2,19 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Level Updated">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_openjfx_javafx_media_16.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/org_openjfx_javafx_media_16.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_openjfx_javafx_swing_16.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/org_openjfx_javafx_swing_16.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/ObjectFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/ObjectFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Sokoban.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/FloorObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/FloorObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/Hole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/Hole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/PlayerObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/PlayerObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/StaticObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/StaticObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/drawcomponents/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponents/GameComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/drawcomponents/ListComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponents/ListComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/drawcomponents/MenuComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponents/MenuComponent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,25 +32,22 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/StaticObject.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/Level.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/framework/GameFramework.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputObserver.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputSubject.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/GenerateMap.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/Sokoban.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/StartSokoban.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/Level.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/objects/StaticObject.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/objects/PlayerObject.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/objects/FloorObject.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/StartSokoban.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/GameFramework.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/Sokoban.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputSubject.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputObserver.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/ListComponent.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/MenuComponent.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/Component.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/GameComponent.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/ListComponent.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/Component.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1s3p0b49JY6LcckDiCZvTqkDKNf" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -175,6 +163,8 @@
       <option name="presentableId" value="Default" />
       <updated>1620110904494</updated>
       <workItem from="1621952698017" duration="1478000" />
+      <workItem from="1622205864602" duration="141000" />
+      <workItem from="1622206046505" duration="824000" />
     </task>
     <task id="LOCAL-00001" summary="Lite Trasig bufferedImage">
       <created>1620113283162</created>
