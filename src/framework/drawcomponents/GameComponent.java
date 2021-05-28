@@ -37,37 +37,43 @@ public abstract class GameComponent extends Component {
     public abstract String[] gamePausedDescription();
     public abstract String[] gamePausedSelections();
 
-    private Timer timer;
+    private final Timer timer;
     private int lineToShow, selection;
     private boolean paused = false;
 
     public GameComponent() {
-        timer = new Timer(getSecondsBetweenEach() * 1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                lineToShow = lineToShow + 1 % getGameBottomBarLeftTexts().length;
+        timer = new Timer(getSecondsBetweenEach() * 1000, e -> {
+            lineToShow = lineToShow + 1 % getGameBottomBarLeftTexts().length;
 
-                if (lineToShow >= getGameBottomBarLeftTexts().length) {
-                    lineToShow = 0;
-                }
+            if (lineToShow >= getGameBottomBarLeftTexts().length) {
+                lineToShow = 0;
             }
         });
         selection = 0;
         lineToShow = 0;
     }
 
+    /**
+     * Displays the pause menu
+     */
     public void showPauseMenu() {
         paused = true;
         timer.stop();
         repaint();
     }
 
+    /**
+     * Displays the game (the pause menu is removed if it was enables)
+     */
     public void showGame() {
         paused = false;
         timer.start();
         repaint();
     }
 
+    /**
+     * Called to move the selection up, this will also repaint the component
+     */
     public void selectionMoveUp() {
         if (paused) {
             String[] options = gamePausedSelections();
@@ -80,6 +86,9 @@ public abstract class GameComponent extends Component {
         }
     }
 
+    /**
+     * Called to move the selection down, this will also repaint the component
+     */
     public void selectionMoveDown() {
         if (paused) {
             String[] options = gamePausedSelections();
@@ -92,10 +101,18 @@ public abstract class GameComponent extends Component {
         }
     }
 
+    /**
+     * @return Returns the selection that is currently selected
+     */
     public int getSelection() {
         return selection;
     }
 
+    /**
+     * Used to set an selection in the menu
+     *
+     * @param selection The selection position
+     */
     public void setSelection(int selection) {
         this.selection = selection;
     }
@@ -115,7 +132,12 @@ public abstract class GameComponent extends Component {
     // --- Private methods ---
 
     /**
-     * @param g2
+     * Draws the game layout with the three layers, 1st layers should be the background, 2nd layer should be objects
+     * that are steppable but not movable, 3rd layer should be the moving/movable objects.
+     *
+     * This method utilizes the abstract methods the game developer has to implement to be able to draw
+     *
+     * @param g2 Graphics2D
      */
     private void drawGame(Graphics2D g2) {
         // Get the width and height to be able to draw the level in center
@@ -181,7 +203,10 @@ public abstract class GameComponent extends Component {
     }
 
     /**
-     * @param g2
+     * Draws the game paused screen, this utilizes the abstract methods the game developer has to implement to be able
+     * to show relevant information
+     *
+     * @param g2 Graphics2D
      */
     public void drawGamePaused(Graphics2D g2) {
         paintGray(g2);
@@ -209,10 +234,10 @@ public abstract class GameComponent extends Component {
 
         if (description != null) {
             height = (int) (getHeight() * 0.2);
-            for (int i = 0; i < description.length; i++) {
-                Dimension stringDimension = calculateStringDimensions(description[i].toUpperCase(Locale.ROOT),
+            for (String s : description) {
+                Dimension stringDimension = calculateStringDimensions(s.toUpperCase(Locale.ROOT),
                         optionsFont);
-                g2.drawString(description[i].toUpperCase(Locale.ROOT),
+                g2.drawString(s.toUpperCase(Locale.ROOT),
                         (getWidth() / 2) - (stringDimension.width / 2), height);
                 height = height + stringDimension.height - 20;
             }

@@ -79,10 +79,16 @@ public abstract class ListComponent extends Component {
         }
     }
 
+    /**
+     * @return Returns the selection that is currently selected
+     */
     public int getSelection() {
         return selection;
     }
 
+    /**
+     * Called to move the selection up, this will also repaint the component
+     */
     public void selectionMoveUp() {
         if (selection - 1 >= 0) {
             selection--;
@@ -91,6 +97,9 @@ public abstract class ListComponent extends Component {
 
     }
 
+    /**
+     * Called to move the selection down, this will also repaint the component
+     */
     public void selectionMoveDown() {
         if (selection + 1 < getOptions().length) {
             selection++;

@@ -5,6 +5,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.Locale;
 
+@SuppressWarnings("unused")
 public abstract class MenuComponent extends Component {
 
     public abstract Font getFont();
@@ -89,10 +90,16 @@ public abstract class MenuComponent extends Component {
         g2.drawString(copyRightNotice, getWidth() - rWidth, getHeight());
     }
 
+    /**
+     * @return Returns the selection that is currently selected
+     */
     public int getSelection() {
         return selection;
     }
 
+    /**
+     * Called to move the selection up, this will also repaint the component
+     */
     public void selectionMoveUp() {
         if (selection - 1 >= 0) {
             selection--;
@@ -100,6 +107,9 @@ public abstract class MenuComponent extends Component {
         }
     }
 
+    /**
+     * Called to move the selection down, this will also repaint the component
+     */
     public void selectionMoveDown() {
         if (selection + 1 < getMainMenuOptions().length) {
             selection++;
@@ -107,6 +117,11 @@ public abstract class MenuComponent extends Component {
         }
     }
 
+    /**
+     * Used to set an selection in the menu
+     *
+     * @param selection The selection position
+     */
     public void setSelection(int selection) {
         this.selection = selection;
     }

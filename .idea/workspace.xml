@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Level Updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/framework/drawcomponents/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponents/Component.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/drawcomponents/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponents/GameComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/drawcomponents/ListComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponents/ListComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/framework/drawcomponents/MenuComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/framework/drawcomponents/MenuComponent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
