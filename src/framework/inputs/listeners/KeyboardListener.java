@@ -11,6 +11,13 @@ public class KeyboardListener implements KeyEventDispatcher {
 
     InputSubject subject;
 
+    /**
+     * Constructor for the KeyboardListener, this listener requires an InputSubject to be able to send keyboard presses
+     * to the framework. This class is specifically designed for the GameFramework where it send input values defined by
+     * by the GameFramework.
+     *
+     * @param subject The Subject that has the GameFramework as an observer
+     */
     public KeyboardListener(InputSubject subject) {
         this.subject = subject;
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
