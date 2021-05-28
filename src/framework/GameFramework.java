@@ -21,6 +21,7 @@ import java.nio.file.NoSuchFileException;
 import static java.awt.BorderLayout.PAGE_START;
 import static java.awt.BorderLayout.CENTER;
 
+@SuppressWarnings("ALL")
 public abstract class GameFramework implements InputObserver {
 
     // Objects that will hold information
@@ -232,12 +233,7 @@ public abstract class GameFramework implements InputObserver {
             Media media = new Media(file.toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(media);
 
-            mediaPlayer.setOnEndOfMedia(new Runnable() {
-                @Override
-                public void run() {
-                    mediaPlayer.stop();
-                }
-            });
+            mediaPlayer.setOnEndOfMedia(mediaPlayer::stop);
 
             mediaPlayers.loadObject(mediaPlayer, file, index);
         }
@@ -248,7 +244,12 @@ public abstract class GameFramework implements InputObserver {
 
 
     /**
-     * @param index
+     * Plays the sound by the index that is provided, if the sound has been paused before (method pauseSound() is called
+     * ) the sound will resume from where it was stopped.
+     *
+     * If an incorrect index/tag is sent, nothing will happen
+     *
+     * @param index The index/tag of the sound.
      */
     public void playSound(String index) {
         MediaPlayer mediaPlayer = mediaPlayers.getObject(index);
@@ -264,7 +265,12 @@ public abstract class GameFramework implements InputObserver {
     }
 
     /**
-     * @param index
+     * Pauses the sound so it can be played afterwards later. To resume from the paused state, the method playSound()
+     * should be called.
+     *
+     * If an incorrect index/tag is sent, nothing will happen
+     *
+     * @param index The index/tag of the sound
      */
     public void pauseSound(String index) {
         MediaPlayer mediaPlayer = mediaPlayers.getObject(index);
@@ -274,7 +280,12 @@ public abstract class GameFramework implements InputObserver {
     }
 
     /**
-     * @param index
+     * Stops the sound from playing. When calling the playSound() method it will start from the beginning. Calling this
+     * method to an audio that is not playing will not do anything.
+     *
+     * If an incorrect index/tag is sent, nothing will happen
+     *
+     * @param index The index/tag of the sound
      */
     public void stopSound(String index) {
         MediaPlayer mediaPlayer = mediaPlayers.getObject(index);
@@ -283,8 +294,16 @@ public abstract class GameFramework implements InputObserver {
         }    }
 
     /**
-     * @param index
-     * @param volume
+     * Sets the volume for the specific sound, this does not control the main audio volume. This can be used to lower
+     * volume on specific sounds, the volume is not set to default if the audio is stopped. It keeps track of the last
+     * volume set.
+     *
+     * An volume is set with a double value between 0.0 to 1.0 where 0.0 is silence/mute and 1.0 is maximum volume.
+     *
+     * If an incorrect index/tag is sent, nothing will happen
+     *
+     * @param index The index/tag of the sound
+     * @param volume The volume where 0.0 is silence/mute and 1.0 is the maximum volume
      */
     public void setVolumeSound(String index, double volume) {
         double toSet = volume;
