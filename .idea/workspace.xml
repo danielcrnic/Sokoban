@@ -2,41 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3477f3c-2f13-43a3-a26d-6f72fc1c4de2" name="Default Changelist" comment="Level Updated">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_openjfx_javafx_media_16.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/org_openjfx_javafx_media_16.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_openjfx_javafx_swing_16.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/org_openjfx_javafx_swing_16.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/levels/level1.lvl" beforeDir="false" afterPath="$PROJECT_DIR$/levels/level1.lvl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/levels/level2.lvl" beforeDir="false" afterPath="$PROJECT_DIR$/levels/level2.lvl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/levels/level3.lvl" beforeDir="false" afterPath="$PROJECT_DIR$/levels/level3.lvl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/levels/level4.lvl" beforeDir="false" afterPath="$PROJECT_DIR$/levels/level4.lvl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/levels/level5.lvl" beforeDir="false" afterPath="$PROJECT_DIR$/levels/level5.lvl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/levels/level6.lvl" beforeDir="false" afterPath="$PROJECT_DIR$/levels/level6.lvl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/levels/level7.lvl" beforeDir="false" afterPath="$PROJECT_DIR$/levels/level7.lvl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/levels/level8.lvl" beforeDir="false" afterPath="$PROJECT_DIR$/levels/level8.lvl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/levelsRaw/level4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/levelsRaw/level4.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/levelsRaw/level5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/levelsRaw/level5.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/levelsRaw/level6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/levelsRaw/level6.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/levelsRaw/simple.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/levelsRaw/simple2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/levelsRaw/simple3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/levelsRaw/simple4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/levelsRaw/simple5.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/levelsRaw/simple6.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/levelsRaw/simple7.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/levelsRaw/simple8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/GenerateMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/GenerateMap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/framework/GameFramework.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$GameDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$GameDrawer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$LevelSelectorDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$LevelSelectorDrawer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$MainMenuDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban$MainMenuDrawer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/Sokoban.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GenerateMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenerateMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/boxes/CircleBox.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/boxes/SquareBox.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/boxes/StarBox.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/holes/CircleHole.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/holes/SquareHole.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/holes/StarHole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/ObjectFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DT4014-Project/sokoban/objects/ObjectFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/Sokoban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/Sokoban.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/Box.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/CusObj.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/FloorObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/FloorObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/Hole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/Hole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/PlayerObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/PlayerObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokoban/objects/StaticObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokoban/objects/StaticObject.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,22 +41,25 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/framework/GameFramework.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputObserver.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputSubject.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/GenerateMap.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/Sokoban.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/StartSokoban.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sokoban/Level.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/objects/StaticObject.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/Level.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GenerateMap.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/objects/PlayerObject.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sokoban/objects/FloorObject.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/MenuComponent.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/GameComponent.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/StartSokoban.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/framework/GameFramework.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sokoban/Sokoban.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputSubject.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/framework/inputs/InputObserver.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/ListComponent.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/MenuComponent.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/Component.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/framework/drawcomponents/GameComponent.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1s3p0b49JY6LcckDiCZvTqkDKNf" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />

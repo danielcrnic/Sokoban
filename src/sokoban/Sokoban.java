@@ -278,7 +278,7 @@ public class Sokoban extends GameFramework {
     }
 
     /**
-     * @param selection
+     * @param selection Integer for what position in the list you want to select.
      */
     private void levelSelector(int selection) {
         gameTime = 0;   // Reset the game time so new colors get generated
@@ -291,7 +291,7 @@ public class Sokoban extends GameFramework {
     }
 
     /**
-     * @param selection
+     * @param selection Integer for what selection the player makes in the pause-menu.
      */
     private void gamePaused(int selection) {
         switch (selection) {
@@ -314,7 +314,8 @@ public class Sokoban extends GameFramework {
     }
 
     /**
-     * @param selection
+     * @param selection Integer selection for what selection the player makes in the special pause meny that
+     *                  is the victory screen
      */
     private void gameWin(int selection) {
         if (runningQuest) {
@@ -366,6 +367,10 @@ public class Sokoban extends GameFramework {
         }
     }
 
+    /**
+     * @param levelSelection Integer for what level the player wants to play
+     * @return Returns a boolean value signaling whether the choice of level was valid.
+     */
     private boolean startGame(String levelSelection) {
         // Load the level
         Object object = loadObject(new File(PATH_TO_LEVELS + levelSelection));
@@ -405,6 +410,9 @@ public class Sokoban extends GameFramework {
         return true;
     }
 
+    /**
+     * @return Returns a boolean value of whether the quest was started completely.
+     */
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean startQuest() {
         runningQuest = true;
@@ -421,6 +429,12 @@ public class Sokoban extends GameFramework {
         return startGame(QUEST_LEVELS[questLevel]);
     }
 
+    /**
+     * @param gameTime Integer for current levels gametime, to be added to the total time.
+     * @param correctMoves Integer for current levels correct moves , to be added to the total.
+     * @param incorrectMoves Integer for current levels incorrect moves , to be added to the total.
+     * @param tries Integer for current levels tries , to be added to the total.
+     */
     private void questUpdateTotalValues(int gameTime, int correctMoves, int incorrectMoves, int tries) {
         questTotalTime += gameTime;
         questTotalCorrectMoves += correctMoves;
@@ -452,6 +466,9 @@ public class Sokoban extends GameFramework {
         secondsTimer.start();   // Starts the timer again
     }
 
+    /**
+     *  Returns when level is about to be stopped
+     */
     void hasCompletedLevel() {
         // Check if the numberOfHoles has increased or decreased
         if (numberOfHolesBefore > level.getNumberOfFilledHoles()) {
@@ -489,6 +506,9 @@ public class Sokoban extends GameFramework {
         SOUND_MUSIC = musicList[new Random().nextInt(musicList.length)];
     }
 
+    /**
+     * Used to add random coloration to the background
+     */
     private void randomizeColors() {
         backgroundColor1 = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
         backgroundColor2 = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));

@@ -128,25 +128,26 @@ public abstract class CusObj implements Serializable {
     }
 
     /**
-     * @param o
-     * @return
+     * @param o An object carrying its X and Y positions to be evaluated.
+     * @return Returns a boolean value of whether there are objects that would overlap in this new position.
      */
     public boolean samePosition(CusObj o) {
         return o.getY() == getY() && o.getX() == getX();
     }
 
     /**
-     * @param x
-     * @param y
-     * @return
+     * @param x X position to be evaluated
+     * @param y Y position to be evaluated
+     * @return Returns a boolean value of whether there would two objects stacked ontop of eachother in this new
+     * position. Same as above, but callable with Coordinates rather than an object.
      */
     public boolean samePosition(int x, int y) {
         return x == getX() && y == getY();
     }
 
     /**
-     * @param o
-     * @return
+     * @param o Object to be "fitted" into a hole.
+     * @return Returns a boolean value of whether the box fit into the hole or not.
      */
     public boolean fitted(CusObj o) {
         // Cannot be the same type of objects
@@ -165,7 +166,14 @@ public abstract class CusObj implements Serializable {
         return false;
     }
 
+    /**
+     * @return Returns a boolean value of whether the object is able to be moved.
+     */
     public abstract boolean isMovable();
+
+    /**
+     * @return Returns a boolean value of whether the object is able to be stood upon.
+     */
     public abstract boolean isSteppable();
 
     /**
